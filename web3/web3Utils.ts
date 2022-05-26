@@ -53,7 +53,7 @@ export const sellNFT = async (_tokenID: number, _price: number) => {
     }
 }
 
-interface INFT {
+export interface INFT {
     name: string;
     description: string;
     tokenId: number;
@@ -105,7 +105,7 @@ export const getMyNFTs = async (): Promise<Array<INFT>> => {
     console.log("RUNES",runes)
     return runes
 }
-export const getNFTs = async (): Promise<INFT> => {
+export const getNFTs = async (): Promise<Array<INFT>> => {
     console.log("GET-MY-NFTs PROCEDURE INITIATED..")
 
     console.log("LOGIN PROCEDURE: CHECK USER REQUEST")
@@ -253,7 +253,7 @@ export const login = async () => {
     console.log("LOGIN PROCEDURE: CURRENT ADDRESS", addr);
 
     console.log("LOGIN PROCEDURE: CHECK USER REQUEST")
-    const checkUserRes = await fetch("http://localhost:4000/graphql", {
+    const checkUserRes = await fetch("http://ec2-52-37-206-149.us-west-2.compute.amazonaws.com:4000/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -285,7 +285,7 @@ export const login = async () => {
         console.log("LOGIN PROCEDURE: SIGNATURE",sigMsg)
 
         console.log("LOGIN PROCEDURE: USER VERIFICATION REQUEST")
-        const verifyUserRes = await fetch("http://localhost:4000/graphql", {
+        const verifyUserRes = await fetch("http://ec2-52-37-206-149.us-west-2.compute.amazonaws.com:4000/graphql", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

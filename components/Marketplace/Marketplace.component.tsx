@@ -9,9 +9,10 @@ import { Divider, Text } from '../../styles/Components.styled'
 import ItemComponent from './Item.component'
 import { getNFTs } from '../../web3/web3Utils'
 import LoadingComponent from '../Loading/Loading.component'
+import { INFT } from '../../web3/web3Utils'
 
 const MarketplaceComponent = () => {
-    const [nfts, setNfts] = useState([])
+    const [nfts, setNfts] = useState<Array<INFT>>([])
     const [loading, setLoading] = useState<boolean>(true)
     useEffect(() => {
         async function fetchNFTs() {
