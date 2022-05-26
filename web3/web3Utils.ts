@@ -253,7 +253,7 @@ export const login = async () => {
     console.log("LOGIN PROCEDURE: CURRENT ADDRESS", addr);
 
     console.log("LOGIN PROCEDURE: CHECK USER REQUEST")
-    const checkUserRes = await fetch("http://ec2-52-37-206-149.us-west-2.compute.amazonaws.com:4000/graphql", {
+    const checkUserRes = await fetch("https://ec2-52-37-206-149.us-west-2.compute.amazonaws.com:4000/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -285,7 +285,7 @@ export const login = async () => {
         console.log("LOGIN PROCEDURE: SIGNATURE",sigMsg)
 
         console.log("LOGIN PROCEDURE: USER VERIFICATION REQUEST")
-        const verifyUserRes = await fetch("http://ec2-52-37-206-149.us-west-2.compute.amazonaws.com:4000/graphql", {
+        const verifyUserRes = await fetch("https://ec2-52-37-206-149.us-west-2.compute.amazonaws.com:4000/graphql", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
