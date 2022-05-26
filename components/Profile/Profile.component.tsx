@@ -33,8 +33,9 @@ const MyNfts = () => {
         <Box2 height={800} width={1400} mb={20} jc="start">
             
             {loading ? <LoadingComponent/> : <Items>
-                {nfts?.map(item => {
+                {nfts?.map((item, index) => {
                     return (<ItemComponent
+                        key={index}
                         id={item?.tokenId}
                         level={321}
                         power={12}

@@ -34,9 +34,10 @@ const MarketplaceComponent = () => {
 
             {loading ? <LoadingComponent/> :
             <Items>
-                { nfts.map(item => {
+                { nfts.map((item, index) => {
                     return (
                         <ItemComponent
+                        key={index}
                         id={item.tokenId}
                         level={321}
                         power={12}

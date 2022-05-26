@@ -34,9 +34,9 @@ const HeaderComponent = () => {
         </LogoContainer>
         
         <SideContainer>
-            {LinksData.map(item => {
+            {LinksData.map((item, index) => {
                 return(
-                    <HeaderLink href={item.href} text={item.text}/>
+                    <HeaderLink key={index} href={item.href} text={item.text}/>
                 )
             })}
             <AccountContainer/>

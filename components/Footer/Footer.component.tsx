@@ -26,8 +26,8 @@ const FooterComponent = () => {
         </LogoContainer>
 
         <SocialMedias>
-            {data.map(item => {
-                return <Icon to={item.to} image={item.image}/>
+            {data.map((item,index) => {
+                return <Icon to={item.to} image={item.image} key={index}/>
             })}
         </SocialMedias>
 
