@@ -54,7 +54,7 @@ const UnsignedComponent = () => {
                 TO Start earning rewards and buy Our nfts, the players have to link their steam account to orbeem ECosystem. This is done by minting a unique avatar nft. please enter the following data into the corresponding fields.
             </Text>
             <Button1 width={200} height={50} mt={30} mb={30}
-                onClick={()=> {router.push("http://52.37.206.149:4000/api/auth/steam")}}
+                onClick={()=> {router.push("https://orbeem-api.herokuapp.com/api/auth/steam")}}
             >
                 CONNECT
             </Button1>
