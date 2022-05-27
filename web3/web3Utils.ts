@@ -12,6 +12,8 @@ const daiContract = "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063"
 const nftContract = "0xc6Dde1f743F77aa6ACC2591C6bCa03e38b92Bc4E"
 const marketContract = "0x0395928235b5A4a281F679C43521608e174Ff3d8"
 
+import { URIs } from '../config';
+
 //-------------------------------------------------------------------------------------------------------------
 export const buyNFT = async (_itemID: number) => {
     if(typeof window.ethereum !== "undefined"){
@@ -68,7 +70,7 @@ export const getMyNFTs = async (): Promise<Array<INFT>> => {
     console.log("GET-MY-NFTs PROCEDURE: CURRENT ADDRESS", addr);
 
     console.log("LOGIN PROCEDURE: CHECK USER REQUEST")
-    const getMyNFTsRes = await fetch("https://api.thegraph.com/subgraphs/name/vladknd/orbeem-check", {
+    const getMyNFTsRes = await fetch(URIs.subgraphURI, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -109,7 +111,7 @@ export const getNFTs = async (): Promise<Array<INFT>> => {
     console.log("GET-MY-NFTs PROCEDURE INITIATED..")
 
     console.log("LOGIN PROCEDURE: CHECK USER REQUEST")
-    const getNFTsRes = await fetch("https://api.thegraph.com/subgraphs/name/vladknd/orbeem-check", {
+    const getNFTsRes = await fetch(URIs.subgraphURI, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -162,7 +164,7 @@ export const getNFTData = async (id: number): Promise<INFTData> => {
     console.log("GET-NFT-DATA PROCEDURE INITIATED..")
 
     console.log("GET-NFT-DATA PROCEDURE: ")
-    const getNFTDataRes = await fetch("https://api.thegraph.com/subgraphs/name/vladknd/orbeem-check", {
+    const getNFTDataRes = await fetch(URIs.subgraphURI, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -253,7 +255,7 @@ export const login = async () => {
     console.log("LOGIN PROCEDURE: CURRENT ADDRESS", addr);
 
     console.log("LOGIN PROCEDURE: CHECK USER REQUEST")
-    const checkUserRes = await fetch("https://orbeem-api.herokuapp.com/graphql", {
+    const checkUserRes = await fetch(URIs.apiURI, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -285,7 +287,7 @@ export const login = async () => {
         console.log("LOGIN PROCEDURE: SIGNATURE",sigMsg)
 
         console.log("LOGIN PROCEDURE: USER VERIFICATION REQUEST")
-        const verifyUserRes = await fetch("https://orbeem-api.herokuapp.com/graphql", {
+        const verifyUserRes = await fetch(URIs.apiURI, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

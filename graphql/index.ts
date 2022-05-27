@@ -1,6 +1,8 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 
+const apiURI = "http://localhost:4000/graphql"
+
 export const graphClient = new ApolloClient({
-    uri: 'https://orbeem-api.herokuapp.com/graphql',
+    uri: apiURI,
     cache: new InMemoryCache()
 })
