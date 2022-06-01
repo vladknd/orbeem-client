@@ -10,6 +10,7 @@ import {
     Button2, 
     Divider 
 } from '../../styles/Components.styled'
+import LoadingComponent from '../Loading/Loading.component'
 
 import { 
     HomeContainer, 
@@ -17,7 +18,8 @@ import {
     PanelContainer, 
     Tape, 
     TapesContainer, 
-    UpsideContainer 
+    UpsideContainer, 
+    Waves
 } from './Home.styled'
 
 //-----------------------------------PANEL-CONNECT-COMPONENT:
@@ -47,7 +49,7 @@ const PanelBox = (props: IPanelBox) => {
                     Router.push(props.link)
                 }}
             >
-                {props.text}
+            {props.text}
             </Button2>
         </Box1>
     )
@@ -65,18 +67,22 @@ const Panel = () => {
 
 //-----------------------------HOME-COMPONENT------------------------------:
 const HomeComponent = () => {
+  const Router = useRouter()
   const [authorized, loading] = useAuthorize()  
-//   useEffect(() => {
-//     console.log(authorized)
-//     console.log(loading)
-    
-//   }, [authorized, loading])
-  
   return (
     <HomeContainer>
+        <Waves/>
         <UpsideContainer>
             <LogoContainer auth={authorized}>
                 <Image src="/logo_vertical.svg" width={450} height={450}/>
+                {/* <Button2 width={250} height={50} mt={40}
+                onClick={(event)=> {
+                    Router.push("/")
+                }}
+                >
+                CONNECT
+                </Button2> */}
+                {authorized ? null : <LoadingComponent/>}
             </LogoContainer>
             
             <TapesContainer>
@@ -94,7 +100,7 @@ const HomeComponent = () => {
         </UpsideContainer>
 
         <Divider/>
-        {authorized ? <Panel/> : <PanelConnect/>}
+        {authorized ? <Panel/> : null}
         <Divider/>
     </HomeContainer>
   )

@@ -4,6 +4,9 @@ export const HomeContainer = styled.div`
     width: 100%;
     height: 100%;
 
+    /* background-image: url("/waves.svg"); */
+    background-size: 900px 700px;
+    /* opacity: 0.3; */
 `
 
 export const UpsideContainer = styled.div`
@@ -19,6 +22,7 @@ export const UpsideContainer = styled.div`
     background-repeat: repeat;
     background-size: fill;
 
+    /* background-image: url("/waves.svg"); */
     height: 100vh;
 `
 
@@ -29,6 +33,11 @@ export const LogoContainer = styled.div`
     filter: ${(props: ILogoContainer) => props.auth ? "drop-shadow(3px -3px 31px #8952FF)" : "none"};
     margin-top: 50px;
     margin-left: 100px;
+    transition: filter 4s;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 
 export const TapesContainer = styled.div`
@@ -53,4 +62,15 @@ export const PanelContainer = styled.div`
 
     height: 100%;
 
+`
+
+export const Waves = styled.div`
+margin-top: 100px;
+    position: absolute;
+    width: 100%;
+    height: 750px;
+    z-index:0;
+    background-image: url("/waves.svg");
+    background-position: 0% 100%;
+    opacity: 0.3;
 `
