@@ -99,7 +99,7 @@ export const getMyNFTs = async (): Promise<Array<INFT>> => {
     const getMyNFTsData = await getMyNFTsRes.json()
     const runes = getMyNFTsData.data.runes
 
-    for (let i = 0; i < runes.length; i++){
+    for (let i = 0; i <= runes.length; i++){
         console.log("LOOP", runes[i].tokenURI);
         
         const res = await fetch(runes[i].tokenURI)
