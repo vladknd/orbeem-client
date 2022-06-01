@@ -8,7 +8,7 @@ interface INFTComponent {
     level: number;
     power: number;
     durability: number;
-    price: number;
+    price: string;
     image: string;
 }
 const ItemComponent = (props: INFTComponent) => {

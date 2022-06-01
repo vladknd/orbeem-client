@@ -59,13 +59,17 @@ export const sellNFT = async (_tokenID: number, _price: number) => {
 export interface INFT {
     name: string;
     description: string;
+
     tokenId: number;
     tokenURI: string;
     imageURI: string;
+
     level: number;
     power: number;
     durability: number;
+    
     price: string;
+
 }
 export const getMyNFTs = async (): Promise<Array<INFT>> => {
     console.log("GET-MY-NFTs PROCEDURE INITIATED..")

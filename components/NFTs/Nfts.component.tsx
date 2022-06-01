@@ -1,33 +1,25 @@
 import { useEffect, useState } from "react";
 import { Box2 } from "../../styles/Components.styled";
-import { getNFTs, INFT } from "../../web3/web3Utils";
+import { 
+    getNFTs, 
+    INFT 
+} from "../../web3/web3Utils";
 import LoadingComponent from "../Loading/Loading.component";
 import ItemComponent from "./Item.component";
 import { Items } from "./Nfts.styled";
+
 
 interface INftsComponent {
     getNfts(): Promise<Array<INFT>>
 }
 const NftsComponent = (props: INftsComponent) => {
-    interface INFT {
-        name: string;
-        description: string;
-        tokenId: number;
-        tokenURI: string;
-        imageURI: string;
-        price: number;
-        
-        level: number;
-        power: number;
-        durability: number;
-    }
+    
     const [nfts, setNFTs] = useState<Array<INFT> | null>(null)
     const [loading, setLoading] = useState<boolean>(true)
     
     useEffect(() => {
         props.getNfts().then((result) => {
-            console.log("PROFILE-COMPONENT: GET-MY-NFTS RESULT", result);
-            
+            console.log("PROFILE-COMPONENT: GET-MY-NFTS RESULT", result)
             setNFTs(result)
             setLoading(false)
             console.log("PROFILE-COMPONENT: SET NFTs", nfts)
