@@ -5,11 +5,10 @@ import {
     Market, 
     Items 
 } from './Marketplace.styled'
-import { Divider, Text } from '../../styles/Components.styled'
-import ItemComponent from './Item.component'
+import { Divider, GlowText, Text } from '../../styles/Components.styled'
 import { getNFTs } from '../../web3/web3Utils'
-import LoadingComponent from '../Loading/Loading.component'
 import { INFT } from '../../web3/web3Utils'
+import NftsComponent from '../NFTs/Nfts.component'
 
 const MarketplaceComponent = () => {
     const [nfts, setNfts] = useState<Array<INFT>>([])
@@ -29,25 +28,8 @@ const MarketplaceComponent = () => {
 
         <Divider/>
         <Market>
-            <Text size={40} m="30px 0px">DOTA 2 - RUNE COLLECTION</Text>
-            <Text size={25} opacity={0.7}>DOTA 2 - RUNE COLLECTION</Text>
-
-            {loading ? <LoadingComponent/> :
-            <Items>
-                { nfts.map((item, index) => {
-                    return (
-                        <ItemComponent
-                        key={index}
-                        id={item.tokenId}
-                        level={321}
-                        power={12}
-                        durability={123}
-                        price={312}
-                        image={item.imageURI}
-                        />
-                    )
-                })}
-            </Items>}           
+            <GlowText m='40px 0px'>RUNE COLLECTION</GlowText>
+            <NftsComponent getNfts={getNFTs}/>
         </Market>
         <Divider/>
 

@@ -4,7 +4,8 @@ import { useUser } from '../../services/user.service'
 import { Box2, Divider, GlowText } from '../../styles/Components.styled'
 import { getMyNFTs } from '../../web3/web3Utils'
 import LoadingComponent from '../Loading/Loading.component'
-import ItemComponent from '../Marketplace/Item.component'
+import ItemComponent from '../NFTs/Item.component'
+import NftsComponent from '../NFTs/Nfts.component'
 import NavigatorComponent from './Navigator.component'
 import { Items, Navigator, ProfileContainer } from './Profile.styled'
 
@@ -32,7 +33,8 @@ const MyNfts = () => {
     return (
         <Box2 height={800} width={1400} mb={20} jc="start">
             
-            {loading ? <LoadingComponent/> : <Items>
+            {loading ? <LoadingComponent/> : 
+            <Items>
                 {nfts?.map((item, index) => {
                     return (<ItemComponent
                         key={index}
@@ -58,13 +60,11 @@ const ProfileComponent = () => {
   return (
     <ProfileContainer>
         <Divider mt='100px'/>
-        {/* <Navigator>
-            MY NFTS
-        </Navigator> */}
-        <NavigatorComponent/>
+            <NavigatorComponent/>
         <Divider mb='20px'/>
 
-        {user?.steamId ? <MyNfts/> : null}
+        {/* {user?.steamId ? <MyNfts/> : null} */}
+        <NftsComponent getNfts={getMyNFTs}></NftsComponent>
     </ProfileContainer>
   )
 }

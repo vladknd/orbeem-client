@@ -1,8 +1,9 @@
 import { gql } from '@apollo/client'
 
 export const REGISTER_USER = gql`
-    mutation Register($publicAddress: String!, $email: String!, $firstName: String!, $surname: String!) {
-        register(publicAddress: $publicAddress, email: $email, firstName: $firstName, surname: $surname) {
+    mutation Register($publicAddress: String!, $email: String!, $firstName: String!, $surname: String!, $username: String!) {
+        register(publicAddress: $publicAddress, email: $email, firstName: $firstName, surname: $surname, username: $username) {
+            token
             user {
                 steamId
                 id
@@ -10,8 +11,8 @@ export const REGISTER_USER = gql`
                 nonce
                 firstName
                 email
+                username
             }
-            token
         }
     }
 `

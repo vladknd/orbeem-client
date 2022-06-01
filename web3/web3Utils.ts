@@ -5,12 +5,13 @@ import { ethers } from 'ethers';
 import { setCookies } from 'cookies-next';
 import Router from 'next/router';
 import NFTMarket from './ABI/NFTMarket.json'
+import RuneNFT from './ABI/RuneNFT.json'
 
 declare let window: any;
 const vendorContract = "0x72B52c1D413CfDF585334352098a0ED49973836D"
 const daiContract = "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063"
-const nftContract = "0xc6Dde1f743F77aa6ACC2591C6bCa03e38b92Bc4E"
-const marketContract = "0x0395928235b5A4a281F679C43521608e174Ff3d8"
+const nftContract = "0xAD86B77e93B8C5e5bD405A5365198f80d87e63c8"
+const marketContract = "0x94f03F73ACA11Ae561d4FB7c0a124b00E0a85D95"
 
 import { URIs } from '../config';
 
@@ -61,6 +62,10 @@ export interface INFT {
     tokenId: number;
     tokenURI: string;
     imageURI: string;
+    level: number;
+    power: number;
+    durability: number;
+    price: number;
 }
 export const getMyNFTs = async (): Promise<Array<INFT>> => {
     console.log("GET-MY-NFTs PROCEDURE INITIATED..")
@@ -78,9 +83,13 @@ export const getMyNFTs = async (): Promise<Array<INFT>> => {
         body: JSON.stringify({
             query:`
                 {
-                    runes(first: 5, where: {owner: "${address}"}) {
+                    runes(first: 6, where: {owner: "${address}"}) {
                         tokenId
                         tokenURI
+                        level
+                        power
+                        durability
+                        price
                     }
                 }
             `
@@ -107,10 +116,11 @@ export const getMyNFTs = async (): Promise<Array<INFT>> => {
     console.log("RUNES",runes)
     return runes
 }
-export const getNFTs = async (): Promise<Array<INFT>> => {
-    console.log("GET-MY-NFTs PROCEDURE INITIATED..")
 
-    console.log("LOGIN PROCEDURE: CHECK USER REQUEST")
+export const getNFTs = async (): Promise<Array<INFT>> => {
+    console.log("GET-NFTs PROCEDURE INITIATED..")
+
+    console.log("GET-NFTs PROCEDURE: GET NFTs REQUEST")
     const getNFTsRes = await fetch(URIs.subgraphURI, {
         method: "POST",
         headers: {
@@ -119,17 +129,25 @@ export const getNFTs = async (): Promise<Array<INFT>> => {
         body: JSON.stringify({
             query:`
                 {
-                    runes(first: 5, where: {owner: "0x0000000000000000000000000000000000000000"}) {
+                    runes(first: 10, where: {owner: "0x0000000000000000000000000000000000000000"}) {
                         tokenId
                         tokenURI
+                        level
+                        power
+                        durability
+                        price
                     }
                 }
             `
         })
     })
-
+    console.log("GET-NFTs-RES", getNFTsRes);
+    
     const getNFTsData = await getNFTsRes.json()
+    console.log("GET-NFTs-DATA", getNFTsData);
+
     const runes = getNFTsData.data.runes
+    console.log("GET-NFTs-RUNES", runes);
 
     for (let i = 0; i < runes.length; i++){
         console.log("LOOP", runes[i].tokenURI);
@@ -159,6 +177,11 @@ export interface INFTData {
 
     owner: string;
     sold: boolean;
+
+    level: number;
+    power: number;
+    durability: number;
+
 }
 export const getNFTData = async (id: number): Promise<INFTData> => {
     console.log("GET-NFT-DATA PROCEDURE INITIATED..")
@@ -178,6 +201,9 @@ export const getNFTData = async (id: number): Promise<INFTData> => {
                         tokenURI
                         sold
                         owner
+                        level
+                        power 
+                        durability
                     }
                 }
             `
@@ -198,7 +224,6 @@ export const getNFTData = async (id: number): Promise<INFTData> => {
     console.log("NFTDATA", NFT)
 
     return NFT
-    
 }
 
 export const getAccount = async () => {
@@ -329,4 +354,23 @@ export const checkAdmin = async () => {
     console.log("DONE", addr);
     if(addr === "0x16bD38012725eFEc123C31338Ab724573813e36C") return true
     return false
+}
+
+export const levelUp = async (_tokenID: number) => {
+    if(typeof window.ethereum !== "undefined"){
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const signer = provider.getSigner()
+                
+        const rune = new ethers.Contract(nftContract, RuneNFT, signer)
+
+        const options = {
+            gasLimit: 3000000,
+        };    
+                
+        const tx = await rune.levelUp(_tokenID, options)
+        const txRes = await tx.wait()
+        
+        console.log("TX", tx)
+        console.log("TX-RES", txRes)
+    }
 }

@@ -23,7 +23,7 @@ export const Divider = styled.div`
 // `
 
 //------------------------------BUTTON------------------------------:
-interface IButton {
+interface IBaseButton {
     width?: number;
     height?: number;
 
@@ -31,16 +31,15 @@ interface IButton {
     mb?: number;
     ml?: number;
     mr?: number;
-
 }
 export const Button = styled.button`
-    width: ${(props: IButton) => `${props.width}px` || "100px"};
-    height: ${(props: IButton) => `${props.height}px` || "100px"};
+    width: ${(props: IBaseButton) => `${props.width}px` || "100px"};
+    height: ${(props: IBaseButton) => `${props.height}px` || "100px"};
 
-    margin-top: ${(props: IButton) => `${props.mt}px` || "0px"};
-    margin-bottom: ${(props: IButton) => `${props.mb}px` || "0px"};
-    margin-right: ${(props: IButton) => `${props.mr}px` || "0px"};
-    margin-left: ${(props: IButton) => `${props.ml}px` || "0px"};
+    margin-top: ${(props: IBaseButton) => `${props.mt}px` || "0px"};
+    margin-bottom: ${(props: IBaseButton) => `${props.mb}px` || "0px"};
+    margin-right: ${(props: IBaseButton) => `${props.mr}px` || "0px"};
+    margin-left: ${(props: IBaseButton) => `${props.ml}px` || "0px"};
 `
 
 export const Button1 = styled(Button)`
@@ -82,7 +81,7 @@ export const Button2 = styled(Button)`
 
 
 //------------------------------BOX------------------------------:
-interface IBox {
+interface IBaseDiv {
     width?: number;
     height?: number;
 
@@ -94,24 +93,34 @@ interface IBox {
     mb?: number;
     mr?: number;
     ml?: number;
+
+    pt?: number;
+    pb?: number;
+    pr?: number;
+    pl?: number;
+
 }
-export const Box = styled.div`
+export const BaseDiv = styled.div`
     display: flex;
-    flex-direction: ${(props: IBox) => props.dir || "column"};
-    justify-content: ${(props: IBox) => props.jc || "center"};
-    align-items: ${(props: IBox) => props.al || "center"};
+    flex-direction: ${(props: IBaseDiv) => props.dir || "column"};
+    justify-content: ${(props: IBaseDiv) => props.jc || "center"};
+    align-items: ${(props: IBaseDiv) => props.al || "center"};
 
-    width: ${(props: IBox) => `${props.width}px` || "100%"};
-    height: ${(props: IBox) => `${props.height}px` || "100%"};
+    width: ${(props: IBaseDiv) => `${props.width}px` || "100%"};
+    height: ${(props: IBaseDiv) => `${props.height}px` || "100%"};
 
-    margin-top: ${(props: IBox) => `${props.mt}px` || "0px"};
-    margin-bottom: ${(props: IBox) => `${props.mb}px` || "0px"};
-    margin-right: ${(props: IBox) => `${props.mr}px` || "0px"};
-    margin-left: ${(props: IBox) => `${props.ml}px` || "0px"};
+    margin-top: ${(props: IBaseDiv) => `${props.mt}px` || "0px"};
+    margin-bottom: ${(props: IBaseDiv) => `${props.mb}px` || "0px"};
+    margin-right: ${(props: IBaseDiv) => `${props.mr}px` || "0px"};
+    margin-left: ${(props: IBaseDiv) => `${props.ml}px` || "0px"};
 
+    padding-top: ${(props: IBaseDiv) => `${props.pt}px` || "0px"};
+    padding-bottom: ${(props: IBaseDiv) => `${props.pb}px` || "0px"};
+    padding-right: ${(props: IBaseDiv) => `${props.pr}px` || "0px"};
+    padding-left: ${(props: IBaseDiv) => `${props.pl}px` || "0px"};    
     
 `
-export const Box1 = styled(Box)`
+export const Box1 = styled(BaseDiv)`
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
 
@@ -120,7 +129,7 @@ export const Box1 = styled(Box)`
     color: white;
 `
 
-export const Box2 = styled(Box)`
+export const Box2 = styled(BaseDiv)`
     border: 1px solid ${colors.yellow};
     border-radius: 10px;
 

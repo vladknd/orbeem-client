@@ -14,6 +14,7 @@ import { Button1, GlowText, Text } from '../../styles/Components.styled';
 import { useUser } from '../../services/user.service';
 import Image from 'next/image'
 import { useRouter } from 'next/router';
+import axios from 'axios';
 //NAVIGATOR-LINK:
 export interface INavigatorLink {
     href: string;
@@ -27,11 +28,12 @@ const NavigatorLink = (props: INavigatorLink) => {
     )
 }
 const SignedComponent = () => {
+    const {user}= useUser()
     return (
         <SignedContainer>
             <AccountContainer>
                 <AvatarContainer image="/avatar.jpg"></AvatarContainer>
-                <UsernameContainer>USERNAME</UsernameContainer>
+                <UsernameContainer>{user?.username}</UsernameContainer>
             </AccountContainer>
             <GlowText size={60} m="30px 0px 20px 0px">MY PROFILE</GlowText>
             <Links>
@@ -54,9 +56,9 @@ const UnsignedComponent = () => {
                 TO Start earning rewards and buy Our nfts, the players have to link their steam account to orbeem ECosystem. This is done by minting a unique avatar nft. please enter the following data into the corresponding fields.
             </Text>
             <Button1 width={200} height={50} mt={30} mb={30}
-                onClick={()=> {router.push("http://orbeem-api.herokuapp.com/api/auth/steam")}}
+                onClick={() => router.push("https://orbeem-api.herokuapp.com/api/auth/steam")}
             >
-                CONNECT
+                VERIFY
             </Button1>
         </UnsignedContainer>
     )
@@ -67,6 +69,7 @@ const NavigatorComponent = () => {
   return (
     <NavigatorContainer>
         {user?.steamId ? <SignedComponent/> : <UnsignedComponent/>}
+        {/* <SignedComponent/> */}
     </NavigatorContainer>
   )
 }

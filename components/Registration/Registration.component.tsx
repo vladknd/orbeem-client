@@ -81,7 +81,8 @@ const RegistrationComponent = () => {
                   publicAddress: regData?.publicAddress,
                   email: regData?.email,
                   firstName: regData?.firstName,
-                  surname: regData?.surname
+                  surname: regData?.surname,
+                  username: regData?.username
               }})
               console.log("NEW USER", newUser);
               Router.push("/")
@@ -89,6 +90,7 @@ const RegistrationComponent = () => {
                 <InputField label='FIRST-NAME' name="firstName" setter={SetRegData}/>
                 <InputField label='SURNAME' name="surname" setter={SetRegData}/>
                 <InputField label='EMAIL' name="email" setter={SetRegData}/>
+                <InputField label='STEAM USERNAME' name="username" setter={SetRegData}/>
            
                 <Button1 width={180} height={60} mt={100} type="submit">SIGN UP</Button1>
             </RegistrationForm>

@@ -13,8 +13,8 @@ interface INFTComponent {
 }
 const ItemComponent = (props: INFTComponent) => {
   return (
-    <Link href={`/nft/${props.id}`} passHref>
-    <ItemContainer image={props.image}>
+    <Link  href={`/nft/${props.id}`} passHref>
+    <ItemContainer image={props.image} style={{cursor:"pointer"}}>
         <ItemInfo>
             <Text size={20} m="8px">LEVEL: {props.level}</Text>
             <Text size={20} m="8px">POWER: {props.power}</Text>

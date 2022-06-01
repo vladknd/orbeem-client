@@ -70,6 +70,25 @@
                 "type": "uint256"
             },
             {
+                "indexed": false,
+                "internalType": "uint8",
+                "name": "level",
+                "type": "uint8"
+            }
+        ],
+        "name": "LeveledUp",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
                 "indexed": true,
                 "internalType": "address",
                 "name": "nftAddress",
@@ -86,6 +105,24 @@
                 "internalType": "address",
                 "name": "owner",
                 "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint8",
+                "name": "level",
+                "type": "uint8"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint8",
+                "name": "power",
+                "type": "uint8"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint8",
+                "name": "durability",
+                "type": "uint8"
             }
         ],
         "name": "RuneCreated",
@@ -114,6 +151,31 @@
             }
         ],
         "name": "Transfer",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint8",
+                "name": "power",
+                "type": "uint8"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint8",
+                "name": "durability",
+                "type": "uint8"
+            }
+        ],
+        "name": "UpdatedAttributes",
         "type": "event"
     },
     {
@@ -157,8 +219,18 @@
         "inputs": [
             {
                 "internalType": "string",
-                "name": "uri",
+                "name": "_uri",
                 "type": "string"
+            },
+            {
+                "internalType": "uint8",
+                "name": "_power",
+                "type": "uint8"
+            },
+            {
+                "internalType": "uint8",
+                "name": "_durability",
+                "type": "uint8"
             }
         ],
         "name": "createRune",
@@ -194,6 +266,87 @@
     {
         "inputs": [
             {
+                "internalType": "uint256",
+                "name": "_tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "getBaseAttributes",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint8",
+                        "name": "power",
+                        "type": "uint8"
+                    },
+                    {
+                        "internalType": "uint8",
+                        "name": "durability",
+                        "type": "uint8"
+                    }
+                ],
+                "internalType": "struct RuneNFT.Attributes",
+                "name": "base",
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "getCurrentAttributes",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint8",
+                        "name": "power",
+                        "type": "uint8"
+                    },
+                    {
+                        "internalType": "uint8",
+                        "name": "durability",
+                        "type": "uint8"
+                    }
+                ],
+                "internalType": "struct RuneNFT.Attributes",
+                "name": "currentAttributes",
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "getLevel",
+        "outputs": [
+            {
+                "internalType": "uint8",
+                "name": "level",
+                "type": "uint8"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
                 "internalType": "address",
                 "name": "owner",
                 "type": "address"
@@ -213,6 +366,25 @@
             }
         ],
         "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "levelUp",
+        "outputs": [
+            {
+                "internalType": "uint8",
+                "name": "newLevel",
+                "type": "uint8"
+            }
+        ],
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -387,6 +559,47 @@
         ],
         "name": "transferFrom",
         "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_tokenId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint8",
+                "name": "_newPower",
+                "type": "uint8"
+            },
+            {
+                "internalType": "uint8",
+                "name": "_newDurability",
+                "type": "uint8"
+            }
+        ],
+        "name": "updateAttributes",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint8",
+                        "name": "power",
+                        "type": "uint8"
+                    },
+                    {
+                        "internalType": "uint8",
+                        "name": "durability",
+                        "type": "uint8"
+                    }
+                ],
+                "internalType": "struct RuneNFT.Attributes",
+                "name": "newAttributes",
+                "type": "tuple"
+            }
+        ],
         "stateMutability": "nonpayable",
         "type": "function"
     }

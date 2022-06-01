@@ -11,7 +11,7 @@ interface IItemContainer {
     image: string;
 }
 export const ItemContainer = styled.div`
-    margin: 50px 100px  ;
+    margin: 30px 40px;
     width: 250px;
     height: 250px;
     background-image: ${(props: IItemContainer) => `url("${props.image}")`};
@@ -19,8 +19,9 @@ export const ItemContainer = styled.div`
     background-size: cover;
     transition: 0.5s;
     &:hover{
-        width: 260px;
-        height: 260px;
+        /* width: 260px; */
+        /* height: 260px; */
+        margin: 20px 20px 0px 40px;
         box-shadow: 0 0px 20px #6626ad;
         ${ItemInfo} {
             /* opacity: 0.5; */
@@ -30,6 +31,18 @@ export const ItemContainer = styled.div`
             background: linear-gradient(0deg, rgba(65,24,144,0.7695553563222164) 0%, rgba(255,255,255,0.10849093055190828) 100%);
         }
         
+    }
+    &:hover:active {
+        margin: 20px 20px 0px 40px;
+        opacity: 0.5;
+        box-shadow: 0 0px 20px #6626ad;
+        ${ItemInfo} {
+            /* opacity: 0.5; */
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            background: linear-gradient(0deg, rgba(65,24,144,0.7695553563222164) 0%, rgba(255,255,255,0.10849093055190828) 100%);
+        }
     }
 
 `

@@ -15,19 +15,6 @@ export const useAuthorize = () => {
         const jwt = getCookie("jwt")
         console.log("JWT-useAuthorize-cookies check", jwt)
         
-        // if(!jwt){
-        //   console.log("NO JWT FOUND!")
-            
-        //   setAuthorized(false)
-        //   login().then(user => {
-        //     console.log("USER: LOGGED IN AGAIN", user);
-        //     setLoggedIn(user)
-        //     setAuthorized(true)
-        //   }).catch(error => {
-        //     console.log("ERROR:", error);
-        //   })
-        // }
-
         verifyJwt({variables: {token: jwt}}).then((result) => {
           console.log("VERIFY JWT REQUEST:",result);
           const user = result.data.verifyJwt
