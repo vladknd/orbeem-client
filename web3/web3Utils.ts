@@ -67,7 +67,7 @@ export interface INFT {
     level: number;
     power: number;
     durability: number;
-    
+
     price: string;
 
 }
@@ -286,7 +286,7 @@ export const login = async () => {
     console.log("LOGIN PROCEDURE: CURRENT ADDRESS", addr);
 
     console.log("LOGIN PROCEDURE: CHECK USER REQUEST")
-    const checkUserRes = await fetch(URIs.apiURI, {
+    const checkUserRes = await fetch(`${URIs.apiURI}/graphql`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -318,7 +318,7 @@ export const login = async () => {
         console.log("LOGIN PROCEDURE: SIGNATURE",sigMsg)
 
         console.log("LOGIN PROCEDURE: USER VERIFICATION REQUEST")
-        const verifyUserRes = await fetch(URIs.apiURI, {
+        const verifyUserRes = await fetch(`${URIs.apiURI}/graphql`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
