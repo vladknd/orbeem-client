@@ -37,10 +37,12 @@ export const NFTProvider = (props: any) => {
     
         owner: nft.owner,
         sold: nft.sold,
-    
+        price: nft.price,
+        
         level: nft.level,
         power: nft.power,
         durability: nft.durability
+
     })
     
   }

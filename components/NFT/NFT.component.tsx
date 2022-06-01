@@ -24,9 +24,6 @@ import {
 import Owner from './Owner.component';
 import { useNFT } from './useNFT';
 
-
-
-
 interface INFTComponent {
     id: number;
 }
@@ -41,7 +38,8 @@ const NFTComponent = (props: INFTComponent) => {
       // if(result) setNFT(result)
       if(result) setNFTData(result)
       if(result) console.log("RESULT:", result)
-      // console.log("SET NFT", nft);
+      console.log("SET NFT", nft);
+      console.log("NFT PRICE", nft?.price);
     })
 
     getAccount().then(res => {
@@ -50,7 +48,8 @@ const NFTComponent = (props: INFTComponent) => {
     }).catch(error => {
       console.log("ERROR", error)
     })
-
+    
+    
   },[])
     
   return (
@@ -83,7 +82,7 @@ const NFTComponent = (props: INFTComponent) => {
               : nft.owner === "0x0000000000000000000000000000000000000000" ?
               <Button1 width={200} height={50} mt={40} mb={20}
                 onClick={async ()=> {
-                  await buyNFT(nft.itemId)
+                  await buyNFT(nft.itemId, nft.price)
                 }}
               >BUY
               </Button1> : null} 

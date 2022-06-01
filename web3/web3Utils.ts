@@ -16,7 +16,7 @@ const marketContract = "0x94f03F73ACA11Ae561d4FB7c0a124b00E0a85D95"
 import { URIs } from '../config';
 
 //-------------------------------------------------------------------------------------------------------------
-export const buyNFT = async (_itemID: number) => {
+export const buyNFT = async (_itemID: number, _price: string) => {
     if(typeof window.ethereum !== "undefined"){
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
@@ -25,7 +25,7 @@ export const buyNFT = async (_itemID: number) => {
 
         const options = {
             gasLimit: 3000000,
-            value: 10
+            value: ethers.utils.parseUnits(_price, 'wei')
         };    
                 
         const tx = await market.createMarketSale(nftContract, _itemID, options)
@@ -65,7 +65,7 @@ export interface INFT {
     level: number;
     power: number;
     durability: number;
-    price: number;
+    price: string;
 }
 export const getMyNFTs = async (): Promise<Array<INFT>> => {
     console.log("GET-MY-NFTs PROCEDURE INITIATED..")
@@ -83,7 +83,7 @@ export const getMyNFTs = async (): Promise<Array<INFT>> => {
         body: JSON.stringify({
             query:`
                 {
-                    runes(first: 6, where: {owner: "${address}"}) {
+                    runes(first: 5, where: {owner: "${address}"}) {
                         tokenId
                         tokenURI
                         level
@@ -99,7 +99,7 @@ export const getMyNFTs = async (): Promise<Array<INFT>> => {
     const getMyNFTsData = await getMyNFTsRes.json()
     const runes = getMyNFTsData.data.runes
 
-    for (let i = 0; i <= runes.length; i++){
+    for (let i = 0; i < 5; i++){
         console.log("LOOP", runes[i].tokenURI);
         
         const res = await fetch(runes[i].tokenURI)
@@ -177,6 +177,7 @@ export interface INFTData {
 
     owner: string;
     sold: boolean;
+    price: string;
 
     level: number;
     power: number;
@@ -204,6 +205,7 @@ export const getNFTData = async (id: number): Promise<INFTData> => {
                         level
                         power 
                         durability
+                        price
                     }
                 }
             `
