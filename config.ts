@@ -3,7 +3,7 @@ export const URIs = {
     // apiURI: "http://localhost:4000",
 
     //HEROKU:
-    apiURI: "https://orbeem-api.herokuapp.com",
+    apiURI: "http://orbeem-api.herokuapp.com",
 
     
     subgraphURI: "https://api.thegraph.com/subgraphs/name/vladknd/orbeem"
