@@ -15,7 +15,8 @@ const NftsComponent = (props: INftsComponent) => {
         tokenId: number;
         tokenURI: string;
         imageURI: string;
-
+        price: number;
+        
         level: number;
         power: number;
         durability: number;
