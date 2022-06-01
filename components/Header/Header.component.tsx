@@ -30,7 +30,10 @@ const HeaderComponent = () => {
   return (
     <HeaderContainer>
         <LogoContainer>
-            <Image width={150} height={80} src="/logo_horizontal.svg"/>
+            <Link href="/" >
+                <Image width={160} height={80} src="/logo_horizontal.svg" style={{cursor:"pointer"}} />
+            </Link>
+            
         </LogoContainer>
         
         <SideContainer>

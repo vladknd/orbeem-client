@@ -14,7 +14,7 @@ export const UpsideContainer = styled.div`
     justify-content: space-between;
 
     background-image: 
-        linear-gradient(to right top, #4d227a, #432072, #3a1e6b, #311c63, #291a5b, #282162, #272869, #262f70, #284189, #2755a3, #1f69bd, #007ed7);
+        linear-gradient(to right top, #3a1953, #33174e, #2c164a, #251445, #1f1240, #1e1543, #1c1746, #1a1a49, #1d2255, #1e2b61, #1f346d, #1e3d7a);
     background-position: center;
     background-repeat: repeat;
     background-size: fill;
@@ -22,7 +22,11 @@ export const UpsideContainer = styled.div`
     height: 100vh;
 `
 
+interface ILogoContainer {
+    auth: boolean;
+}
 export const LogoContainer = styled.div`
+    filter: ${(props: ILogoContainer) => props.auth ? "drop-shadow(3px -3px 31px #8952FF)" : "none"};
     margin-top: 50px;
     margin-left: 100px;
 `

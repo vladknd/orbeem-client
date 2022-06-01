@@ -13,10 +13,11 @@ interface INftsComponent {
     getNfts(): Promise<Array<INFT>>
 }
 const NftsComponent = (props: INftsComponent) => {
-    
+    //STATE____________________________________________________
     const [nfts, setNFTs] = useState<Array<INFT> | null>(null)
     const [loading, setLoading] = useState<boolean>(true)
     
+    //FETCHING NFTs USING PROVIDED FUNCTION____________________
     useEffect(() => {
         props.getNfts().then((result) => {
             console.log("PROFILE-COMPONENT: GET-MY-NFTS RESULT", result)
@@ -25,8 +26,10 @@ const NftsComponent = (props: INftsComponent) => {
             console.log("PROFILE-COMPONENT: SET NFTs", nfts)
         })
     },[])
+
+    //BODY______________________________________________________
     return (
-        <Box2  width={1400} mb={20} pb={50} jc="start">
+        <Box2 mb={20} pb={40} jc="start">
             
             {loading ? <LoadingComponent/> : 
             <Items>
@@ -41,7 +44,6 @@ const NftsComponent = (props: INftsComponent) => {
                         image={item?.imageURI}
                     />)
                 })}
-                
             </Items>}
         </Box2>
     )

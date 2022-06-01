@@ -21,7 +21,7 @@ export const ItemContainer = styled.div`
     &:hover{
         /* width: 260px; */
         /* height: 260px; */
-        margin: 20px 20px 0px 40px;
+        margin: 30px 40px 30px 40px;
         box-shadow: 0 0px 20px #6626ad;
         ${ItemInfo} {
             /* opacity: 0.5; */
@@ -34,7 +34,7 @@ export const ItemContainer = styled.div`
     }
     &:hover:active {
         margin: 20px 20px 0px 40px;
-        opacity: 0.5;
+        opacity: 0.2;
         box-shadow: 0 0px 20px #6626ad;
         ${ItemInfo} {
             /* opacity: 0.5; */

@@ -75,17 +75,20 @@ const HomeComponent = () => {
   return (
     <HomeContainer>
         <UpsideContainer>
-            <LogoContainer>
+            <LogoContainer auth={authorized}>
                 <Image src="/logo_vertical.svg" width={450} height={450}/>
             </LogoContainer>
             
             <TapesContainer>
                 <Tape>
-                    <Image src="/tape1.png" width={850} height={170}/>
+                    <Image src={authorized ? "/tapeDota.png" : "/tapeDotaMono.png"} width={850} height={170}/>
                 </Tape>
 
                 <Tape>
-                    <Image src="/tape2.png" width={850} height={170}/>
+                    <Image src={authorized ? "/tapePubg.png" : "/tapePubgMono.png"} width={850} height={170}/>
+                </Tape>
+                <Tape>
+                    <Image src={authorized ? "/tapeCS.png" : "/tapeCSMono.png"} width={850} height={170}/>
                 </Tape>
             </TapesContainer>
         </UpsideContainer>
