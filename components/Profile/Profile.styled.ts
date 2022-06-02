@@ -6,7 +6,8 @@ export const ProfileContainer = styled.div`
     flex-direction: column;
         align-items: center;
     width: 100%;
-    /* height: 1000px; */
+
+    /* height: 100vh; */
     
 `
 

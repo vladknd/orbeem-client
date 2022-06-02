@@ -15,7 +15,8 @@ import { useUser } from '../../services/user.service';
 import Image from 'next/image'
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { Waves } from '../Home/Home.styled';
+import { Waves } from '../../styles/Components.styled';
+import {URIs} from "../../config"
 //NAVIGATOR-LINK:
 export interface INavigatorLink {
     href: string;
@@ -52,12 +53,12 @@ const UnsignedComponent = () => {
     
     return (
         <UnsignedContainer>
-            <Image src="/steam.svg" width={300} height={300}/>
+            <Image src="/steam.svg" width={450} height={450}/>
             <Text size={20} opacity={0.5} m="0px 500px">
                 TO Start earning rewards and buy Our nfts, the players have to link their steam account to orbeem ECosystem. This is done by minting a unique avatar nft. please enter the following data into the corresponding fields.
             </Text>
             <Button1 width={200} height={50} mt={30} mb={30}
-                onClick={() => router.push("https://orbeem-api.herokuapp.com/api/auth/steam")}
+                onClick={() => router.push(`${URIs.apiURI}/api/auth/steam`)}
             >
                 VERIFY
             </Button1>
@@ -69,7 +70,7 @@ const NavigatorComponent = () => {
   const {user} = useUser()
   return (
     <NavigatorContainer>
-        <Waves/>
+        
         {user?.steamId ? <SignedComponent/> : <UnsignedComponent/>}
         {/* <SignedComponent/> */}
     </NavigatorContainer>
