@@ -1,16 +1,22 @@
+//_______________GLOBAL-IMPORTS___________________
 import React, { useEffect, useState } from 'react'
+//_______________LOCAL-IMPORTS____________________
+//STYLED-COMPONENTS_______________________________
 import { 
     Illustration, 
     MarketplaceContainer, 
-    Market, 
-    Items, 
+    Market,  
     HeaderContainer
 } from './Marketplace.styled'
-import { Divider, GlowText, Text } from '../../styles/Components.styled'
-import { getNFTs } from '../../web3/web3Utils'
-import { INFT } from '../../web3/web3Utils'
+import { 
+    Divider, 
+    GlowText, 
+    Waves 
+} from '../../styles/Components.styled'
+//WEB-3_______________________________
+import { getNFTs, INFT } from '../../web3/web3Utils'
 import NftsComponent from '../NFTs/Nfts.component'
-import { Waves } from '../../styles/Components.styled'
+
 
 const MarketplaceComponent = () => {
     const [nfts, setNfts] = useState<Array<INFT>>([])

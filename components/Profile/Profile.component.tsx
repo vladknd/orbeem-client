@@ -15,7 +15,7 @@ const ProfileComponent = () => {
         <Divider mt='100px'/>
             <NavigatorComponent/>
         <Divider mb='20px'/>
-        <Waves height={600} mt={300}/>
+        {/* <Waves height={600} mt={300}/> */}
         {user?.steamId  ? <NftsComponent getNfts={getMyNFTs}/> : null}
     </ProfileContainer>
   )
