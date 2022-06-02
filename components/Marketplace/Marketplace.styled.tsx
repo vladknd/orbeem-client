@@ -23,7 +23,7 @@ export const Market = styled.div`
     width: 100%;
     height: 100%;
 
-    background-color: ${colors.container_bg};
+    
 `
 
 export const Items = styled.div`
@@ -32,4 +32,14 @@ export const Items = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
+`
+
+export const HeaderContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: ${colors.container_bg};
+    width: 100%;
+    height: 100px;
 `

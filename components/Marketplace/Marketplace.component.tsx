@@ -3,7 +3,8 @@ import {
     Illustration, 
     MarketplaceContainer, 
     Market, 
-    Items 
+    Items, 
+    HeaderContainer
 } from './Marketplace.styled'
 import { Divider, GlowText, Text } from '../../styles/Components.styled'
 import { getNFTs } from '../../web3/web3Utils'
@@ -26,11 +27,16 @@ const MarketplaceComponent = () => {
   return (
     <MarketplaceContainer>
         <Illustration/>
-
         <Divider/>
+        
         <Market>
-            <Waves mt={120} height={600}/>
-            <GlowText m='40px 0px'>RUNE COLLECTION</GlowText>
+            <Waves mt={150} height={600}/>
+            <Divider mt="20px"/>
+                <HeaderContainer>
+                <GlowText size={50}>RUNE COLLECTION</GlowText>
+                </HeaderContainer>
+            <Divider mb="20px"/>
+            
             <NftsComponent getNfts={getNFTs}/>
         </Market>
         <Divider/>
