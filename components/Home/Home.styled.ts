@@ -65,12 +65,12 @@ export const PanelContainer = styled.div`
 `
 
 export const Waves = styled.div`
-margin-top: 100px;
+    margin-top: 900px;
     position: absolute;
     width: 100%;
     height: 750px;
     z-index:0;
     background-image: url("/waves.svg");
-    background-position: 0% 100%;
+    background-position: 0% 1000%;
     opacity: 0.3;
 `

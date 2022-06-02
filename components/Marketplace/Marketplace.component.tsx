@@ -9,6 +9,7 @@ import { Divider, GlowText, Text } from '../../styles/Components.styled'
 import { getNFTs } from '../../web3/web3Utils'
 import { INFT } from '../../web3/web3Utils'
 import NftsComponent from '../NFTs/Nfts.component'
+import { Waves } from '../../styles/Components.styled'
 
 const MarketplaceComponent = () => {
     const [nfts, setNfts] = useState<Array<INFT>>([])
@@ -28,6 +29,7 @@ const MarketplaceComponent = () => {
 
         <Divider/>
         <Market>
+            <Waves mt={120} height={600}/>
             <GlowText m='40px 0px'>RUNE COLLECTION</GlowText>
             <NftsComponent getNfts={getNFTs}/>
         </Market>

@@ -133,6 +133,7 @@ export const Box2 = styled(BaseDiv)`
     border: 1px solid ${colors.yellow};
     border-radius: 10px;
 
+    /* min-width: 1300px; */
     background: ${colors.box2_bg};
 `
 
@@ -198,3 +199,15 @@ export const Text = styled.p`
 
 // `
 
+
+export const Waves = styled(BaseDiv)`
+    /* margin-top: 900px; */
+    position: absolute;
+    width: 100%;
+    /* height: 750px; */
+    z-index:0;
+    background-image: url("/waves.svg");
+    /* background-position: 0% 1000%; */
+    background-size: contain;
+    opacity: 0.3;
+`

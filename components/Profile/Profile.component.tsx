@@ -64,7 +64,7 @@ const ProfileComponent = () => {
         <Divider mb='20px'/>
 
         {/* {user?.steamId ? <MyNfts/> : null} */}
-        {user?.steamId  ? <NftsComponent getNfts={getMyNFTs}></NftsComponent> : null}
+        {user?.steamId  ? <NftsComponent getNfts={getMyNFTs}/> : null}
     </ProfileContainer>
   )
 }

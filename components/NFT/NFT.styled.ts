@@ -8,7 +8,7 @@ export const NFTContainer = styled.div`
     width: 100%;
     height: 100%;
 
-    background-color: ${colors.container_bg};
+    /* background-color: ${colors.container_bg}; */
 `
 
 export const NFT = styled.div`

@@ -16,6 +16,7 @@ import {
   sellNFT 
 } from '../../web3/web3Utils';
 import InfoFieldComponent from '../Common/InfoField.component'
+import LoadingpageComponent from '../Loading/Loadingpage.component';
 import { 
   NFTContainer, 
   NFTId, 
@@ -86,10 +87,10 @@ const NFTComponent = (props: INFTComponent) => {
                 }}
               >BUY
               </Button1> : null} 
-        </Box2> : null}
+        </Box2> : <LoadingpageComponent/>}
 
     </NFTContainer>
-    <Divider mb="30px"/>
+    {/* <Divider mb="30px"/> */}
 
     </React.Fragment>
   )

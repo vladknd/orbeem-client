@@ -6,7 +6,7 @@ import {
 } from "../../web3/web3Utils";
 import LoadingComponent from "../Loading/Loading.component";
 import ItemComponent from "./Item.component";
-import { Items } from "./Nfts.styled";
+import { Items, NftsContainer } from "./Nfts.styled";
 
 
 interface INftsComponent {
@@ -29,8 +29,7 @@ const NftsComponent = (props: INftsComponent) => {
 
     //BODY______________________________________________________
     return (
-        <Box2 mb={20} pb={40} jc="start">
-            
+        <NftsContainer mb={20} pb={40} jc="start">
             {loading ? <LoadingComponent/> : 
             <Items>
                 {nfts?.map((item, index) => {
@@ -45,7 +44,7 @@ const NftsComponent = (props: INftsComponent) => {
                     />)
                 })}
             </Items>}
-        </Box2>
+        </NftsContainer>
     )
 }
 

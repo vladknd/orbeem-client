@@ -16,7 +16,7 @@ export const Navigator = styled.div`
     align-items: center;
     width: 100%;
     height: 100px;
-    transition: height 2s;
+    
     color: white;
     font-size: 30px;
 
@@ -39,7 +39,7 @@ export const NavigatorContainer = styled.div`
     width: 100%;
     height: 100%;
 
-
+    transition: 5s;
     background-color: ${colors.container_bg};
 `
 

@@ -19,9 +19,8 @@ import {
     Tape, 
     TapesContainer, 
     UpsideContainer, 
-    Waves
 } from './Home.styled'
-
+import { Waves } from '../../styles/Components.styled'
 //-----------------------------------PANEL-CONNECT-COMPONENT:
 const PanelConnect = () => {
     return (
@@ -71,7 +70,7 @@ const HomeComponent = () => {
   const [authorized, loading] = useAuthorize()  
   return (
     <HomeContainer>
-        <Waves/>
+        <Waves height={610} mt={250}/>
         <UpsideContainer>
             <LogoContainer auth={authorized}>
                 <Image src="/logo_vertical.svg" width={450} height={450}/>

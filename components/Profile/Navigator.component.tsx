@@ -15,6 +15,7 @@ import { useUser } from '../../services/user.service';
 import Image from 'next/image'
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import { Waves } from '../Home/Home.styled';
 //NAVIGATOR-LINK:
 export interface INavigatorLink {
     href: string;
@@ -68,6 +69,7 @@ const NavigatorComponent = () => {
   const {user} = useUser()
   return (
     <NavigatorContainer>
+        <Waves/>
         {user?.steamId ? <SignedComponent/> : <UnsignedComponent/>}
         {/* <SignedComponent/> */}
     </NavigatorContainer>
