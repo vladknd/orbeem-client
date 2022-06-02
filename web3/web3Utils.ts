@@ -87,7 +87,7 @@ export const getMyNFTs = async (): Promise<Array<INFT>> => {
         body: JSON.stringify({
             query:`
                 {
-                    runes(where: {owner: "${address}"}) {
+                    runes(first: 8, where: {owner: "${address}"}) {
                         tokenId
                         tokenURI
                         level
@@ -103,7 +103,7 @@ export const getMyNFTs = async (): Promise<Array<INFT>> => {
     const getMyNFTsData = await getMyNFTsRes.json()
     const runes = getMyNFTsData.data.runes
 
-    for (let i = 0; i < 5; i++){
+    for (let i = 0; i < runes.length; i++){
         console.log("LOOP", runes[i].tokenURI);
         
         const res = await fetch(runes[i].tokenURI)
