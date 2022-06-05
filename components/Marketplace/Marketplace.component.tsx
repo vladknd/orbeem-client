@@ -43,7 +43,7 @@ const MarketplaceComponent = () => {
                 </HeaderContainer>
             <Divider mb="20px"/>
             
-            <NftsComponent getNfts={getNFTs}/>
+            <NftsComponent getNfts={getNFTs} gridSize="1fr 1fr 1fr 1fr 1fr"/>
         </Market>
         <Divider/>
 

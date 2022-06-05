@@ -12,8 +12,8 @@ interface IItemContainer {
 }
 export const ItemContainer = styled.div`
     margin: 30px 40px;
-    width: 250px;
-    height: 250px;
+    width: 180px;
+    height: 180px;
     background-image: ${(props: IItemContainer) => `url("${props.image}")`};
     background-position: center;
     background-size: cover;

@@ -1,10 +1,9 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { 
-  Box1, 
+  Box1,
   Box2, 
   Button1, 
-  Divider, 
   GlowText, 
   Text 
 } from '../../styles/Components.styled'
@@ -12,8 +11,7 @@ import {
   buyNFT, 
   getAccount, 
   getNFTData, 
-  INFTData, 
-  sellNFT 
+
 } from '../../web3/web3Utils';
 import InfoFieldComponent from '../Common/InfoField.component'
 import LoadingpageComponent from '../Loading/Loadingpage.component';
@@ -30,17 +28,17 @@ interface INFTComponent {
 }
 const NFTComponent = (props: INFTComponent) => {
   const [address, setAddress] = useState<string>()
-  // const [nft, setNFT] = useState<INFTData>()
-  const {setNFTData, nft} = useNFT()
+  const {setNFTData,incrementPower,incrementDurability, nft} = useNFT()
 
   useEffect(() => {
     getNFTData(props.id).then(result => {
-      console.log("RESULT", result);
-      // if(result) setNFT(result)
+      console.log(
+        "NFT.COMPONENT-getNFTData-PROMISE", 
+        result
+      )
+      
       if(result) setNFTData(result)
-      if(result) console.log("RESULT:", result)
-      console.log("SET NFT", nft);
-      console.log("NFT PRICE", nft?.price);
+      console.log("NFT.COMPONENT-nft_after_setNFTData", nft);
     })
 
     getAccount().then(res => {
@@ -49,50 +47,56 @@ const NFTComponent = (props: INFTComponent) => {
     }).catch(error => {
       console.log("ERROR", error)
     })
-    
-    
   },[])
     
   return (
-    <React.Fragment>
     <NFTContainer>
-      
-    {nft&&address ?  <Box2 width={400} mt={100} ml={30} mb={30}>
+      {nft && address ? 
+        //ADD STYLED CONTAINER
+        <>
+        <Box2 mt={100} ml={30} mb={30} width={500} >
            <NFTId>{props.id}</NFTId>
 
             <NFTImage image={nft?.image}/>
 
-            <GlowText size={30} m="10px 0px 0px 0px">LEVEL: {nft.level}</GlowText>
+            <GlowText size={35} m="10px 0px 0px 0px">LEVEL: {nft.level}</GlowText>
 
-            {/* <Box1 width={350} al="start">
-                <Text size={20} m="10px">NAME: {nft?.name}</Text>
-                <Text size={20} m="10px">DESCRIPTION: {nft?.description}</Text>
-            </Box1> */}
+            <InfoFieldComponent 
+              image="/crystal.svg" 
+              attribute="POWER" 
+              value={nft.power.toString()} 
+              margin="10px 0px 10px 0px"
+              incrementer={incrementPower}
+            />
+            <InfoFieldComponent 
+              image="/durability.svg" 
+              attribute="DURABILITY" 
+              value={nft.durability.toString()}
+              incrementer={incrementDurability}
+            />
 
-            <InfoFieldComponent image="/crystal.svg" attribute="POWER" value={nft.power.toString()} margin="10px 0px 10px 0px"/>
-            <InfoFieldComponent image="/durability.svg" attribute="DURABILITY" value={nft.durability.toString()}/>
+            {
+              nft.owner.toLowerCase() === address.toLowerCase() 
+              ? <Owner/>
+              : nft.owner === "0x0000000000000000000000000000000000000000" 
+                ? <Button1 width={200} height={50} mt={40} mb={20}
+                  onClick={async ()=> {
+                    await buyNFT(nft.itemId, nft.price)
+                  }}>
+                    BUY
+                  </Button1> 
+                : null
+            } 
+        </Box2> 
 
-            {nft.owner.toLowerCase() === address.toLowerCase() ?
-              // <Button1 width={200} height={50} mt={40} mb={20}
-              //   onClick={async ()=> {
-              //     await sellNFT(props.id, 10)
-              //   }}
-              // >SELL</Button1>
-              <Owner/>
-
-              : nft.owner === "0x0000000000000000000000000000000000000000" ?
-              <Button1 width={200} height={50} mt={40} mb={20}
-                onClick={async ()=> {
-                  await buyNFT(nft.itemId, nft.price)
-                }}
-              >BUY
-              </Button1> : null} 
-        </Box2> : <LoadingpageComponent/>}
-
+        <Box1 mt={100} ml={30} mb={30} pt={10} pl={10} width={800} height={200} jc="start" al="start">
+          <GlowText m="0px 0px 10px 0px" als="center" size={35}>METADATA</GlowText>
+          <Text size={20}>NAME: {nft.name}</Text>
+          <Text m="10px 0px 0px 0px" size={20}>DESCRIPTION: {nft.description}</Text>
+        </Box1>
+        </>
+      : <LoadingpageComponent/>}
     </NFTContainer>
-    {/* <Divider mb="30px"/> */}
-
-    </React.Fragment>
   )
 }
 

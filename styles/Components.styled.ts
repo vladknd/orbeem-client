@@ -146,6 +146,7 @@ interface TextProps {
     lh?: number;
     m?: string;
     p?: string;
+    als?: string;
 
 }
 export const GlowText = styled.p`
@@ -159,9 +160,8 @@ export const GlowText = styled.p`
     margin: ${(props: TextProps) => props.m || 0};
     padding: ${(props: TextProps) => props.p || 0};
     line-height: ${(props: TextProps) => props.lh || 1}; 
-    
+    align-self: ${(props: TextProps) => props.als || ""};
     text-shadow: 0px 0px 6px rgba(29, 173, 255, 0.25), 0px 0px 33px #B04BFF;
-    
     @media(max-width: 600px) {
         font-size: 50px;
     }

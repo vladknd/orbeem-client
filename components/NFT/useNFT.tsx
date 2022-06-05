@@ -1,30 +1,30 @@
 import React, { useContext } from 'react'
 import { INFTData } from '../../web3/web3Utils'
 
-// interface INFT {
-//     tokenId: string;
-//     email: string;
-//     firstName: string;
-//     surname: string;
-//     publicAddress: string;
-//     steamId: string;
-// }
+interface INFTState extends INFTData{
+  upgrading?: boolean;
+}
 
 interface INFTContext  {
-  nft: INFTData | null;
+  nft: INFTState | null;
   setNFTData(nft: INFTData): void;
+  incrementPower(): void;
+  incrementDurability(): void;
+  setUpgrade(): void;
 }
+
+
 const NFTContextDefault = {
   nft: null,
-  setNFTData: () => {}
+  setNFTData: () => {},
+  incrementPower: () => {},
+  incrementDurability: () => {},
+  setUpgrade: () => {}
 }
-
-
-
 export const NFTContext = React.createContext<INFTContext>(NFTContextDefault)
 
 export const NFTProvider = (props: any) => {
-  const [nftState, setNftState] = React.useState<INFTData | null>(null)
+  const [nftState, setNftState] = React.useState<INFTState | null>(null)
 
   const setNFTData = (nft: INFTData) => {
     setNftState({
@@ -40,18 +40,71 @@ export const NFTProvider = (props: any) => {
         price: nft.price,
         
         level: nft.level,
-        power: nft.power,
-        durability: nft.durability
 
+        basePower: nft.basePower,
+        baseDurability: nft.baseDurability,
+
+        power: nft.power,
+        durability: nft.durability,
+
+        //CLIEN STATE:
+        upgrading: false
     })
-    
+  }
+
+  const incrementPower = () => {
+    if(nftState){
+      const baseTotal = nftState.basePower + nftState.baseDurability
+      const total = nftState.power + nftState.durability
+      console.log("BASE TOTAL", baseTotal);
+      console.log("LEVEL", baseTotal + nftState.level*4);
+      console.log("NFT INCR", nftState);
+      
+      if(total < baseTotal + nftState.level*4){
+        setNftState(() => {
+            return Object.assign({}, nftState, {power: nftState.power++})
+        })
+      }
+      else {
+        setNftState(() => {
+          return Object.assign({}, nftState)
+        })
+      }
+    }   
+  }
+
+  const incrementDurability = () => {
+    if(nftState){
+      const baseTotal = nftState.basePower + nftState.baseDurability
+      const total = nftState.power + nftState.durability
+      if(total < baseTotal + nftState.level*4){
+        setNftState(() => {
+            return Object.assign({}, nftState, {durability: nftState.durability++})
+        })
+      }
+      else {
+        setNftState(() => {
+          return Object.assign({}, nftState)
+        })
+      }
+    }   
+  }
+
+  const setUpgrade = () => {
+    if(nftState){
+      setNftState(() => {
+        return Object.assign({}, nftState, {upgrading: !nftState.upgrading})
+      })
+    }
   }
 
   const value = {
     nft: nftState,
     setNFTData,
+    incrementPower,
+    incrementDurability,
+    setUpgrade
   }
-
   return (
     <NFTContext.Provider value={value}>
      {props.children}
@@ -59,6 +112,9 @@ export const NFTProvider = (props: any) => {
   )
 }
   
+
+
+
 export const useNFT = () => {
   return useContext(NFTContext)
 }

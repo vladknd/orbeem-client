@@ -17,6 +17,7 @@ export const Row = styled(BaseDiv)`
 
 `
 export const ButtonContainer = styled(BaseDiv)`
+    
     &:hover{
         opacity: 0.4;
     }
@@ -36,11 +37,16 @@ export const AmountContainer = styled.div`
     padding: 10px 0px 10px 20px;
     margin-right: 10px; 
 /* position: relative; */
-    width: 80%;
-    height: 40px;
+    width: 60%;
+    height: 50px;
 
     background: rgba(165,165,165, 0.1);
     border-radius: 16px;
 
     /* background-color: black; */
+`
+
+export const ImageContainer = styled.div`
+    box-shadow: inset 0px 0px 6px #AD6CFF;
+    filter: drop-shadow(0px -4px 27px #7735B9);
 `

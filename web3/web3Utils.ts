@@ -10,12 +10,50 @@ import RuneNFT from './ABI/RuneNFT.json'
 declare let window: any;
 const vendorContract = "0x72B52c1D413CfDF585334352098a0ED49973836D"
 const daiContract = "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063"
-const nftContract = "0xAD86B77e93B8C5e5bD405A5365198f80d87e63c8"
-const marketContract = "0x94f03F73ACA11Ae561d4FB7c0a124b00E0a85D95"
+const nftContract = "0xdFa29BcEd61051009Fe6e9DA7266999FC845bE19"
+const marketContract = "0xee1c7F287c42C2771d7090421A1B1A32f33284C4"
 
 import { URIs } from '../config';
 
-//-------------------------------------------------------------------------------------------------------------
+//___________________INTERFACES_____________________________
+export interface INFT {
+    name: string;
+    description: string;
+
+    tokenId: number;
+    tokenURI: string;
+    imageURI: string;
+
+    level: number;
+    power: number;
+    durability: number;
+
+    price: string;
+}
+
+export interface INFTData {
+    name: string;
+    description: string;
+    tokenId: number;
+    itemId: number;
+    tokenURI: string;
+    image: string;
+
+    owner: string;
+    sold: boolean;
+    price: string;
+
+    level: number;
+
+    basePower: number;
+    baseDurability: number;
+
+    power: number;
+    durability: number;
+
+}
+
+//__________________________NFT_____________________________________
 export const buyNFT = async (_itemID: number, _price: string) => {
     if(typeof window.ethereum !== "undefined"){
         const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -44,7 +82,7 @@ export const sellNFT = async (_tokenID: number, _price: number) => {
         const market = new ethers.Contract(marketContract, NFTMarket, signer)
 
         const options = {
-            gasLimit: 3000000,
+            gasLimit: 300000,
             value: ethers.utils.parseUnits('50000000000000000', 'wei')
         };    
                 
@@ -56,21 +94,6 @@ export const sellNFT = async (_tokenID: number, _price: number) => {
     }
 }
 
-export interface INFT {
-    name: string;
-    description: string;
-
-    tokenId: number;
-    tokenURI: string;
-    imageURI: string;
-
-    level: number;
-    power: number;
-    durability: number;
-
-    price: string;
-
-}
 export const getMyNFTs = async (): Promise<Array<INFT>> => {
     console.log("GET-MY-NFTs PROCEDURE INITIATED..")
     
@@ -133,7 +156,7 @@ export const getNFTs = async (): Promise<Array<INFT>> => {
         body: JSON.stringify({
             query:`
                 {
-                    runes(first: 10, where: {owner: "0x0000000000000000000000000000000000000000"}) {
+                    runes(first: 8, where: {owner: "0x0000000000000000000000000000000000000000"}) {
                         tokenId
                         tokenURI
                         level
@@ -171,23 +194,6 @@ export const getNFTs = async (): Promise<Array<INFT>> => {
     return runes
 }
 
-export interface INFTData {
-    name: string;
-    description: string;
-    tokenId: number;
-    itemId: number;
-    tokenURI: string;
-    image: string;
-
-    owner: string;
-    sold: boolean;
-    price: string;
-
-    level: number;
-    power: number;
-    durability: number;
-
-}
 export const getNFTData = async (id: number): Promise<INFTData> => {
     console.log("GET-NFT-DATA PROCEDURE INITIATED..")
 
@@ -207,6 +213,8 @@ export const getNFTData = async (id: number): Promise<INFTData> => {
                         sold
                         owner
                         level
+                        basePower
+                        baseDurability
                         power 
                         durability
                         price
@@ -232,6 +240,54 @@ export const getNFTData = async (id: number): Promise<INFTData> => {
     return NFT
 }
 
+export const levelUp = async (_tokenID: number) => {
+    if(typeof window.ethereum !== "undefined"){
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const signer = provider.getSigner()
+                
+        const rune = new ethers.Contract(nftContract, RuneNFT, signer)
+
+        const options = {
+            gasLimit: 3000000,
+        };    
+                
+        const tx = await rune.levelUp(_tokenID, options)
+        const txRes = await tx.wait()
+        
+        console.log("TX", tx)
+        console.log("TX-RES", txRes)
+    }
+}
+
+export const upgradeNFT = async (
+    _tokenID: number, 
+    _newPower: number,
+    _newDurability: number,
+    ) => {
+    if(typeof window.ethereum !== "undefined"){
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const signer = provider.getSigner()
+                
+        const rune = new ethers.Contract(nftContract, RuneNFT, signer)
+
+        const options = {
+            gasLimit: 3000000,
+        };    
+                
+        const tx = await rune.updateAttributes(
+            _tokenID, 
+            _newPower,
+            _newDurability,
+            options
+        )
+        const txRes = await tx.wait()
+        
+        console.log("TX-updateAttributes", tx)
+        console.log("TX-updateAttributes-RES", txRes)
+    }
+}
+
+//___________________________UTILITIES_________________________________________
 export const getAccount = async () => {
     const web3 = await checkMetaMask()
     const provider = new ethers.providers.Web3Provider(web3)
@@ -278,6 +334,12 @@ export const signMessage = async (nonce: string, publicAddress: string) => {
     }
 }
 
+export const checkAdmin = async () => {
+    const addr = await getAccount()
+    console.log("DONE", addr);
+    if(addr === "0x16bD38012725eFEc123C31338Ab724573813e36C") return true
+    return false
+}
 //-------------------------------------LOGIN--------------------------------------------------------
 export const login = async () => {
     console.log("LOGIN PROCEDURE INITIATED..")
@@ -355,28 +417,5 @@ export const login = async () => {
     }
 }
 
-export const checkAdmin = async () => {
-    const addr = await getAccount()
-    console.log("DONE", addr);
-    if(addr === "0x16bD38012725eFEc123C31338Ab724573813e36C") return true
-    return false
-}
 
-export const levelUp = async (_tokenID: number) => {
-    if(typeof window.ethereum !== "undefined"){
-        const provider = new ethers.providers.Web3Provider(window.ethereum)
-        const signer = provider.getSigner()
-                
-        const rune = new ethers.Contract(nftContract, RuneNFT, signer)
 
-        const options = {
-            gasLimit: 3000000,
-        };    
-                
-        const tx = await rune.levelUp(_tokenID, options)
-        const txRes = await tx.wait()
-        
-        console.log("TX", tx)
-        console.log("TX-RES", txRes)
-    }
-}

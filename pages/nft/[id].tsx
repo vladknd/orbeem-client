@@ -8,7 +8,6 @@ const Home: NextPage = () => {
   const router = useRouter()
   return (
     <NFTProvider>
-      
       <NFTComponent id={Number(router.query.id)}/> 
     </NFTProvider>
   )

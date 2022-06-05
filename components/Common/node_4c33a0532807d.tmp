@@ -11,7 +11,6 @@ export const FieldContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
 
     width: ${(props: IFieldContainer) => props.width};
     height: ${(props: IFieldContainer) => props.height};
@@ -19,31 +18,12 @@ export const FieldContainer = styled.div`
     border: 0.5px solid white;
 `
 
-export const Incrementer = styled.button`
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+export const Incrementer = styled.div`
     border: 1px solid white;
     background: transparent;
-    width: 22px;
-    height: 22px;
-    font-size: 15px;
+    width: 10px;
+    height: 10px;
     color: white;
-    cursor: pointer;
-    &:hover{
-        opacity: 0.6;
-    }
 
-    &:hover:active{
-        opacity: 0.8;
-    }
-`
-
-export const SideContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-
+    &:
 `

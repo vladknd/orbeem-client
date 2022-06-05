@@ -7,6 +7,7 @@ export const NFTContainer = styled.div`
 
     width: 100%;
     height: 100%;
+    
 
     /* background-color: ${colors.container_bg}; */
 `
@@ -41,8 +42,8 @@ interface INFTImage {
     image: string;
 }
 export const NFTImage = styled.div`
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     
     border: 1px solid white;
 

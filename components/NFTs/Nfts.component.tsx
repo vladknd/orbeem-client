@@ -10,7 +10,8 @@ import { Items, NftsContainer } from "./Nfts.styled";
 
 
 interface INftsComponent {
-    getNfts(): Promise<Array<INFT>>
+    getNfts(): Promise<Array<INFT>>;
+    gridSize?: string;
 }
 const NftsComponent = (props: INftsComponent) => {
     //STATE____________________________________________________
@@ -31,7 +32,7 @@ const NftsComponent = (props: INftsComponent) => {
     return (
         <NftsContainer mb={20} pb={40} jc="start">
             {loading ? <LoadingComponent/> : 
-            <Items>
+            <Items cols={props.gridSize ? props.gridSize : "1fr 1fr 1fr 1fr"}>
                 {nfts?.map((item, index) => {
                     return (<ItemComponent
                         key={index}
