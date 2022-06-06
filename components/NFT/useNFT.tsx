@@ -57,10 +57,11 @@ export const NFTProvider = (props: any) => {
       const baseTotal = nftState.basePower + nftState.baseDurability
       const total = nftState.power + nftState.durability
       console.log("BASE TOTAL", baseTotal);
-      console.log("LEVEL", baseTotal + nftState.level*4);
+      console.log("ALLOWANCE", baseTotal + nftState.level*4);
       console.log("NFT INCR", nftState);
       
       if(total < baseTotal + nftState.level*4){
+        console.log("HOLDS");
         setNftState(() => {
             return Object.assign({}, nftState, {power: nftState.power++})
         })

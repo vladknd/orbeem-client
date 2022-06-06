@@ -13,7 +13,7 @@ interface IInfoField {
     incrementer(): void;
 }
 const InfoFieldComponent = (props: IInfoField) => {
-  const {incrementPower, incrementDurability, nft} = useNFT()
+  const {nft} = useNFT()
   return (
     <FieldContainer width="90%" height="40px" margin={props.margin}>
       <SideContainer>
