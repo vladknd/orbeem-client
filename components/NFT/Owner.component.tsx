@@ -40,7 +40,7 @@ const Owner = () => {
         {nft ? 
         <Row mt={20} mb={20}>
           <ButtonContainer style={{cursor:"pointer"}} mr={20}>
-            <Link href="/" onClick={() => {}}>
+            <Link href="/">
               <Image src="/transfer.svg" width={120} height={120}/>
             </Link>
           </ButtonContainer>
