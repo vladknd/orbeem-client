@@ -47,7 +47,7 @@ const NFTComponent = (props: INFTComponent) => {
     }).catch(error => {
       console.log("ERROR", error)
     })
-  },[nft])
+  },[])
     
   return (
     <NFTContainer>
