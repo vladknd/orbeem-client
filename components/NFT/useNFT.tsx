@@ -6,7 +6,7 @@ interface INFTState extends INFTData{
 }
 
 interface INFTContext  {
-  nft: INFTState | null;
+  nft: INFTState | {};
   setNFTData(nft: INFTData): void;
   incrementPower(): void;
   incrementDurability(): void;
@@ -15,7 +15,7 @@ interface INFTContext  {
 
 
 const NFTContextDefault = {
-  nft: null,
+  nft: {},
   setNFTData: () => {},
   incrementPower: () => {},
   incrementDurability: () => {},
@@ -63,10 +63,11 @@ export const NFTProvider = (props: any) => {
       if(total < baseTotal + nftState.level*4){
         console.log("HOLDS");
         setNftState(() => {
-            return Object.assign({}, nftState, {power: nftState.power++})
+          return Object.assign({}, nftState, {power: nftState.power++})
         })
       }
       else {
+        console.log("DOES NOT HOLD")
         setNftState(() => {
           return Object.assign({}, nftState)
         })
