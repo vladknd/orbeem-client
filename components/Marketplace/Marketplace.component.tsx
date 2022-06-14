@@ -1,5 +1,5 @@
 //_______________GLOBAL-IMPORTS___________________
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 //_______________LOCAL-IMPORTS____________________
 //STYLED-COMPONENTS_______________________________
 import { 
@@ -13,23 +13,21 @@ import {
     GlowText, 
     Waves 
 } from '../../styles/Components.styled'
-//WEB-3_______________________________
-import { getNFTs, INFT } from '../../web3/web3Utils'
+//COMPONENTS______________________________________
 import NftsComponent from '../NFTs/Nfts.component'
+//REDUX___________________________________________
+import { fetchMarketNFT } from '../../redux/MarketNFT/MarketNFT.thunks'
+import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks'
 
-
+//MARKETPLACE-COMPONENT:______________________________________________________________________________________________
 const MarketplaceComponent = () => {
-    const [nfts, setNfts] = useState<Array<INFT>>([])
-    const [loading, setLoading] = useState<boolean>(true)
-    useEffect(() => {
-        async function fetchNFTs() {
-            const res = await getNFTs()
-            setNfts(res)
-            setLoading(false)
-            console.log("RES", nfts)
-        }
-        fetchNFTs()
-    },[])
+  //REDUX____________________________________________________
+  const dispatch = useAppDispatch()
+  const { error, items, loading } = useAppSelector(state => state.MarketNFT)
+  useEffect(() => {
+    dispatch(fetchMarketNFT())
+  },[])
+
   return (
     <MarketplaceContainer>
         <Illustration/>
@@ -43,7 +41,7 @@ const MarketplaceComponent = () => {
                 </HeaderContainer>
             <Divider mb="20px"/>
             
-            <NftsComponent getNfts={getNFTs} gridSize="1fr 1fr 1fr 1fr 1fr"/>
+            {items ? <NftsComponent loading={loading} items={items} gridSize="1fr 1fr 1fr 1fr 1fr"/> : null}
         </Market>
         <Divider/>
 
@@ -52,3 +50,4 @@ const MarketplaceComponent = () => {
 }
 
 export default MarketplaceComponent
+//______________________________________________________________________________________________________________________

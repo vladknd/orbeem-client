@@ -1,5 +1,11 @@
+//_______________GLOBAL-IMPORTS___________________
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+//_______________LOCAL-IMPORTS____________________
+import {URIs} from "../../config"
+//STYLED-COMPONENTS_______________________________
 import { 
     AccountContainer, 
     AvatarContainer, 
@@ -10,14 +16,16 @@ import {
     Links,
     UnsignedContainer
 } from './Profile.styled'
-import { Button1, GlowText, Text } from '../../styles/Components.styled';
-import { useUser } from '../../services/user.service';
-import Image from 'next/image'
-import { useRouter } from 'next/router';
-import axios from 'axios';
-import { Waves } from '../../styles/Components.styled';
-import {URIs} from "../../config"
-//NAVIGATOR-LINK:
+import { 
+    Button1, 
+    GlowText, 
+    Text 
+} from '../../styles/Components.styled'
+//SERVICES_______________________________________
+import { useUser } from '../../services/user.service'
+
+
+//NAVIGATOR-LINK__________________________________________________________________________________________________________
 export interface INavigatorLink {
     href: string;
     text: string;
@@ -29,8 +37,13 @@ const NavigatorLink = (props: INavigatorLink) => {
         </Link>
     )
 }
+//_________________________________________________________________________________________________________________________
+
+
+//SIGNED-COMPONENT________________________________________________________________________________________________________
 const SignedComponent = () => {
     const {user}= useUser()
+
     return (
         <SignedContainer>
             <AccountContainer>
@@ -45,12 +58,13 @@ const SignedComponent = () => {
         </SignedContainer>
     )
 }
+//_________________________________________________________________________________________________________________________
 
+
+//UNSIGNED-COMPONENT_______________________________________________________________________________________________________
 const UnsignedComponent = () => {
     const router = useRouter()
-    const {user, setLoggedIn} = useUser()
-    console.log();
-    
+
     return (
         <UnsignedContainer>
             <Image src="/steam.svg" width={450} height={450}/>
@@ -65,7 +79,10 @@ const UnsignedComponent = () => {
         </UnsignedContainer>
     )
 }
+//_________________________________________________________________________________________________________________________
 
+
+//NAVIGATOR-COMPONENT__________________________________________________________________________________________________________________
 const NavigatorComponent = () => {
   const {user} = useUser()
   return (
@@ -78,3 +95,4 @@ const NavigatorComponent = () => {
 }
 
 export default NavigatorComponent
+//____________________________________________________________________________________________________________________________

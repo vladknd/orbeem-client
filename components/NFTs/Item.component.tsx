@@ -1,8 +1,15 @@
+//_______________GLOBAL-IMPORTS___________________
 import React from 'react'
-import { ItemContainer, ItemInfo } from './Item.styled'
-import {Text} from '../../styles/Components.styled'
 import Link from 'next/link';
+//_______________LOCAL-IMPORTS____________________
+//STYLED-COMPONENTS_______________________________
+import { 
+  ItemContainer, 
+  ItemInfo 
+} from './Item.styled'
+import { Text } from '../../styles/Components.styled'
 
+//ITEM-COMPONENT:________________________________________________________________________________________________________
 interface INFTComponent {
     id: number;
     level: number;
@@ -27,3 +34,4 @@ const ItemComponent = (props: INFTComponent) => {
 }
 
 export default ItemComponent
+//__________________________________________________________________________________________________________________________

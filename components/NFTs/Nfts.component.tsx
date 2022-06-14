@@ -1,39 +1,25 @@
-import { useEffect, useState } from "react";
-import { Box2 } from "../../styles/Components.styled";
-import { 
-    getNFTs, 
-    INFT 
-} from "../../web3/web3Utils";
-import LoadingComponent from "../Loading/Loading.component";
-import ItemComponent from "./Item.component";
-import { Items, NftsContainer } from "./Nfts.styled";
+//_______________LOCAL-IMPORTS____________________
+//STYLED-COMPONENTS_______________________________
+import { Items, NftsContainer } from './Nfts.styled'
+//COMPONENTS______________________________________
+import LoadingComponent from "../Loading/Loading.component"
+import ItemComponent from "./Item.component"
+//WEB3____________________________________________
+import { INFT } from '../../web3/web3Utils'
 
-
+//NFTs-COMPONENT____________________________________________________________________________________________________________
 interface INftsComponent {
-    getNfts(): Promise<Array<INFT>>;
+    items: INFT[];
+    loading: boolean;
     gridSize?: string;
 }
 const NftsComponent = (props: INftsComponent) => {
-    //STATE____________________________________________________
-    const [nfts, setNFTs] = useState<Array<INFT> | null>(null)
-    const [loading, setLoading] = useState<boolean>(true)
-    
-    //FETCHING NFTs USING PROVIDED FUNCTION____________________
-    useEffect(() => {
-        props.getNfts().then((result) => {
-            console.log("PROFILE-COMPONENT: GET-MY-NFTS RESULT", result)
-            setNFTs(result)
-            setLoading(false)
-            console.log("PROFILE-COMPONENT: SET NFTs", nfts)
-        })
-    },[])
-
-    //BODY______________________________________________________
+    //BODY__________________________________________________________________________________________________________________
     return (
         <NftsContainer mb={20} pb={40} jc="start">
-            {loading ? <LoadingComponent/> : 
+            {props.loading ? <LoadingComponent/> : 
             <Items cols={props.gridSize ? props.gridSize : "1fr 1fr 1fr 1fr"}>
-                {nfts?.map((item, index) => {
+                {props.items?.map((item, index) => {
                     return (<ItemComponent
                         key={index}
                         id={item?.tokenId}
@@ -50,3 +36,4 @@ const NftsComponent = (props: INftsComponent) => {
 }
 
 export default NftsComponent
+//_________________________________________________________________________________________________________________________

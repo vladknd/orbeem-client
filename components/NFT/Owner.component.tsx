@@ -5,31 +5,34 @@ import { Button1 } from "../../styles/Components.styled"
 import {Row, OwnerContainer, AmountContainer, Input, ButtonContainer, ImageContainer } from "./Owner.styled"
 import { levelUp, sellNFT, upgradeNFT } from "../../web3/web3Utils"
 import { useNFT } from "./useNFT"
+import { useAppDispatch, useAppSelector } from "../../redux/reduxHooks"
+import { nftActions } from "../../redux/NFT/NFT.slice"
 
 const Owner = () => {
     const [price, setPrice] = useState<number>(0)
-    const {nft, setUpgrade} = useNFT()
+    const NFT = useAppSelector(state => state.NFT)
+    const Item = NFT.item
+    const dispatch = useAppDispatch()
     return (
       <OwnerContainer>
-        {nft?.upgrading ? 
+        {NFT?.upgrading && Item ? 
           <Button1 
             mt={20}
             width={150} 
             height={50}
             onClick={() => {
-              console.log(nft.tokenId,
-                nft.power,
-                nft.durability);
+              console.log(Item.tokenId,
+                Item.power,
+                Item.durability);
               
               upgradeNFT(
-                nft.tokenId,
-                nft.power,
-                nft.durability
+                Item.tokenId,
+                Item.power,
+                Item.durability
               ).then(promise => {
                 console.log("NFT has been upgraded", promise)
               }).catch(error => {
                 console.log(error);
-                
               })
             }}
           >
@@ -37,7 +40,7 @@ const Owner = () => {
           </Button1> 
         : null}
 
-        {nft ? 
+        {NFT && Item ? 
         <Row mt={20} mb={20}>
           <ButtonContainer style={{cursor:"pointer"}} mr={20}>
             <Link href="/">
@@ -47,7 +50,7 @@ const Owner = () => {
           
           <ButtonContainer style={{cursor:"pointer"}} 
             onClick={() => {
-              levelUp(nft?.tokenId)
+              levelUp(Item.tokenId)
             }}
           >
             <div>
@@ -57,11 +60,11 @@ const Owner = () => {
 
           <ButtonContainer style={{cursor:"pointer"}} ml={20}
             onClick={() => {
-              setUpgrade()
+              dispatch(nftActions.nftSetUpgrading())
             }}
           >
             <Image 
-              src={nft.upgrading ? "/upgradeTrue.svg" : "/upgrade.svg"} 
+              src={NFT.upgrading ? "/upgradeTrue.svg" : "/upgrade.svg"} 
               width={125} 
               height={125}
             />
@@ -69,7 +72,7 @@ const Owner = () => {
         </Row> 
         : null}
         
-        {nft ? 
+        {NFT && Item ? 
         <Row mb={20}>
           <AmountContainer>
             <Input type="number" name="name" placeholder="0.0 MATIC" autoComplete="off"
@@ -81,7 +84,7 @@ const Owner = () => {
           </AmountContainer>
 
           <Button1 width={170} height={50}
-            onClick={() => sellNFT(nft.tokenId, price)}
+            onClick={() => sellNFT(Item.tokenId, price)}
           >
             SELL
           </Button1>

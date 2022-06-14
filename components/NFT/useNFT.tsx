@@ -25,7 +25,7 @@ export const NFTContext = React.createContext<INFTContext>(NFTContextDefault)
 
 export const NFTProvider = (props: any) => {
   const [nftState, setNftState] = React.useState<INFTState | null>(null)
-
+  
   const setNFTData = (nft: INFTData) => {
     setNftState({
         name: nft.name,
@@ -114,8 +114,6 @@ export const NFTProvider = (props: any) => {
   )
 }
   
-
-
 
 export const useNFT = () => {
   return useContext(NFTContext)

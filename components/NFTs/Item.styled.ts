@@ -19,12 +19,9 @@ export const ItemContainer = styled.div`
     background-size: cover;
     transition: 0.5s;
     &:hover{
-        /* width: 260px; */
-        /* height: 260px; */
         margin: 30px 40px 30px 40px;
         box-shadow: 0 0px 20px #6626ad;
         ${ItemInfo} {
-            /* opacity: 0.5; */
             display: flex;
             flex-direction: column;
             justify-content: end;
@@ -37,7 +34,6 @@ export const ItemContainer = styled.div`
         opacity: 0.2;
         box-shadow: 0 0px 20px #6626ad;
         ${ItemInfo} {
-            /* opacity: 0.5; */
             display: flex;
             flex-direction: column;
             justify-content: end;

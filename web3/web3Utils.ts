@@ -10,8 +10,12 @@ import RuneNFT from './ABI/RuneNFT.json'
 declare let window: any;
 const vendorContract = "0x72B52c1D413CfDF585334352098a0ED49973836D"
 const daiContract = "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063"
-const nftContract = "0xdFa29BcEd61051009Fe6e9DA7266999FC845bE19"
-const marketContract = "0xee1c7F287c42C2771d7090421A1B1A32f33284C4"
+// const nftContract = "0xdFa29BcEd61051009Fe6e9DA7266999FC845bE19"
+// const marketContract = "0xee1c7F287c42C2771d7090421A1B1A32f33284C4"
+
+//PROXIES
+const nftContract = "0x6101ca03aAcd7Fb88ed4E36E366268638BE3F25c"
+const marketContract = "0xC50B555DF535fb7292C99712b64b9b5A4599A65c"
 
 import { URIs } from '../config';
 
@@ -50,7 +54,6 @@ export interface INFTData {
 
     power: number;
     durability: number;
-
 }
 
 //__________________________NFT_____________________________________

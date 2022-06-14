@@ -1,24 +1,41 @@
-import React, { useState } from 'react'
-import { useUser } from '../../services/user.service'
+//_______________GLOBAL-IMPORTS___________________
+import React, { useEffect } from 'react'
+
+//_______________LOCAL-IMPORTS____________________
+//STYLED-COMPONENTS_______________________________
+import { ProfileContainer } from './Profile.styled'
 import { Divider, Waves } from '../../styles/Components.styled'
-import { getMyNFTs } from '../../web3/web3Utils'
+
+//COMPONENTS______________________________________
 import NftsComponent from '../NFTs/Nfts.component'
 import NavigatorComponent from './Navigator.component'
-import { ProfileContainer } from './Profile.styled'
 
+//REDUX___________________________________________
+import { fetchMyNFT } from '../../redux/MyNFT/MyNFT.thunks'
+import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks'
+import { useUser } from '../../services/user.service'
+
+//PROFILE-COMPONENT___________________________________________________________________________________________________________
 const ProfileComponent = () => {
   const {user} = useUser()
-  console.log("USER CONT", user);
-  
+  console.log("PROFILE-COMPONENT", user);
+
+  //REDUX____________________________________________________
+  const dispatch = useAppDispatch()
+  const { error, items, loading } = useAppSelector(state => state.MyNFT)
+  useEffect(() => {
+      dispatch(fetchMyNFT())
+  },[])
   return (
     <ProfileContainer>
         <Divider mt='100px'/>
             <NavigatorComponent/>
         <Divider mb='20px'/>
         {/* <Waves height={600} mt={300}/> */}
-        {user?.steamId  ? <NftsComponent getNfts={getMyNFTs}/> : null}
+        {items ? <NftsComponent loading={loading} items={items}/> : null}
     </ProfileContainer>
   )
 }
 
 export default ProfileComponent
+//__________________________________________________________________________________________________________________________

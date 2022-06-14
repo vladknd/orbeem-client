@@ -1,5 +1,7 @@
-import { useRouter } from 'next/router';
+//_______________GLOBAL-IMPORTS___________________
 import React, { useEffect, useState } from 'react'
+//_______________LOCAL-IMPORTS____________________
+//STYLED-COMPONENTS_______________________________
 import { 
   Box1,
   Box2, 
@@ -8,39 +10,36 @@ import {
   Text 
 } from '../../styles/Components.styled'
 import { 
-  buyNFT, 
-  getAccount, 
-  getNFTData, 
-
-} from '../../web3/web3Utils';
-import InfoFieldComponent from '../Common/InfoField.component'
-import LoadingpageComponent from '../Loading/Loadingpage.component';
-import { 
   NFTContainer, 
   NFTId, 
   NFTImage 
 } from './NFT.styled'
-import Owner from './Owner.component';
-import { useNFT } from './useNFT';
 
+//COMPONENTS______________________________________
+import InfoFieldComponent from '../Common/InfoField.component'
+import LoadingpageComponent from '../Loading/Loadingpage.component'
+import Owner from './Owner.component';
+//REDUX___________________________________________
+import { fetchNFT } from '../../redux/NFT/NFT.actions';
+import { nftActions } from '../../redux/NFT/NFT.slice';
+import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks'
+
+//WEB3____________________________________________
+import { 
+  buyNFT, 
+  getAccount, 
+} from '../../web3/web3Utils';
+
+
+
+//NFT-COMPONENT:____________________________________________________________________________________________________________
 interface INFTComponent {
     id: number;
 }
 const NFTComponent = (props: INFTComponent) => {
+  //CHECK-ACCOUNT:_________________________________
   const [address, setAddress] = useState<string>()
-  const {setNFTData,incrementPower,incrementDurability, nft} = useNFT()
-
   useEffect(() => {
-    getNFTData(props.id).then(result => {
-      console.log(
-        "NFT.COMPONENT-getNFTData-PROMISE", 
-        result
-      )
-      
-      if(result) setNFTData(result)
-      console.log("NFT.COMPONENT-nft_after_setNFTData", nft);
-    })
-
     getAccount().then(res => {
       setAddress(res)
       console.log("ADDRESS", address)
@@ -48,7 +47,14 @@ const NFTComponent = (props: INFTComponent) => {
       console.log("ERROR", error)
     })
   },[])
-    
+
+  //REDUX________________________________________
+  const dispatch = useAppDispatch()
+  const nft = useAppSelector(state => state.NFT.item)
+  useEffect(() => {
+    fetchNFT(dispatch, props.id)
+  }, [])
+
   return (
     <NFTContainer>
       {nft && address ? 
@@ -66,13 +72,14 @@ const NFTComponent = (props: INFTComponent) => {
               attribute="POWER" 
               value={nft.power.toString()} 
               margin="10px 0px 10px 0px"
-              incrementer={incrementPower}
+              incrementAction={nftActions.nftIncrPower}
             />
             <InfoFieldComponent 
               image="/durability.svg" 
               attribute="DURABILITY" 
               value={nft.durability.toString()}
-              incrementer={incrementDurability}
+              // incrementer={incrementDurability}
+              incrementAction={nftActions.nftIncrDurability}
             />
 
             {
@@ -91,13 +98,14 @@ const NFTComponent = (props: INFTComponent) => {
 
         <Box1 mt={100} ml={30} mb={30} pt={10} pl={10} width={800} height={200} jc="start" al="start">
           <GlowText m="0px 0px 10px 0px" als="center" size={35}>METADATA</GlowText>
-          <Text size={20}>NAME: {nft.name}</Text>
-          <Text m="10px 0px 0px 0px" size={20}>DESCRIPTION: {nft.description}</Text>
+          {nft && <Text size={20}>NAME: {nft.name}</Text>} 
+          { <Text m="10px 0px 0px 0px" size={20}>DESCRIPTION: {nft.description}</Text> }
         </Box1>
         </>
-      : <LoadingpageComponent/>}
+       : <LoadingpageComponent/>} 
     </NFTContainer>
   )
 }
 
 export default NFTComponent
+//___________________________________________________________________________________________________________________________
