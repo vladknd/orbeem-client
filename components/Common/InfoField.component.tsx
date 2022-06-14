@@ -17,7 +17,7 @@ interface IInfoField {
     incrementAction: any;
 }
 const InfoFieldComponent = (props: IInfoField) => {
-  const nft = useAppSelector(state => state.nft)
+  const NFT = useAppSelector(state => state.NFT)
   const dispatch = useAppDispatch()
   return (
     <FieldContainer width="90%" height="40px" margin={props.margin}>
@@ -27,7 +27,7 @@ const InfoFieldComponent = (props: IInfoField) => {
       </SideContainer>
       <SideContainer>
         <Text m="0px 10px 0px 0px"size={16}>{props.value}</Text>
-        {nft?.upgrading ? <Incrementer
+        {NFT?.upgrading ? <Incrementer
           onClick={() => {  
             dispatch(props.incrementAction())
           }}
