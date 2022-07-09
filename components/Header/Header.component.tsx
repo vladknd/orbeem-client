@@ -11,6 +11,8 @@ import {
     AccountContainer
 } from './Header.styled'
 import { LinksData } from './Header.data'
+import { connect, linkMetamask } from '../../web3/web3Utils'
+import { useWeb3 } from '../../services/web3.service'
 
 //HEADER-LINK:
 export interface IHeaderLink {
@@ -27,6 +29,9 @@ const HeaderLink = (props: IHeaderLink) => {
 
 //-----------------------------HEADER-COMPONENT------------------------------:
 const HeaderComponent = () => {
+    const {setWeb3, publicAddress} = useWeb3()
+    console.log("Public ADDDDDR",publicAddress);
+    
   return (
     <HeaderContainer>
         <LogoContainer>
@@ -42,7 +47,21 @@ const HeaderComponent = () => {
                     <HeaderLink key={index} href={item.href} text={item.text}/>
                 )
             })}
-            <AccountContainer/>
+            <AccountContainer
+                onClick={async() => {
+                    connect().then(_promise => {
+                        setWeb3(
+                            _promise.chainId,
+                            _promise.address
+                        )
+                    })
+                    linkMetamask()
+                    console.log("Public ADDDDDR",publicAddress);
+                }}
+            >
+                <Image src="/metamask.svg" width={45} height={35}/>
+                {publicAddress}
+            </AccountContainer>
         </SideContainer>
         
     </HeaderContainer>

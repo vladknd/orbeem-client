@@ -4,10 +4,11 @@ import colors from '../../styles/colors'
 export const ProfileContainer = styled.div`
     display: flex;
     flex-direction: column;
-        align-items: center;
+    align-items: end;
+    
     width: 100%;
 
-    /* height: 100vh; */
+    height: 100%;
     
 `
 
@@ -18,19 +19,20 @@ export const Navigator = styled.div`
     width: 100%;
     height: 100px;
     
+    transition: height 10s;
     color: white;
     font-size: 30px;
 
     background-color: ${colors.container_bg};
 `
 
-export const Items = styled.div`
-    margin-top: 50px;
+// export const Items = styled.div`
+//     margin-top: 50px;
 
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-`
+//     display: grid;
+//     grid-template-columns: 1fr 1fr 1fr;
+//     grid-template-rows: 1fr;
+// `
 
 export const NavigatorContainer = styled.div`
     /* margin-top: 100px; */
@@ -102,14 +104,14 @@ export const UnsignedContainer = styled.div`
 `
 
 export const Links = styled.div`
-    margin-right: 20px;
+    /* margin-right: 20px; */
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 `
 
-export const LinkContainer = styled.a`
+export const LinkContainer = styled.div`
     margin: 0px 15px;
 
     letter-spacing: 0.155em;
@@ -121,4 +123,19 @@ export const LinkContainer = styled.a`
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+`
+
+export const GlowContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+export const RightContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+    height: 100%;
 `

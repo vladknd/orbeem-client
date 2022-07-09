@@ -1,11 +1,10 @@
-// import Market from '../ABI/Market'
-// import DAI from '../ABI/DAI';
 
 import { ethers } from 'ethers';
 import { setCookies } from 'cookies-next';
 import Router from 'next/router';
 import NFTMarket from './ABI/NFTMarket.json'
 import RuneNFT from './ABI/RuneNFT.json'
+import ORB from './ABI/ORB.json'
 
 declare let window: any;
 const vendorContract = "0x72B52c1D413CfDF585334352098a0ED49973836D"
@@ -14,12 +13,37 @@ const daiContract = "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063"
 // const marketContract = "0xee1c7F287c42C2771d7090421A1B1A32f33284C4"
 
 //PROXIES
-const nftContract = "0x6101ca03aAcd7Fb88ed4E36E366268638BE3F25c"
-const marketContract = "0xC50B555DF535fb7292C99712b64b9b5A4599A65c"
+const nftContract = "0x900C13Dbf7894c397395C2fCA7cAC9B6e6fF69E5"
+const marketContract = "0xA615D54A9B1bEC1265A23f4166b5e549023F4C81"
+const orbContract = "0x7758b8A26c2b63020520C4261D1dc2c41E7DeCf4"
 
 import { URIs } from '../config';
+import { useWeb3 } from '../services/web3.service';
 
-//___________________INTERFACES_____________________________
+
+//___________________TOKEN_____________________________
+export const getBalance = async (_address: string) => {
+    console.log("GOT ADDRESS", _address);
+    const web3 = await checkMetaMask()
+    const provider = new ethers.providers.Web3Provider(web3)
+    const balance = await provider.getBalance(_address)
+
+    return ethers.utils.formatEther(balance)
+}
+
+export const getORBBalance = async (_address: string) => {
+    console.log("GOT ADDRESS", _address);
+    const web3 = await checkMetaMask()
+    const provider = new ethers.providers.Web3Provider(web3)
+    const signer = provider.getSigner()
+
+    const orb = new ethers.Contract(orbContract, ORB, signer) 
+    const balance = await orb.balanceOf(_address)
+
+    return ethers.utils.formatUnits(balance, 10)
+}
+
+//__________________________NFT_____________________________________
 export interface INFT {
     name: string;
     description: string;
@@ -31,6 +55,7 @@ export interface INFT {
     level: number;
     power: number;
     durability: number;
+    intelligence: number;
 
     price: string;
 }
@@ -51,12 +76,14 @@ export interface INFTData {
 
     basePower: number;
     baseDurability: number;
+    baseIntelligence: number;
 
     power: number;
     durability: number;
+    intelligence: number;
 }
 
-//__________________________NFT_____________________________________
+
 export const buyNFT = async (_itemID: number, _price: string) => {
     if(typeof window.ethereum !== "undefined"){
         const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -97,12 +124,16 @@ export const sellNFT = async (_tokenID: number, _price: number) => {
     }
 }
 
-export const getMyNFTs = async (): Promise<Array<INFT>> => {
+export const getMyNFTs = async (publicAddress: string): Promise<Array<INFT> | null> => {
     console.log("GET-MY-NFTs PROCEDURE INITIATED..")
     
-    const addr = await getAccount()
-    const address = addr.toString()
-    console.log("GET-MY-NFTs PROCEDURE: CURRENT ADDRESS", addr);
+    // const addr = await getAccount()
+    // const {publicAddress} = await useWeb3()
+    // const publicAddress = "0x83799E98349124b3b30D9D9635bD66A381f22f24"
+    
+        
+    const address = publicAddress.toString()
+    console.log("GET-MY-NFTs PROCEDURE: CURRENT ADDRESS", publicAddress);
 
     console.log("LOGIN PROCEDURE: CHECK USER REQUEST")
     const getMyNFTsRes = await fetch(URIs.subgraphURI, {
@@ -119,6 +150,7 @@ export const getMyNFTs = async (): Promise<Array<INFT>> => {
                         level
                         power
                         durability
+                        intelligence
                         price
                     }
                 }
@@ -142,7 +174,6 @@ export const getMyNFTs = async (): Promise<Array<INFT>> => {
             imageURI: metadata.image
         }
     }
-
     console.log("RUNES",runes)
     return runes
 }
@@ -165,6 +196,7 @@ export const getNFTs = async (): Promise<Array<INFT>> => {
                         level
                         power
                         durability
+                        intelligence
                         price
                     }
                 }
@@ -218,8 +250,10 @@ export const getNFTData = async (id: number): Promise<INFTData> => {
                         level
                         basePower
                         baseDurability
+                        baseIntelligence
                         power 
                         durability
+                        intelligence
                         price
                     }
                 }
@@ -266,6 +300,7 @@ export const upgradeNFT = async (
     _tokenID: number, 
     _newPower: number,
     _newDurability: number,
+    _newIntelligence: number
     ) => {
     if(typeof window.ethereum !== "undefined"){
         const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -281,6 +316,7 @@ export const upgradeNFT = async (
             _tokenID, 
             _newPower,
             _newDurability,
+            _newIntelligence,
             options
         )
         const txRes = await tx.wait()
@@ -291,14 +327,33 @@ export const upgradeNFT = async (
 }
 
 //___________________________UTILITIES_________________________________________
-export const getAccount = async () => {
+interface IConnectRes {
+    chainId: number;
+    address: string;
+}
+export const connect = async (): Promise<IConnectRes> => {
     const web3 = await checkMetaMask()
     const provider = new ethers.providers.Web3Provider(web3)
-    await provider.send("eth_requestAccounts", []);
-    const accounts = await provider.listAccounts()
-    console.log("AVAILABLE ADDRESSES", accounts);
+    // await provider.send("eth_requestAccounts", []);  
+    const signer = provider.getSigner();
+    const { chainId } = await provider.getNetwork()
+    const address = await signer.getAddress()
+    // const accounts = await provider.listAccounts()
+
+    console.log("CURENT WEB3 ADDRESSE", address);
+    console.log("CURENT WEB3 CHAIN-ID", chainId);
     
-    return accounts[0]
+    return {
+        chainId,
+        address
+    }
+}
+
+export const linkMetamask = async () => {
+    const web3 = await checkMetaMask()
+    const provider = new ethers.providers.Web3Provider(web3)
+    // const signer = provider.getSigner();
+    await provider.send("eth_requestAccounts", []);
 }
 
 export const checkMetaMask = async () => {
@@ -338,17 +393,17 @@ export const signMessage = async (nonce: string, publicAddress: string) => {
 }
 
 export const checkAdmin = async () => {
-    const addr = await getAccount()
-    console.log("DONE", addr);
-    if(addr === "0x16bD38012725eFEc123C31338Ab724573813e36C") return true
+    const {address} = await connect()
+    console.log("DONE", address);
+    if(address === "0x16bD38012725eFEc123C31338Ab724573813e36C") return true
     return false
 }
 //-------------------------------------LOGIN--------------------------------------------------------
 export const login = async () => {
     console.log("LOGIN PROCEDURE INITIATED..")
     
-    const addr = await getAccount()
-    console.log("LOGIN PROCEDURE: CURRENT ADDRESS", addr);
+    const {address} = await connect()
+    console.log("LOGIN PROCEDURE: CURRENT ADDRESS", address);
 
     console.log("LOGIN PROCEDURE: CHECK USER REQUEST")
     const checkUserRes = await fetch(`${URIs.apiURI}/graphql`, {
@@ -366,7 +421,7 @@ export const login = async () => {
                 }
             `,
             variables: {
-                publicAddress: addr
+                publicAddress: address
             }
         })
     })

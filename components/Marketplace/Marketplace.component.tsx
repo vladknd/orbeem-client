@@ -6,7 +6,8 @@ import {
     Illustration, 
     MarketplaceContainer, 
     Market,  
-    HeaderContainer
+    HeaderContainer,
+    CollectionContainer
 } from './Marketplace.styled'
 import { 
     Divider, 
@@ -41,7 +42,9 @@ const MarketplaceComponent = () => {
                 </HeaderContainer>
             <Divider mb="20px"/>
             
-            {items ? <NftsComponent loading={loading} items={items} gridSize="1fr 1fr 1fr 1fr 1fr"/> : null}
+            <CollectionContainer>
+              {items ? <NftsComponent loading={loading} items={items} gridSize="1fr 1fr 1fr 1fr 1fr"/> : null}
+            </CollectionContainer>
         </Market>
         <Divider/>
 

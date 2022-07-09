@@ -7,6 +7,7 @@ import React, {
     useState 
 } from 'react'
 import { REGISTER_USER } from '../../graphql/mutations/User.mutations'
+import { useWeb3 } from '../../services/web3.service';
 import { Button1, GlowText } from '../../styles/Components.styled'
 import { getAccount } from '../../web3/web3Utils';
 import { 
@@ -50,7 +51,7 @@ const RegistrationComponent = () => {
   const Router = useRouter()
   const [regData, SetRegData] = useState<RegData | null>(null)
   const [signUp] = useMutation(REGISTER_USER)
-  
+  const {publicAddress} = useWeb3()
   useEffect(()=> {
     console.log("REG-DATA", regData)
   }, [regData])
@@ -60,8 +61,8 @@ const RegistrationComponent = () => {
   }, [])
 
   const setAddress = async () => {
-    const addr = await getAccount()
-    SetRegData({publicAddress: addr})
+    // const addr = await getAccount()
+    SetRegData({publicAddress: publicAddress})
   }
 
   return (

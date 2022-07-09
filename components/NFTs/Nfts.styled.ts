@@ -16,6 +16,6 @@ export const Items = styled.div`
 export const NftsContainer = styled(Box2)`
     min-height: 700px; 
     min-width: 1100px;
-    
+    width: 100%;
     z-index:0;
 `

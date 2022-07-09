@@ -23,12 +23,14 @@ const Owner = () => {
             onClick={() => {
               console.log(Item.tokenId,
                 Item.power,
-                Item.durability);
+                Item.durability,
+                Item.intelligence);
               
               upgradeNFT(
                 Item.tokenId,
                 Item.power,
-                Item.durability
+                Item.durability,
+                Item.intelligence
               ).then(promise => {
                 console.log("NFT has been upgraded", promise)
               }).catch(error => {

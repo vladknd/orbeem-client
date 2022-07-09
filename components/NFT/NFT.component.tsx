@@ -27,8 +27,8 @@ import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks'
 //WEB3____________________________________________
 import { 
   buyNFT, 
-  getAccount, 
 } from '../../web3/web3Utils';
+import { useWeb3 } from '../../services/web3.service'
 
 
 
@@ -38,15 +38,17 @@ interface INFTComponent {
 }
 const NFTComponent = (props: INFTComponent) => {
   //CHECK-ACCOUNT:_________________________________
-  const [address, setAddress] = useState<string>()
-  useEffect(() => {
-    getAccount().then(res => {
-      setAddress(res)
-      console.log("ADDRESS", address)
-    }).catch(error => {
-      console.log("ERROR", error)
-    })
-  },[])
+  // const [address, setAddress] = useState<string>()
+  // useEffect(() => {
+  //   getAccount().then(res => {
+  //     setAddress(res)
+  //     console.log("ADDRESS", address)
+  //   }).catch(error => {
+  //     console.log("ERROR", error)
+  //   })
+  // },[])
+
+  const {publicAddress} = useWeb3()
 
   //REDUX________________________________________
   const dispatch = useAppDispatch()
@@ -57,7 +59,7 @@ const NFTComponent = (props: INFTComponent) => {
 
   return (
     <NFTContainer>
-      {nft && address ? 
+      {nft && publicAddress ? 
         //ADD STYLED CONTAINER
         <>
         <Box2 mt={100} ml={30} mb={30} width={500} >
@@ -78,12 +80,17 @@ const NFTComponent = (props: INFTComponent) => {
               image="/durability.svg" 
               attribute="DURABILITY" 
               value={nft.durability.toString()}
-              // incrementer={incrementDurability}
               incrementAction={nftActions.nftIncrDurability}
+            />
+            <InfoFieldComponent 
+              image="/durability.svg" 
+              attribute="INTELLIGENCE" 
+              value={nft.intelligence.toString()}
+              incrementAction={nftActions.nftIncrIntelligence}
             />
 
             {
-              nft.owner.toLowerCase() === address.toLowerCase() 
+              nft.owner.toLowerCase() === publicAddress.toLowerCase() 
               ? <Owner/>
               : nft.owner === "0x0000000000000000000000000000000000000000" 
                 ? <Button1 width={200} height={50} mt={40} mb={20}

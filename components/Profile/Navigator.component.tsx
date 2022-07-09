@@ -14,7 +14,8 @@ import {
     UsernameContainer,
     LinkContainer,
     Links,
-    UnsignedContainer
+    UnsignedContainer,
+    GlowContainer
 } from './Profile.styled'
 import { 
     Button1, 
@@ -23,19 +24,19 @@ import {
 } from '../../styles/Components.styled'
 //SERVICES_______________________________________
 import { useUser } from '../../services/user.service'
+import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks'
+import { profileActions } from '../../redux/Profile/Profile.slice'
+import { PROFILE_TAB } from '../../redux/NFT.interfaces'
+import LoadingComponent from '../Loading/Loading.component'
 
 
 //NAVIGATOR-LINK__________________________________________________________________________________________________________
-export interface INavigatorLink {
-    href: string;
+export interface INavigatorTab {
+    onClick(): void;
     text: string;
 }
-const NavigatorLink = (props: INavigatorLink) => {
-    return(
-        <Link href={props.href}>
-            <LinkContainer style={{cursor:"pointer"}}>{props.text}</LinkContainer>
-        </Link>
-    )
+const NavigatorTab = (props: INavigatorTab) => {
+    return <LinkContainer style={{cursor:"pointer"}} onClick={props.onClick}>{props.text}</LinkContainer>
 }
 //_________________________________________________________________________________________________________________________
 
@@ -44,17 +45,28 @@ const NavigatorLink = (props: INavigatorLink) => {
 const SignedComponent = () => {
     const {user}= useUser()
 
+    //REDUX:
+    const dispatch = useAppDispatch()
+    const { error, items, loading, tab } = useAppSelector(state => state.PROFILE)
     return (
         <SignedContainer>
             <AccountContainer>
                 <AvatarContainer image="/avatar.jpg"></AvatarContainer>
                 <UsernameContainer>{user?.username}</UsernameContainer>
+                
             </AccountContainer>
-            <GlowText size={60} m="30px 0px 20px 0px">MY PROFILE</GlowText>
+            
+            <GlowContainer>
+                <GlowText size={40}>DASHBOARD</GlowText>
+            </GlowContainer>
             <Links>
-                <NavigatorLink href="/" text="MY NFTS"/>
-                <NavigatorLink href="/" text="MY ACCOUNTS"/>
-            </Links>
+                    <NavigatorTab text="MY NFTS" onClick={()=> {
+                        dispatch(profileActions.setTabMyNFT(PROFILE_TAB.MY_NFT))
+                    }}/>
+                    <NavigatorTab text="MY ACCOUNTS" onClick={()=> {
+                        dispatch(profileActions.setTabMyNFT(PROFILE_TAB.MY_GAMES))
+                    }}/>
+                </Links>
         </SignedContainer>
     )
 }
@@ -85,11 +97,16 @@ const UnsignedComponent = () => {
 //NAVIGATOR-COMPONENT__________________________________________________________________________________________________________________
 const NavigatorComponent = () => {
   const {user} = useUser()
+
+  if(!user) return <LoadingComponent/>
   return (
     <NavigatorContainer>
-        
-        {user?.steamId ? <SignedComponent/> : <UnsignedComponent/>}
-        {/* <SignedComponent/> */}
+
+        {
+            user.steamId ? <SignedComponent/> : <UnsignedComponent/>
+            
+            // steamId ? <SignedComponent/> : <UnsignedComponent/>
+        }
     </NavigatorContainer>
   )
 }

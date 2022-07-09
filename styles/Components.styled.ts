@@ -117,7 +117,10 @@ export const BaseDiv = styled.div`
     padding-top: ${(props: IBaseDiv) => `${props.pt}px` || "0px"};
     padding-bottom: ${(props: IBaseDiv) => `${props.pb}px` || "0px"};
     padding-right: ${(props: IBaseDiv) => `${props.pr}px` || "0px"};
-    padding-left: ${(props: IBaseDiv) => `${props.pl}px` || "0px"};    
+    padding-left: ${(props: IBaseDiv) => `${props.pl}px` || "0px"};  
+    
+
+    
     
 `
 export const Box1 = styled(BaseDiv)`
@@ -128,13 +131,26 @@ export const Box1 = styled(BaseDiv)`
 
     color: white;
 `
-
+interface IBox2 {
+    clicky?: boolean;
+}
 export const Box2 = styled(BaseDiv)`
     border: 1px solid ${colors.yellow};
     border-radius: 10px;
 
     /* min-width: 1300px; */
     background: ${colors.box2_bg};
+
+    transition: height 1s;
+    /* transition: all 3s ease; */
+    /* transition: justify-content 6s; */
+    cursor: ${(props: IBox2) => props.clicky ? "pointer" : null};
+    &:hover {
+        opacity: ${(props: IBox2) => props.clicky ? 0.8 : 1};
+    }
+    &:hover:active {
+        opacity: ${(props: IBox2) => props.clicky ? 0.9 : 1};
+    }
 `
 
 //_______________________________TEXT__________________________________
@@ -211,3 +227,4 @@ export const Waves = styled(BaseDiv)`
     background-size: contain;
     opacity: 0.3;
 `
+

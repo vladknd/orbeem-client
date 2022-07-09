@@ -1,3 +1,4 @@
+import Image from 'next/image'
 //_______________LOCAL-IMPORTS____________________
 //STYLED-COMPONENTS_______________________________
 import { Items, NftsContainer } from './Nfts.styled'
@@ -9,17 +10,18 @@ import { INFT } from '../../web3/web3Utils'
 
 //NFTs-COMPONENT____________________________________________________________________________________________________________
 interface INftsComponent {
-    items: INFT[];
+    items: INFT[] | null;
     loading: boolean;
     gridSize?: string;
 }
 const NftsComponent = (props: INftsComponent) => {
     //BODY__________________________________________________________________________________________________________________
     return (
-        <NftsContainer mb={20} pb={40} jc="start">
+        <NftsContainer mb={20} mr={40} ml={40} pb={40} jc="start">
             {props.loading ? <LoadingComponent/> : 
+            props.items ? 
             <Items cols={props.gridSize ? props.gridSize : "1fr 1fr 1fr 1fr"}>
-                {props.items?.map((item, index) => {
+                {props.items.map((item, index) => {
                     return (<ItemComponent
                         key={index}
                         id={item?.tokenId}
@@ -30,7 +32,8 @@ const NftsComponent = (props: INftsComponent) => {
                         image={item?.imageURI}
                     />)
                 })}
-            </Items>}
+            </Items>
+            : null}
         </NftsContainer>
     )
 }

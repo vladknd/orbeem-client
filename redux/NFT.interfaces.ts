@@ -1,4 +1,5 @@
-import { INFT } from "../web3/web3Utils";
+import { INFT } from '../web3/web3Utils'
+
 export interface INFTData {
     name: string;
     description: string;
@@ -15,9 +16,12 @@ export interface INFTData {
 
     basePower: number;
     baseDurability: number;
+    baseIntelligence: number;
+
 
     power: number;
     durability: number;
+    intelligence: number;
 }
 
 export interface INFTState extends INFTData {
@@ -31,10 +35,16 @@ export interface INFTInitState {
     error: string;
 }
 
-export interface IMyNFTInitState {
+export enum PROFILE_TAB {
+    MY_NFT,
+    MY_GAMES
+}
+export interface IProfileState {
     loading: boolean;
+    tab: PROFILE_TAB,
     items: Array<INFT> | null;
     error: string;
+    selected: INFT | null;
 }
 
 export interface IMarketNFTInitState {

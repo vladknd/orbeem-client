@@ -30,22 +30,31 @@ const nftSlice = createSlice({
         },
         nftIncrPower(state: INFTInitState) {
             if(state.item){
-                const total = state.item.power + state.item.durability 
-                const baseTotal = state.item.basePower + state.item.baseDurability
-                const allowance = state.item.level*4 + baseTotal
+                const total = state.item.power + state.item.durability + state.item.intelligence
+                const baseTotal = state.item.basePower + state.item.baseDurability + state.item.baseIntelligence
+                const allowance = state.item.level*6 + baseTotal
 
                 if(total < allowance) state.item.power = (state.item.power+1)
             } 
         },
         nftIncrDurability(state: INFTInitState) {
             if(state.item){
-                const total = state.item.power + state.item.durability 
-                const baseTotal = state.item.basePower + state.item.baseDurability
-                const allowance = state.item.level*4 + baseTotal
+                const total = state.item.power + state.item.durability + state.item.intelligence
+                const baseTotal = state.item.basePower + state.item.baseDurability + state.item.baseIntelligence
+                const allowance = state.item.level*6 + baseTotal
                 console.log("REDUCER's alllowance", allowance);
                 console.log("REDUCER's total", total)
                 
                 if(total < allowance) state.item.durability = (state.item.durability+1)
+            } 
+        },
+        nftIncrIntelligence(state: INFTInitState) {
+            if(state.item){
+                const total = state.item.power + state.item.durability + state.item.intelligence
+                const baseTotal = state.item.basePower + state.item.baseDurability + state.item.baseIntelligence
+                const allowance = state.item.level*6 + baseTotal
+
+                if(total < allowance) state.item.intelligence = (state.item.intelligence+1)
             } 
         },
 

@@ -26,7 +26,7 @@ export const SideContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    width: 1000px;
+    width: 1100px;
     height: 10px;
 
     margin: 0px 20px;
@@ -47,9 +47,13 @@ export const LinkContainer = styled.a`
 `
 
 export const AccountContainer = styled.div`
-    width: 1000px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    width: 100%;
     height: 50px;
-    padding: 15px;
+    padding: 0px 15px;
     border-radius: 25px;
     background-color: rgba(112, 112, 112, 0.24);
 

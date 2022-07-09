@@ -2,7 +2,9 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
+
 import { useAuthorize } from '../../services/auth.service'
+
 //#------------------LOCAL-IMPORTS-------------------#
 import { 
     Box1,
@@ -21,6 +23,8 @@ import {
     UpsideContainer, 
 } from './Home.styled'
 import { Waves } from '../../styles/Components.styled'
+import { connect } from 'http2';
+
 //-----------------------------------PANEL-CONNECT-COMPONENT:
 const PanelConnect = () => {
     return (
@@ -67,7 +71,8 @@ const Panel = () => {
 //-----------------------------HOME-COMPONENT------------------------------:
 const HomeComponent = () => {
   const Router = useRouter()
-  const [authorized, loading] = useAuthorize()  
+  const [connect, authorized, loading] = useAuthorize()  
+  
   return (
     <HomeContainer>
         <Waves height={610} mt={250}/>
@@ -75,12 +80,13 @@ const HomeComponent = () => {
             <LogoContainer auth={authorized}>
                 <Image src="/logo_vertical.svg" width={450} height={450}/>
                 {/* <Button2 width={250} height={50} mt={40}
-                onClick={(event)=> {
-                    Router.push("/")
-                }}
+                    onClick={()=> {
+                        // connect()
+                    }}
                 >
                 CONNECT
                 </Button2> */}
+                {/* <ConnectWallet/> */}
                 {authorized ? null : <LoadingComponent/>}
             </LogoContainer>
             
