@@ -10,7 +10,7 @@ const Layout = (props: any) => {
     <LayoutContainer>
         {Router.pathname === "/registration" ? null : <HeaderComponent/>}
             {props.children}
-        {Router.pathname === "/registration" ? null : <FooterComponent/>}
+        {/* {Router.pathname === "/registration" ? null : <FooterComponent/>} */}
     </LayoutContainer>
   )
 }

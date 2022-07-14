@@ -5,7 +5,8 @@ import Link from 'next/link';
 //STYLED-COMPONENTS_______________________________
 import { 
   ItemContainer, 
-  ItemInfo 
+  ItemInfo, 
+  ItemText
 } from './Item.styled'
 import { Text } from '../../styles/Components.styled'
 
@@ -23,10 +24,10 @@ const ItemComponent = (props: INFTComponent) => {
     <Link  href={`/nft/${props.id}`} passHref>
     <ItemContainer image={props.image} style={{cursor:"pointer"}}>
         <ItemInfo>
-            <Text size={20} m="8px">LEVEL: {props.level}</Text>
-            <Text size={20} m="8px">POWER: {props.power}</Text>
-            <Text size={20} m="8px">DURABILITY: {props.durability}</Text>
-            <Text size={20} m="8px">PRICE: {props.price}</Text>
+            <ItemText  m="8px">LEVEL: {props.level}</ItemText>
+            <ItemText  m="8px">POWER: {props.power}</ItemText>
+            <ItemText  m="8px">DURABILITY: {props.durability}</ItemText>
+            <ItemText  m="8px">PRICE: {props.price}</ItemText>
         </ItemInfo>
     </ItemContainer>
     </Link>

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import colors from '../styles/colors'
+import devices from './devices';
 
 //------------------------------DIVIDER------------------------------
 interface DividerProps {
@@ -33,8 +34,8 @@ interface IBaseButton {
     mr?: number;
 }
 export const Button = styled.button`
-    width: ${(props: IBaseButton) => `${props.width}px` || "100px"};
-    height: ${(props: IBaseButton) => `${props.height}px` || "100px"};
+    width: ${(props: IBaseButton) => `${props.width}px` || "100%"};
+    height: ${(props: IBaseButton) => `${props.height}px` || "100%"};
 
     margin-top: ${(props: IBaseButton) => `${props.mt}px` || "0px"};
     margin-bottom: ${(props: IBaseButton) => `${props.mb}px` || "0px"};
@@ -82,8 +83,8 @@ export const Button2 = styled(Button)`
 
 //------------------------------BOX------------------------------:
 interface IBaseDiv {
-    width?: number;
-    height?: number;
+    width?: string;
+    height?: string;
 
     dir?: string;
     jc?: string;
@@ -94,10 +95,10 @@ interface IBaseDiv {
     mr?: number;
     ml?: number;
 
-    pt?: number;
-    pb?: number;
-    pr?: number;
-    pl?: number;
+    pt?: string;
+    pb?: string;
+    pr?: string;
+    pl?: string;
 
 }
 export const BaseDiv = styled.div`
@@ -106,18 +107,18 @@ export const BaseDiv = styled.div`
     justify-content: ${(props: IBaseDiv) => props.jc || "center"};
     align-items: ${(props: IBaseDiv) => props.al || "center"};
 
-    width: ${(props: IBaseDiv) => `${props.width}px` || "100%"};
-    height: ${(props: IBaseDiv) => `${props.height}px` || "100%"};
+    width: ${(props: IBaseDiv) => props.width || "100%"};
+    height: ${(props: IBaseDiv) => props.height || "100%"};
 
     margin-top: ${(props: IBaseDiv) => `${props.mt}px` || "0px"};
     margin-bottom: ${(props: IBaseDiv) => `${props.mb}px` || "0px"};
     margin-right: ${(props: IBaseDiv) => `${props.mr}px` || "0px"};
     margin-left: ${(props: IBaseDiv) => `${props.ml}px` || "0px"};
 
-    padding-top: ${(props: IBaseDiv) => `${props.pt}px` || "0px"};
-    padding-bottom: ${(props: IBaseDiv) => `${props.pb}px` || "0px"};
-    padding-right: ${(props: IBaseDiv) => `${props.pr}px` || "0px"};
-    padding-left: ${(props: IBaseDiv) => `${props.pl}px` || "0px"};  
+    padding-top: ${(props: IBaseDiv) => props.pt|| "0px"};
+    padding-bottom: ${(props: IBaseDiv) => props.pb || "0px"};
+    padding-right: ${(props: IBaseDiv) => props.pr || "0px"};
+    padding-left: ${(props: IBaseDiv) => props.pl || "0px"};  
     
 
     
@@ -226,5 +227,19 @@ export const Waves = styled(BaseDiv)`
     /* background-position: 0% 1000%; */
     background-size: contain;
     opacity: 0.3;
+
+    @media ${devices.laptopXS} {
+        height: 330px;
+    }
+    @media ${devices.laptopS} {
+        height: 300px;
+    }
+    @media ${devices.laptopM} {
+        width: 100%;
+        height: 450px;
+    }
+    @media ${devices.laptopL} {
+        height: 550px;
+    }
 `
 

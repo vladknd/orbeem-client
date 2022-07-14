@@ -1,6 +1,12 @@
 import React from 'react'
 import { Text } from '../../styles/Components.styled'
-import { FieldContainer, Incrementer, SideContainer } from './InfoField.styled'
+import { 
+  AttributeText, 
+  AttributeValue, 
+  FieldContainer, 
+  Incrementer, 
+  SideContainer 
+} from './InfoField.styled'
 import Image from 'next/image'
 import { useNFT } from '../NFT/useNFT';
 import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks';
@@ -20,21 +26,21 @@ const InfoFieldComponent = (props: IInfoField) => {
   const NFT = useAppSelector(state => state.NFT)
   const dispatch = useAppDispatch()
   return (
-    <FieldContainer width="90%" height="40px" margin={props.margin}>
+    <FieldContainer width="100%" height="30px" margin={props.margin}>
       <SideContainer>
-        <Image src={props.image} width={28} height={28}/>
-        <Text size={16}>{props.attribute}</Text>
+        <Image src={props.image} width={24} height={24}/>
+        <AttributeText>{props.attribute}</AttributeText>
       </SideContainer>
+
       <SideContainer>
-        <Text m="0px 10px 0px 0px"size={16}>{props.value}</Text>
-        {NFT?.upgrading && props.incrementAction
-        ? <Incrementer
+        <AttributeValue>{props.value}</AttributeValue>
+
+        {NFT?.upgrading && props.incrementAction ? 
+          <Incrementer
             onClick={() => {  
               dispatch(props.incrementAction())
             }}
-          >
-          +
-          </Incrementer> 
+          > + </Incrementer> 
         : null}
 
       </SideContainer>

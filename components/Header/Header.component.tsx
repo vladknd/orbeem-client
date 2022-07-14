@@ -8,7 +8,8 @@ import {
     LinkContainer, 
     LogoContainer, 
     SideContainer,
-    AccountContainer
+    AccountContainer,
+    MetamaskLogo
 } from './Header.styled'
 import { LinksData } from './Header.data'
 import { connect, linkMetamask } from '../../web3/web3Utils'
@@ -59,7 +60,10 @@ const HeaderComponent = () => {
                     console.log("Public ADDDDDR",publicAddress);
                 }}
             >
-                <Image src="/metamask.svg" width={45} height={35}/>
+                <MetamaskLogo>
+                    <Image src="/metamask.svg" width={25} height={25} layout="intrinsic" />
+                </MetamaskLogo>
+                
                 {publicAddress}
             </AccountContainer>
         </SideContainer>

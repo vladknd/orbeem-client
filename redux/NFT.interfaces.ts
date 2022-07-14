@@ -52,3 +52,4 @@ export interface IMarketNFTInitState {
     items: Array<INFT> | null;
     error: string;
 }
+

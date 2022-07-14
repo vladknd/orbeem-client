@@ -49,6 +49,7 @@ export const CollectionContainer = styled.div`
     justify-content: center;
     align-items: center;
 
+    height: 100%;
     width: 100%;
 
 `

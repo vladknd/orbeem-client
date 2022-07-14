@@ -1,23 +1,43 @@
 import styled from 'styled-components'
 import colors from '../../styles/colors'
+import devices from '../../styles/devices'
 
 export const HeaderContainer = styled.div`
+    z-index: 5;
+    position: fixed;
+
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+
     width: 100%;
-    height: 70px;
-    z-index: 5;
-    position: fixed;
-    /* top: 60px; */
-    /* margin-bottom: 100px; */
+    
+    
+    
+
     color: white;
     background-color: ${colors.header_bg};
+
+    @media ${devices.laptopXS} {
+        height: 12vh;
+    }
+    @media ${devices.laptopS} {
+        height: 10vh;
+    }
+    @media ${devices.laptopM} {
+        height: 10vh;
+    }
+    @media ${devices.laptopL} {
+        height: 10vh;
+    }
 `
 
 export const LogoContainer = styled.div`
     margin: 0px 20px;
+
+    
+
 `
 
 export const SideContainer = styled.div`
@@ -36,7 +56,7 @@ export const LinkContainer = styled.a`
     margin: 0px 15px;
 
     letter-spacing: 0.155em;
-    font-size: 15px;
+    /* font-size: 13px; */
     color: white;
 
     &:hover {
@@ -44,20 +64,35 @@ export const LinkContainer = styled.a`
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+
+    @media ${devices.laptopXS} {
+        font-size: 11px;
+    }
+    @media ${devices.laptopS} {
+        font-size: 14px;
+    }
+    @media ${devices.laptopM} {
+        font-size: 14px;
+    }
+    @media ${devices.laptopL} {
+        font-size: 16px;
+    }
 `
 
 export const AccountContainer = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: start;
     align-items: center;
     
     width: 100%;
-    height: 50px;
+    height: 40px;
     padding: 0px 15px;
     border-radius: 25px;
     background-color: rgba(112, 112, 112, 0.24);
 
     color: white;
+    font-size: 16px;
     text-align: center;
     
     border: 1px solid transparent;
@@ -66,4 +101,21 @@ export const AccountContainer = styled.div`
         border: 1px solid #6d52d1;
         background-color: rgba(112, 112, 112, 0.14);
     }
+
+    @media ${devices.laptopXS} {
+        font-size: 13px;
+    }
+    @media ${devices.laptopS} {
+        font-size: 14px;
+    }
+    @media ${devices.laptopM} {
+    }
+    @media ${devices.laptopL} {
+
+    }
+`
+
+export const MetamaskLogo = styled.div`
+    margin: 0px 10px 0px 5px;
+    display: block;
 `

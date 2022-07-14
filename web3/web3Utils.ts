@@ -43,6 +43,8 @@ export const getORBBalance = async (_address: string) => {
     return ethers.utils.formatUnits(balance, 10)
 }
 
+
+
 //__________________________NFT_____________________________________
 export interface INFT {
     name: string;
@@ -405,7 +407,7 @@ export const login = async () => {
     const {address} = await connect()
     console.log("LOGIN PROCEDURE: CURRENT ADDRESS", address);
 
-    console.log("LOGIN PROCEDURE: CHECK USER REQUEST")
+    // console.log("LOGIN PROCEDURE: CHECK USER REQUEST")
     const checkUserRes = await fetch(`${URIs.apiURI}/graphql`, {
         method: "POST",
         headers: {
@@ -425,6 +427,7 @@ export const login = async () => {
             }
         })
     })
+    console.log("LOGIN PROCEDURE: RESPONSE", checkUserRes)
     const checkUserData = await checkUserRes.json()
     console.log("LOGIN PROCEDURE: CHECK USER DATA", checkUserData);
 

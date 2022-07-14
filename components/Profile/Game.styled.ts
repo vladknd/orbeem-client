@@ -3,8 +3,19 @@ import { url } from 'inspector';
 import Image from 'next/image'
 import styled from 'styled-components'
 import colors from '../../styles/colors'
+import { Box1, Box2, GlowText } from '../../styles/Components.styled';
+import devices from '../../styles/devices';
 
-// 
+export const GameBoxContainer = styled(Box2)`
+    margin: 0px 20px;
+    
+    /* justify-content: center; */
+    width: 70%;
+    /* height: 100%; */
+
+    
+`
+
 
 interface INFTBoxContainer {
     image?: string;
@@ -18,8 +29,8 @@ export const NFTBoxContainer = styled.div`
     text-align: center;
     padding: 40px 0px;
     vertical-align: center;;
-    width: 120px;
-    height: 120px;
+    /* width: 120px; */
+    /* height: 120px; */
 
     background-image: ${(props:INFTBoxContainer) => `url(${props.image})`};
     background-repeat: no-repeat;
@@ -38,18 +49,37 @@ export const NFTBoxContainer = styled.div`
     &:hover:active {
         opacity: 0.9;
     }
+
+    @media ${devices.laptopXS} {
+        width: 80px;
+        height: 40px;
+    }
+    @media ${devices.laptopS} {
+        width: 80px;
+        height: 40px;
+    }
+    @media ${devices.laptopM} {
+        width: 80px;
+        height: 40px;
+    }
+    @media ${devices.laptopL} {
+        width: 80px;
+        height: 40px;
+    }
 `
 
 // export const EmptyBox = styled.div` 
 // `   
 interface IGameLogo {
     ml: string; //FOR ANIMATION
+    mt: string; //FOR ANIMATION
 }
 export const GameLogo = styled.div`
    margin-left: ${(props: IGameLogo) => props.ml ? props.ml : "0px"};
+   margin-top: ${(props: IGameLogo) => props.mt ? props.mt : "0px"};
    transition: all 0.8s;
-   height: 100px;
-   width: 100%;
+   height: 100%;
+   width: 20%;
 `
 
 export const NFTContainer = styled.div`
@@ -62,6 +92,8 @@ export const NFTContainer = styled.div`
 export const ActionsContainer = styled.div`
     display: flex;
     flex-direction: row;
+
+    width: 90%;
 `
 
 interface GameContainer {
@@ -69,6 +101,14 @@ interface GameContainer {
     opacity?: number;
 }
 export const GameContainer = styled.div`
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     opacity: ${(props: GameContainer) => props.opacity || 1};
     transition: all 1s ease;
 `
@@ -88,7 +128,7 @@ export const MinterContainer = styled.div`
     justify-content:  space-between;
 
     width: 80%;
-    height: 50px;
+    height: 40px;
 
     border: 0.1px solid #FFFFFF;
     border-radius: 10px;
@@ -101,7 +141,7 @@ export const MinterContainer = styled.div`
 
 export const Claim = styled.div`
     text-align: center;
-    padding: 12px;
+    padding: 9px;
 
     width: 120px;
     height: 100%;
@@ -134,4 +174,22 @@ export const HeaderContainer = styled.div`
     align-items: center;
 
     width: 100%;
+`
+
+export const MatchContainer = styled(Box1)`
+    margin-right: 20px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+    width: 30%;
+    height: 95%;
+
+`
+
+export const MatchHeader = styled(GlowText)`
+    margin-top: 4%;
+    margin-bottom: 4%;
+    font-size: 25px;
 `

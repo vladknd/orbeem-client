@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { INFT } from '../../web3/web3Utils'
 //IMPORT-INTERFACES:__________________________
-import { IProfileState, PROFILE_TAB } from '../NFT.interfaces'
+import { IProfileState, PROFILE_TAB} from '../NFT.interfaces'
 
 
 const initState: IProfileState = {

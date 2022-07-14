@@ -17,10 +17,10 @@ interface INftsComponent {
 const NftsComponent = (props: INftsComponent) => {
     //BODY__________________________________________________________________________________________________________________
     return (
-        <NftsContainer mb={20} mr={40} ml={40} pb={40} jc="start">
+        <NftsContainer mb={20} mr={30} ml={30} pb={40} jc="start">
             {props.loading ? <LoadingComponent/> : 
             props.items ? 
-            <Items cols={props.gridSize ? props.gridSize : "1fr 1fr 1fr 1fr"}>
+            <Items cols={props.gridSize ? props.gridSize : "1fr 1fr 1fr 1fr 1fr 1fr"}>
                 {props.items.map((item, index) => {
                     return (<ItemComponent
                         key={index}

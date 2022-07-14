@@ -57,7 +57,7 @@ const SignedComponent = () => {
             </AccountContainer>
             
             <GlowContainer>
-                <GlowText size={40}>DASHBOARD</GlowText>
+                <GlowText size={32}>DASHBOARD</GlowText>
             </GlowContainer>
             <Links>
                     <NavigatorTab text="MY NFTS" onClick={()=> {

@@ -2,7 +2,7 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button1 } from "../../styles/Components.styled"
-import {Row, OwnerContainer, AmountContainer, Input, ButtonContainer, ImageContainer } from "./Owner.styled"
+import {Row, OwnerContainer, AmountContainer, Input, ButtonContainer, ImageContainer, SellButton } from "./Owner.styled"
 import { levelUp, sellNFT, upgradeNFT } from "../../web3/web3Utils"
 import { useNFT } from "./useNFT"
 import { useAppDispatch, useAppSelector } from "../../redux/reduxHooks"
@@ -15,38 +15,11 @@ const Owner = () => {
     const dispatch = useAppDispatch()
     return (
       <OwnerContainer>
-        {NFT?.upgrading && Item ? 
-          <Button1 
-            mt={20}
-            width={150} 
-            height={50}
-            onClick={() => {
-              console.log(Item.tokenId,
-                Item.power,
-                Item.durability,
-                Item.intelligence);
-              
-              upgradeNFT(
-                Item.tokenId,
-                Item.power,
-                Item.durability,
-                Item.intelligence
-              ).then(promise => {
-                console.log("NFT has been upgraded", promise)
-              }).catch(error => {
-                console.log(error);
-              })
-            }}
-          >
-            SUBMIT
-          </Button1> 
-        : null}
-
         {NFT && Item ? 
-        <Row mt={20} mb={20}>
+        <Row mt={10} mb={10}>
           <ButtonContainer style={{cursor:"pointer"}} mr={20}>
             <Link href="/">
-              <Image src="/transfer.svg" width={120} height={120}/>
+              <Image src="/transfer.svg" width={80} height={80}/>
             </Link>
           </ButtonContainer>
           
@@ -56,7 +29,7 @@ const Owner = () => {
             }}
           >
             <div>
-              <Image src="/levelup.svg" width={120} height={120}/>
+              <Image src="/levelup.svg" width={80} height={80}/>
             </div>
           </ButtonContainer>
 
@@ -67,30 +40,56 @@ const Owner = () => {
           >
             <Image 
               src={NFT.upgrading ? "/upgradeTrue.svg" : "/upgrade.svg"} 
-              width={125} 
-              height={125}
+              width={85} 
+              height={85}
             />
           </ButtonContainer>
         </Row> 
         : null}
         
         {NFT && Item ? 
-        <Row mb={20}>
-          <AmountContainer>
-            <Input type="number" name="name" placeholder="0.0 MATIC" autoComplete="off"
-              onChange={event => {
-                setPrice(Number(event.target.value))
+          NFT.upgrading ?
+            <Button1 
+              mb={10}
+              width={150} 
+              height={60}
+              onClick={() => {
+                console.log(Item.tokenId,
+                  Item.power,
+                  Item.durability,
+                  Item.intelligence);
+                
+                upgradeNFT(
+                  Item.tokenId,
+                  Item.power,
+                  Item.durability,
+                  Item.intelligence
+                ).then(promise => {
+                  console.log("NFT has been upgraded", promise)
+                }).catch(error => {
+                  console.log(error);
+                })
               }}
-            />
-            <Image src="/Polygon.svg" width={20} height={20}/>
-          </AmountContainer>
+            >
+              SUBMIT
+            </Button1> 
 
-          <Button1 width={170} height={50}
-            onClick={() => sellNFT(Item.tokenId, price)}
-          >
-            SELL
-          </Button1>
-        </Row> 
+          : <Row mb={20}>
+              <AmountContainer>
+                <Input type="number" name="name" placeholder="0.0 MATIC" autoComplete="off"
+                  onChange={event => {
+                    setPrice(Number(event.target.value))
+                  }}
+                />
+                <Image src="/Polygon.svg" width={20} height={20}/>
+              </AmountContainer>
+
+              <SellButton width={130} height={30}
+                onClick={() => sellNFT(Item.tokenId, price)}
+              >
+                SELL
+              </SellButton>
+            </Row> 
         : null}
 
       </OwnerContainer>

@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import { Box1 } from '../../styles/Components.styled';
+import devices from '../../styles/devices';
 
 export const HomeContainer = styled.div`
     width: 100%;
@@ -31,28 +33,73 @@ interface ILogoContainer {
 }
 export const LogoContainer = styled.div`
     filter: ${(props: ILogoContainer) => props.auth ? "drop-shadow(3px -3px 31px #8952FF)" : "none"};
-    margin-top: 50px;
     margin-left: 100px;
     transition: filter 4s;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+
+
+    @media ${devices.laptopXS} {
+        margin-top: 2%:
+        width: 2%:
+    }
+    @media ${devices.laptopS} {
+        margin-top: 3%;
+        width: 27%;
+    }
+    @media ${devices.laptopM} {
+        margin-top: 3%;
+    }
+    @media ${devices.laptopL} {
+
+    }
 `
 
 export const TapesContainer = styled.div`
+    
     display: flex;
     flex-direction: column;
+    align-items: end;
+
     height: 600px;
+
+
+    @media ${devices.laptopXS} {
+        margin-top: 0%:
+    }
+    @media ${devices.laptopS} {
+        margin-top: 0%;
+    }
+    @media ${devices.laptopM} {
+        margin-top: 0%;
+    }
+    @media ${devices.laptopL} {
+        margin-top: 0%;
+    }
 `
 
 export const Tape = styled.div`
     margin: 30px 0px 3px 0px;
-
+    
     &:hover {
         opacity: 0.8;
     }
-`
+
+    @media ${devices.laptopXS} {
+        width: 80%;
+    }
+    @media ${devices.laptopS} {
+        width: 70%;
+    }
+    @media ${devices.laptopM} {
+        width: 80%;
+    }
+    @media ${devices.laptopL} {
+        width: 100%;
+    }
+ `
 
 export const PanelContainer = styled.div`
     display: flex;
@@ -60,8 +107,14 @@ export const PanelContainer = styled.div`
     justify-content: space-around;
     align-items: center;
 
-    height: 100%;
+    /* height: 100%; */
 
+`
+
+export const PanelBoxContainer = styled(Box1)`
+    padding: 35px;
+    width: 350px;
+    height: 350px;
 `
 
 export const Waves = styled.div`

@@ -6,7 +6,7 @@ interface IItems {
     cols: string
 }
 export const Items = styled.div`
-    margin-top: 50px;
+    margin-top: 10px;
 
     display: grid;
     grid-template-columns: ${(props: IItems) => props.cols || "1fr 1fr 1fr 1fr" };
@@ -14,8 +14,9 @@ export const Items = styled.div`
 `
 
 export const NftsContainer = styled(Box2)`
-    min-height: 700px; 
-    min-width: 1100px;
+    height: 95%;
+    min-height: 95%; 
+    min-width: 70%;
     width: 100%;
     z-index:0;
 `

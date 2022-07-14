@@ -1,14 +1,19 @@
 import styled from 'styled-components'
 import colors from '../../styles/colors'
+import { Box1 } from '../../styles/Components.styled'
+import devices from '../../styles/devices'
 
 export const ProfileContainer = styled.div`
+    margin-top: 14vh;
+
     display: flex;
     flex-direction: column;
-    align-items: end;
+    justify-content: start;
+    align-items: start;
     
     width: 100%;
 
-    height: 100%;
+    height: 90vh;
     
 `
 
@@ -26,24 +31,29 @@ export const Navigator = styled.div`
     background-color: ${colors.container_bg};
 `
 
-// export const Items = styled.div`
-//     margin-top: 50px;
-
-//     display: grid;
-//     grid-template-columns: 1fr 1fr 1fr;
-//     grid-template-rows: 1fr;
-// `
-
 export const NavigatorContainer = styled.div`
     /* margin-top: 100px; */
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 20%;
 
-    transition: 5s;
+    transition: 1s;
     background-color: ${colors.container_bg};
+
+    @media ${devices.laptopXS} {
+        height: 10vh;
+    }
+    @media ${devices.laptopS} {
+        height: 10vh;
+    }
+    @media ${devices.laptopM} {
+        height: 10vh;
+    }
+    @media ${devices.laptopL} {
+        height: 10vh;
+    }
 `
 
 export const SignedContainer = styled.div`
@@ -94,6 +104,19 @@ export const UsernameContainer = styled.div`
     height: 35px;
 
     border-radius: 20px;
+
+    @media ${devices.laptopXS} {
+        font-size: 13px;
+    }
+    @media ${devices.laptopS} {
+        font-size: 13px;
+    }
+    @media ${devices.laptopM} {
+        font-size: 15px;
+    }
+    @media ${devices.laptopL} {
+        font-size: 20px;
+    }
 `
 export const UnsignedContainer = styled.div`
     display: flex;
@@ -115,7 +138,6 @@ export const LinkContainer = styled.div`
     margin: 0px 15px;
 
     letter-spacing: 0.155em;
-    font-size: 18px;
     color: white;
 
     &:hover {
@@ -123,6 +145,20 @@ export const LinkContainer = styled.div`
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+
+    @media ${devices.laptopXS} {
+        font-size: 13px;
+    }
+    @media ${devices.laptopS} {
+        font-size: 15px;
+    }
+    @media ${devices.laptopM} {
+        font-size: 16px;
+    }
+    @media ${devices.laptopL} {
+        font-size: 17px;
+    }
+    
 `
 
 export const GlowContainer = styled.div`
@@ -131,11 +167,19 @@ export const GlowContainer = styled.div`
     align-items: center;
 `
 
-export const RightContainer = styled.div`
+export const ContentContainer = styled.div`
+    margin-top: 2%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;    
+    justify-content: space-around;
+    align-items: start;
     
     width: 100%;
     height: 100%;
+`
+
+export const NFTFilters = styled(Box1)`
+    margin-right: 20px;
+    width: 30%;
+    height: 95%;
 `

@@ -17,6 +17,7 @@ import LoadingComponent from '../Loading/Loading.component'
 import { 
     HomeContainer, 
     LogoContainer, 
+    PanelBoxContainer, 
     PanelContainer, 
     Tape, 
     TapesContainer, 
@@ -45,16 +46,17 @@ interface IPanelBox {
 const PanelBox = (props: IPanelBox) => {
     const Router = useRouter()
     return (
-        <Box1 width={400} height={400} mt={20} mb={20}>
-            <Image src={props.image} width={300} height={300}></Image>
-            <Button2 width={250} height={50} 
+        <PanelBoxContainer mt={20} mb={20}>
+            <Image src={props.image} width={300} height={300} layout="intrinsic"></Image>
+            <Button2 
+                width={250}
                 onClick={(event)=> {
                     Router.push(props.link)
                 }}
             >
             {props.text}
             </Button2>
-        </Box1>
+        </PanelBoxContainer>
     )
 }
 
@@ -75,18 +77,10 @@ const HomeComponent = () => {
   
   return (
     <HomeContainer>
-        <Waves height={610} mt={250}/>
+        <Waves mt={250}/>
         <UpsideContainer>
             <LogoContainer auth={authorized}>
                 <Image src="/logo_vertical.svg" width={450} height={450}/>
-                {/* <Button2 width={250} height={50} mt={40}
-                    onClick={()=> {
-                        // connect()
-                    }}
-                >
-                CONNECT
-                </Button2> */}
-                {/* <ConnectWallet/> */}
                 {authorized ? null : <LoadingComponent/>}
             </LogoContainer>
             

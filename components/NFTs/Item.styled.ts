@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-
+import devices from '../../styles/devices';
+import {Text} from '../../styles/Components.styled'
 export const ItemInfo = styled.div`
     display
     width: 100%;
@@ -41,5 +42,32 @@ export const ItemContainer = styled.div`
         }
     }
 
+    @media ${devices.laptopXS} {
+        width: 120px;
+        height: 120px;
+    }
+    @media ${devices.laptopS} {
+        /* font-size: 15px; */
+    }
+    @media ${devices.laptopM} {
+        /* font-size: 10px; */
+    }
+    @media ${devices.laptopL} {
+        /* font-size: 10px; */
+    }
 `
 
+export const ItemText = styled(Text)`
+    @media ${devices.laptopXS} {
+        font-size: 12px;
+    }
+    @media ${devices.laptopS} {
+        /* font-size: 15px; */
+    }
+    @media ${devices.laptopM} {
+        /* font-size: 10px; */
+    }
+    @media ${devices.laptopL} {
+        /* font-size: 10px; */
+    }
+`

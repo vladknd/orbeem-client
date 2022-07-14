@@ -6,9 +6,9 @@ export const FooterContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     
-    /* self-align: end; */
+    self-align: end;
     width: 100%;
-    height: 100%;
+    height: 10vh;
     z-index: 4;
     background-color: black;
 
