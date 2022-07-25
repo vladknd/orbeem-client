@@ -12,7 +12,7 @@ import {
     MetamaskLogo
 } from './Header.styled'
 import { LinksData } from './Header.data'
-import { connect, linkMetamask } from '../../web3/web3Utils'
+
 import { useWeb3 } from '../../services/web3.service'
 import Router, { useRouter } from 'next/router'
 
