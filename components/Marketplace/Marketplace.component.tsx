@@ -35,7 +35,7 @@ const MarketplaceComponent = () => {
         <Divider/>
         
         <Market>
-            <Waves mt={150} height={600}/>
+            <Waves mt={150} height="600px"/>
             <Divider mt="20px"/>
                 <HeaderContainer>
                 <GlowText size={50}>RUNE COLLECTION</GlowText>
