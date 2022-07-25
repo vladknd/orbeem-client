@@ -1,4 +1,4 @@
-import { getNFTs, getNFTData } from "../../web3/web3Utils"
+import { getNFTs, getNFTData } from "../../services/nft.service"
 import { AppDispatch } from "../store"
 import { marketNFTActions } from "./MarketNFT.slice"
 

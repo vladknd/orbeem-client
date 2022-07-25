@@ -25,6 +25,7 @@ import {
 } from './Home.styled'
 import { Waves } from '../../styles/Components.styled'
 import { connect } from 'http2';
+import { useWeb3 } from '../../services/web3.service'
 
 //-----------------------------------PANEL-CONNECT-COMPONENT:
 const PanelConnect = () => {
@@ -47,7 +48,7 @@ const PanelBox = (props: IPanelBox) => {
     const Router = useRouter()
     return (
         <PanelBoxContainer mt={20} mb={20}>
-            <Image src={props.image} width={300} height={300} layout="intrinsic"></Image>
+            <Image src={props.image} width={230} height={220} layout="intrinsic"></Image>
             <Button2 
                 width={250}
                 onClick={(event)=> {
@@ -64,7 +65,7 @@ const Panel = () => {
     return (
         <PanelContainer>
             <PanelBox image="/marketplace.svg" text="MARKETPLACE" link="/marketplace"/>
-            <PanelBox image="/wallet.svg" text="WALLET" link="/"/>
+            <PanelBox image="/wallet.svg" text="WALLET" link="/wallet"/>
             <PanelBox image="/profile.svg" text="PROFILE" link="/profile"/>
         </PanelContainer>
     )
@@ -74,19 +75,31 @@ const Panel = () => {
 const HomeComponent = () => {
   const Router = useRouter()
   const [connect, authorized, loading] = useAuthorize()  
+  const { connectWeb3 } = useWeb3()
   
   return (
     <HomeContainer>
-        <Waves mt={250}/>
+        {/* <Waves mt={250}/> */}
         <UpsideContainer>
             <LogoContainer auth={authorized}>
                 <Image src="/logo_vertical.svg" width={450} height={450}/>
-                {authorized ? null : <LoadingComponent/>}
+                {authorized ? null 
+                : <Button1 width={200} height={50} 
+                    onClick={async () => {
+                        await connectWeb3()
+                        await connect()
+                    }}
+                >SIGN IN</Button1>
+                }
             </LogoContainer>
             
             <TapesContainer>
                 <Tape>
-                    <Image src={authorized ? "/tapeDota.png" : "/tapeDotaMono.png"} width={850} height={170}/>
+                    <Image 
+                        onClick={() => {
+                            Router.push("marketplace")
+                        }}
+                    src={authorized ? "/tapeDota.png" : "/tapeDotaMono.png"} width={850} height={170}/>
                 </Tape>
 
                 <Tape>

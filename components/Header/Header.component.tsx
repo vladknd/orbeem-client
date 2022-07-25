@@ -14,6 +14,7 @@ import {
 import { LinksData } from './Header.data'
 import { connect, linkMetamask } from '../../web3/web3Utils'
 import { useWeb3 } from '../../services/web3.service'
+import Router, { useRouter } from 'next/router'
 
 //HEADER-LINK:
 export interface IHeaderLink {
@@ -30,9 +31,9 @@ const HeaderLink = (props: IHeaderLink) => {
 
 //-----------------------------HEADER-COMPONENT------------------------------:
 const HeaderComponent = () => {
-    const {setWeb3, publicAddress} = useWeb3()
+    const {connectWeb3, publicAddress} = useWeb3()
     console.log("Public ADDDDDR",publicAddress);
-    
+    const Router = useRouter()
   return (
     <HeaderContainer>
         <LogoContainer>
@@ -50,21 +51,18 @@ const HeaderComponent = () => {
             })}
             <AccountContainer
                 onClick={async() => {
-                    connect().then(_promise => {
-                        setWeb3(
-                            _promise.chainId,
-                            _promise.address
-                        )
-                    })
-                    linkMetamask()
-                    console.log("Public ADDDDDR",publicAddress);
+                    if(!publicAddress){
+                        await connectWeb3()
+                    } else {
+                        Router.push("wallet")
+                    }
                 }}
             >
                 <MetamaskLogo>
                     <Image src="/metamask.svg" width={25} height={25} layout="intrinsic" />
                 </MetamaskLogo>
                 
-                {publicAddress}
+                {publicAddress ? publicAddress : "CONNECT METAMASK"}
             </AccountContainer>
         </SideContainer>
         

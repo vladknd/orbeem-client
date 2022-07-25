@@ -28,8 +28,9 @@ import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks'
 //WEB3____________________________________________
 import { 
   buyNFT, 
-} from '../../web3/web3Utils';
+} from '../../services/nft.service'
 import { useWeb3 } from '../../services/web3.service'
+import { URIs } from '../../config'
 
 
 
@@ -44,8 +45,10 @@ const NFTComponent = (props: INFTComponent) => {
   const dispatch = useAppDispatch()
   const nft = useAppSelector(state => state.NFT.item)
   useEffect(() => {
-    fetchNFT(dispatch, props.id)
-  }, [])
+    console.log("ROUTERRR LALAL",props.id)
+    if(props.id) fetchNFT(dispatch, props.id)
+    
+  }, [props.id])
 
   return (
     <NFTContainer>
@@ -55,7 +58,7 @@ const NFTComponent = (props: INFTComponent) => {
         <NFTBadge ml={30} mb={30} >
            <NFTId>{props.id}</NFTId>
 
-            <NFTImage image={nft?.image}/>
+            <NFTImage image={URIs.ipfsGateway + nft?.image}/>
 
             <GlowText size={20} m="10px 0px 10px 0px">LEVEL: {nft.level}</GlowText>
 
@@ -95,8 +98,8 @@ const NFTComponent = (props: INFTComponent) => {
             } 
         </NFTBadge> 
 
-        <Box1 ml={30} mb={30} width="800px" height="200px" jc="start" al="start">
-          <GlowText m="0px 0px 10px 0px" als="center" size={35}>METADATA</GlowText>
+        <Box1 ml={30} mb={30} pt="10px" pl="10px" width="800px" height="200px" jc="start" al="start">
+          <GlowText m="0px 0px 30px 0px" als="center" size={35}>METADATA</GlowText>
           {nft && <Text size={20}>NAME: {nft.name}</Text>} 
           { <Text m="10px 0px 0px 0px" size={20}>DESCRIPTION: {nft.description}</Text> }
         </Box1>

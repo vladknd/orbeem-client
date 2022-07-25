@@ -28,6 +28,8 @@ export const VERIFY_JWT = gql`
             email
             username
             steamId
+            balance
+            verified
         }
     }
 `

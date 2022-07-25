@@ -41,6 +41,7 @@ export const NavigatorContainer = styled.div`
 
     transition: 1s;
     background-color: ${colors.container_bg};
+    filter: drop-shadow(10px 20px 30px rgba(0, 0, 0, 0.4));
 
     @media ${devices.laptopXS} {
         height: 10vh;
@@ -175,6 +176,21 @@ export const ContentContainer = styled.div`
     align-items: start;
     
     width: 100%;
+    height: 100%;
+`
+export const GamesTab = styled.div`
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: 100%;
+`
+
+export const GamesContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    width: 70%;
     height: 100%;
 `
 

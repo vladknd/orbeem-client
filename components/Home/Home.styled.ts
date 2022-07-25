@@ -85,6 +85,10 @@ export const Tape = styled.div`
     
     &:hover {
         opacity: 0.8;
+        cursor: pointer;
+    }
+    &:hover:active {
+        opacity: 0.9;
     }
 
     @media ${devices.laptopXS} {
@@ -113,8 +117,11 @@ export const PanelContainer = styled.div`
 
 export const PanelBoxContainer = styled(Box1)`
     padding: 35px;
+
     width: 350px;
     height: 350px;
+
+    filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.6));
 `
 
 export const Waves = styled.div`

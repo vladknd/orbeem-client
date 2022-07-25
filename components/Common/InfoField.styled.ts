@@ -75,6 +75,7 @@ export const Incrementer = styled.button`
 `
 
 export const SideContainer = styled.div`
+    padding: 10px 0px 10px 5px;
     display: flex;
     flex-direction: row;
     align-items: center;

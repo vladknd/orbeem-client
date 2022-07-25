@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 //_______________LOCAL-IMPORTS____________________
 //STYLED-COMPONENTS_______________________________
-import { ProfileContainer, ContentContainer, NFTFilters } from './Profile.styled'
+import { ProfileContainer, ContentContainer, NFTFilters, GamesTab, GamesContainer } from './Profile.styled'
 import { Box2,Box1, Divider, Waves } from '../../styles/Components.styled'
 
 //COMPONENTS______________________________________
@@ -20,6 +20,7 @@ import GameComponent from './Game.component'
 import { useWeb3 } from '../../services/web3.service'
 import { MatchContainer, MatchHeader } from './Game.styled'
 import InfoFieldComponent from '../Common/InfoField.component'
+import DotaMechanics from './Dota.component'
 
 const Match = () => {
   const matchData = useAppSelector(state => state.DOTA.match)
@@ -36,7 +37,7 @@ const Match = () => {
        <InfoFieldComponent
         image="/crystal.svg" 
         attribute="DEATHS" 
-        value={matchData?.deaths.toString()}
+        value={matchData && matchData.deaths ? matchData.deaths.toString() : ""}
         margin="0px 0px 10px 0px"
       />
        <InfoFieldComponent
@@ -70,7 +71,7 @@ const ProfileComponent = () => {
             <NavigatorComponent/>
         <Divider/>
 
-        {user?.steamId ? 
+        {user?.verified ? 
           <ContentContainer>
             { 
               tab === PROFILE_TAB.MY_NFT ?
@@ -80,10 +81,20 @@ const ProfileComponent = () => {
                 </>
                 :
               tab === PROFILE_TAB.MY_GAMES ?
-                <>
-                <GameComponent/> 
-                <Match/>
-                </>
+                <GamesTab>
+                  <GamesContainer>
+                    <GameComponent gameIMG="/dota_logo.svg" imgWidth={300} imgHeight={150}
+                      gameMechanics={DotaMechanics} dev={false} name="DOTA"
+                    /> 
+                    <GameComponent gameIMG="/pubg.svg" imgWidth={150} imgHeight={150}
+                      gameMechanics={DotaMechanics} dev={true} name="PUBG"
+                    /> 
+                    <GameComponent gameIMG="/counterStrike.svg" imgWidth={150} imgHeight={150}
+                      gameMechanics={DotaMechanics} dev={true} name="CS"
+                    /> 
+                  </GamesContainer>
+                  <Match/>
+                </GamesTab>
               : null
             }
             

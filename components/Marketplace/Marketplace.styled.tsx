@@ -7,13 +7,13 @@ export const MarketplaceContainer = styled.div`
 `
 
 export const Illustration = styled.div`
-    width: 100%;
+    width: 100vw;
     height: 100vh;
 
-    background-image: url("/dota-marketplace.jpg");
-    background-repeat: no-repeat;
+    background-image: url("/dotaBG.jpg");
+    background-repeat: repeat;
     background-position: center;
-    backgrouns-size: 50%;
+    backgrouns-size: auto;
 `
 
 export const Market = styled.div`

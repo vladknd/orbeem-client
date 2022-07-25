@@ -85,7 +85,7 @@ export const AccountContainer = styled.div`
     justify-content: start;
     align-items: center;
     
-    width: 100%;
+    width: 1500px;
     height: 40px;
     padding: 0px 15px;
     border-radius: 25px;
@@ -93,6 +93,9 @@ export const AccountContainer = styled.div`
 
     color: white;
     font-size: 16px;
+    font-family: Inter;
+    font-weight: 300;
+    letter-spacing: 2.5px;
     text-align: center;
     
     border: 1px solid transparent;
@@ -100,13 +103,17 @@ export const AccountContainer = styled.div`
     &:hover {
         border: 1px solid #6d52d1;
         background-color: rgba(112, 112, 112, 0.14);
+        cursor: pointer;
+    }
+    &:hover:active {
+        opacity: 0.9;
     }
 
     @media ${devices.laptopXS} {
         font-size: 13px;
     }
     @media ${devices.laptopS} {
-        font-size: 14px;
+        font-size: 13px;
     }
     @media ${devices.laptopM} {
     }
@@ -116,6 +123,8 @@ export const AccountContainer = styled.div`
 `
 
 export const MetamaskLogo = styled.div`
-    margin: 0px 10px 0px 5px;
-    display: block;
+    margin: 0px 10px 0px 0px;
+    /* width: 100%; */
+    /* height: 100%; */
+    /* display: block; */
 `

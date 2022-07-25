@@ -97,16 +97,17 @@ const UnsignedComponent = () => {
 //NAVIGATOR-COMPONENT__________________________________________________________________________________________________________________
 const NavigatorComponent = () => {
   const {user} = useUser()
-
+    
   if(!user) return <LoadingComponent/>
   return (
     <NavigatorContainer>
 
         {
-            user.steamId ? <SignedComponent/> : <UnsignedComponent/>
+            user.verified ? <SignedComponent/> : <UnsignedComponent/>
             
             // steamId ? <SignedComponent/> : <UnsignedComponent/>
         }
+        {/* {JSON.stringify(user)} */}
     </NavigatorContainer>
   )
 }

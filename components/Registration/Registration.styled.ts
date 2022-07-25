@@ -1,5 +1,6 @@
+import { Field, Form } from 'formik'
 import styled from 'styled-components'
-
+import { MyField } from './Registration.component'
 export const RegistrationContainer = styled.div`
     display: flex;
     flex-direction: row;

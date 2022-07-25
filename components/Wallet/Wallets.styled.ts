@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 import { Box2 } from '../../styles/Components.styled'
+import devices from '../../styles/devices'
 
 export const WalletComponentContainer = styled.div`
-    margin-top: 100px;
+    margin-top: 6%;
     margin-bottom: 30px;
 `
 export const WalletsContainer = styled.div`
@@ -13,7 +14,7 @@ export const WalletsContainer = styled.div`
     justify-content: space-around;
 
     width: 100%;
-    height: 100%;
+    height: 60vh;
 
 `
 
@@ -21,9 +22,10 @@ export const WalletContainer = styled(Box2)`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: start;
 
-    /* width: 500px;
-    height: 800px; */
+    width: 30%;
+    height: 65vh;
 `
 
 export const WalletButtons = styled.div`
@@ -40,5 +42,32 @@ export const ButtonContainer = styled.div`
     }
     &:hover:active {
         opacity: 0.9;
+    }
+`
+
+export const InternalImage = styled.div`    
+    margin-top: 5%;
+    height: 48%;
+`
+
+export const ExternalImage = styled.div`
+    margin-top: 4%;
+    height: 58%;
+
+    @media ${devices.laptopXS}{
+        /* width:  */
+        height: 58%;
+    }
+    @media ${devices.laptopS}{
+        /* width:  */
+        height: 58%;
+    }
+    @media ${devices.laptopM}{
+        /* width:  */
+        height: 50%;
+    }
+    @media ${devices.laptopL}{
+        /* width:  */
+        height: 47%;
     }
 `

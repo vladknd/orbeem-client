@@ -7,9 +7,11 @@ import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks'
 import { mintTokens } from '../../services/game.service'
 import { useUser } from '../../services/user.service'
 import { Box1, Box2, Button1, GlowText, Text } from '../../styles/Components.styled'
-import { INFT } from '../../web3/web3Utils'
+import { INFT } from '../../interfaces/nft.interfaces'
 import InfoFieldComponent from '../Common/InfoField.component'
-import { ActionsContainer, Attributes, BalanceContainer, Claim, GameBoxContainer, GameContainer, GameLogo, HeaderContainer, MatchContainer, MatchHeader, MinterContainer, NFTBoxContainer, NFTContainer } from './Game.styled'
+import { ActionsContainer, Attributes, BalanceContainer, Claim, Close, GameBoxContainer, GameContainer, GameLogo, HeaderContainer, MatchContainer, MatchHeader, MinterContainer, NFTBoxContainer, NFTContainer } from './Game.styled'
+import Link from 'next/link'
+import { URIs } from '../../config'
 
 //________________________________________________________________________________________________________________
 const Blank = () => {
@@ -40,7 +42,7 @@ const Closed = () => {
     <NFTContainer>
     {
       items 
-        ? items.slice(0,5).map((_item, index) => <NFTBoxContainer key="index" image={_item.imageURI}/>)
+        ? items.slice(0,5).map((_item, index) => <NFTBoxContainer key="index" image={URIs.ipfsGateway + _item.image}/>)
         : <Blank/>
     }
     </NFTContainer>
@@ -49,144 +51,87 @@ const Closed = () => {
 //________________________________________________________________________________________________________________
 
 
+
+
 //________________________________________________________________________________________________________________
-interface INFTBox {
-  nft: INFT;
+interface IGameComponent {
+  name: string;
+  gameIMG: string;
+  imgWidth: number;
+  imgHeight: number;
+  gameMechanics: React.FC;
+  dev: boolean;
+  
 }
-const NFTBox = (props: INFTBox) => {
+const GameComponent = (props: IGameComponent) => {
   const dispatch = useAppDispatch()
-  return(
-    <NFTBoxContainer 
-      // key="index" 
-      image={props.nft.imageURI}
-      onClick={()=> {
-        dispatch(profileActions.selectNFT(props.nft))
-      }}
-    />
-  )
-}
-//________________________________________________________________________________________________________________
 
-
-
-//________________________________________________________________________________________________________________
-const Mechanics = () => {
-  const { error, items, loading, tab, selected } = useAppSelector(state => state.PROFILE)
-  const {user} = useUser()
-  return(
-    <GameContainer>
-      <Box1 width="90%" height="100px" mb={20} dir="row" jc="start">
-      {items 
-        ? items.slice(0,5).map((_item, index) => <NFTBox key={index} nft={_item}/>)
-        : null
-      }
-      </Box1>
-      <ActionsContainer>
-        <Box1 mb={20} mr={10} width="100%" height="80%" dir="column" jc="start">
-          <GlowText m="10px 0px 0px 0px" size={20}> NFT-INFO</GlowText>
-          {selected
-            ? <Attributes>
-                <InfoFieldComponent
-                  image="/crystal.svg" 
-                  attribute="POWER" 
-                  value={selected.power.toString()} 
-                  margin="5px 0px 10px 0px"
-                />
-                <InfoFieldComponent
-                  image="/durability.svg" 
-                  attribute="DURABILITY" 
-                  value={selected.durability.toString()} 
-                  margin="5px 0px 10px 0px"
-                />
-                <InfoFieldComponent
-                  image="/durability.svg" 
-                  attribute="INTELLIGENCE" 
-                  value={selected.intelligence.toString()} 
-                  margin="5px 0px 10px 0px"
-                />
-              </Attributes>
-            : null
-          } 
-        </Box1>
-        
-        <Box1 width="100%" height="80%" mb={20} ml={10} dir="column" jc="start">
-          <GlowText m="10px 0px 0px 0px" size={20}> MINTER</GlowText>
-          <Minter/>
-          <Button1 mt={30} mb={10} width={150} height={60}
-            onClick={()=> {
-
-              if(selected && user) mintTokens(selected.tokenId, user.publicAddress)
-            }}
-          >MINT</Button1>
-        </Box1>
-      </ActionsContainer>
-    </GameContainer>
-  )
-}
-//________________________________________________________________________________________________________________
-
-const Minter = () => {
-  const dispatch = useAppDispatch()
-  const { selected } = useAppSelector(state => state.PROFILE)
-  const {user} = useUser()
-
-  return (
-    <MinterContainer>
-      <BalanceContainer>
-        <Image src="/logo.svg" width={30} height={30}/>
-        10
-      </BalanceContainer>
-      
-      <Claim
-        onClick={async () =>{
-          if(user && selected) {
-            await dispatch(getMatchResults(selected.tokenId, user.publicAddress))
-          }
-          
-        }}
-      >CLAIM</Claim>
-    </MinterContainer>
-  )
-}
-
-//________________________________________________________________________________________________________________
-const GameComponent = () => {
-  const [open, setOpen] = useState<boolean>(false)
+  const {open} = useAppSelector(state => state.DOTA)
   const [game, setGame] = useState<boolean>(false)
+  const [logo, setLogo] = useState<boolean>(false)
 
   useEffect(() => {
     if(open){
+      
+      setLogo(true);
+      console.log("LOGO:", logo)
+
       setTimeout(() => {
         setGame(true);
-      }, 850);
-    }
+      }, 500);
+      console.log("GAME:", game)
+    } 
+    
   }, [open])
-  
+
+  // useEffect(() => {
+  //   setGame(false)
+  //   if(!open){
+      
+  //     setTimeout(() => {
+  //       setLogo(false);
+  //     }, 450);
+  //   }
+    
+    
+  // }, [game])
 
   return (
     <GameBoxContainer
       width="100%" 
-      height={open ? "95%" : "25%"}
+      height={open ? "95%" : "25%"} 
       dir="column"
-      jc={open ? "start" : "center"}
+      jc={"start"}
       clicky={open ? false : true}
+      hidden={props.name !== "DOTA" && open ? true : false}
+      dev={props.dev}
       onClick={()=>{
-        setOpen(true)
+        if(!props.dev && !open) dispatch(dotaActions.SetDota())
       }}
     >
       <HeaderContainer>
-        <GameLogo ml={open ? "38%" : "0px"} mt={open ? "2%" : "0%"}>
-              <Image src="/dota_logo.svg" width={300} height={100}/>
+        <GameLogo ml={logo ? "38%" : "0%"} mt={"2%"}> 
+              <Image src={props.gameIMG} width={props.imgWidth} height={props.imgHeight}/>
         </GameLogo>
         {open 
           ?   null
-          : <Closed/>
+          :  props.dev  ? "COMMING SOON" : <Closed/> 
         }
       </HeaderContainer>
        
-      {game 
-        ? <Mechanics/> 
+      { game && !props.dev 
+        ? <props.gameMechanics/>
         : null
+      }
+      { open && game && props.name === "DOTA" ? 
+      <Close onClick={()=> {
+        dispatch(dotaActions.SetDota())
+        setGame(false)
+        setLogo(false)
+      }}
+      >
+        <Image src="/up.svg" width={40} height={40}/>
+      </Close> : null
       }
     </GameBoxContainer>
   )

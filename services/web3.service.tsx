@@ -1,87 +1,92 @@
-import { ethers } from 'ethers';
-import React, { useContext, useEffect } from 'react'
+declare let window: any
 
-declare let window: any;
-
-interface IWeb3Context  {
-  chainId: number | null;
-  publicAddress: string | null;
-  provider: ethers.providers.Web3Provider | null;
-  setWeb3(_chainId: number, _publicAddress: string, _provider: ethers.providers.Web3Provider): void;
-//   setDisconnected: () => void;
-}
-
-const Web3ContextDefault = {
-  chainId: null,
-  publicAddress: null,
-  provider: null,
-  setWeb3: () => {}
-//   setLoggedIn: () => {},
-//   setLoggedOut: () => {},
-}
+import React, 
+{ 
+  useContext 
+} from 'react'
+import { ethers } from 'ethers'
+import { Web3Context } from '../context/web3.context'
 
 
+const MUMBAI = "0x13881"
 
-export const Web3Context = React.createContext<IWeb3Context>(Web3ContextDefault)
 
-interface IWeb3State {
-  chainId: number | null;
-  publicAddress: string | null;
-  provider: ethers.providers.Web3Provider | null;
-}
-export const Web3Provider = (props: any) => {
-  const [web3State, setWeb3State] = React.useState<IWeb3State>(Web3ContextDefault)
+//__________________________________CHECK-CHAIN-ID______________________________
+export async function checkChainID() {
+  const chainID = await window.ethereum.request({ method: 'eth_chainId' });
+  console.log("WEB3 SERVICE: CHECK CHAIN_ID: ",chainID);
 
-  async function setWeb3(_chainId: number, _publicAddress: string, _provider: ethers.providers.Web3Provider){
-    setWeb3State({
-      chainId: _chainId,
-      publicAddress: _publicAddress,
-      provider: _provider
-    })
+  if(chainID !== MUMBAI) {
+    console.log("WEB3-SERVICE: NOT MATCHED", chainID);
+    switchChain()
   }
+}
+//______________________________________________________________________________
 
-  useEffect(() => {
 
-    if(typeof window.ethereum !== "undefined") {
+//____________________________________CHECK-METAMASK_____________________________
+export async function checkMetaMask() {
+  let provider 
+  if(window.ethereum){
+      provider =  await window.ethereum 
+      console.log("CHECK METAMASK: PROVIDER AVAILABLE", provider)
+  } else if(window.web3){
+      provider = await window.web3.currentProvider
+      console.log("WEB3", provider)
+  } else{
+      console.log("NO METAMASK")
+      alert("INSTALL METAMASK")
+  }
+  return provider
+}
+//________________________________________________________________________________
 
-        window.ethereum.on("accountsChanged", (account: any) => {
-          
-            console.log("ACCOUNT CHANGED TO", account);
-            setWeb3State((prev:IWeb3State) => {
-              return {...prev, publicAddress: account}
-          })
-            
-        });
-        window.ethereum.on("chainChanged", (chainID: any) => {
-            console.log("CHAIN CHANGED TO", chainID);
-            setWeb3State((prev:IWeb3State) => {
-                return {...prev, chainId:  chainID}
-            })
-        });
-        // const provider = new ethers.providers.Web3Provider(window.ethereum)
-        // setWeb3State((prev:IWeb3State) => {
-        //   return {...prev, provider}
-        // })
+
+//_____________________________________SWITCH-CHAIN________________________________________
+export async function switchChain() {
+  window.ethereum.request({
+    method: 'wallet_switchEthereumChain',
+    params: [{ chainId: MUMBAI}]
+  }).then((_promise: any) => {
+    console.log("CHAIN HAS BEEN SWITCHED TO MUMBAI");
+  }).catch((_error: any) => {
+    if (_error.code === 4902) {
+      window.ethereum.request({
+        method: 'wallet_addEthereumChain',
+        params: [
+          {
+            chainName: 'Polygon MUMABI',
+            chainId: MUMBAI,
+            nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' },
+            rpcUrls: ['https://rpc-mumbai.maticvigil.com/']
+          }
+        ]
+      }).then((_addedNetwork: any) => {
+        console.log("WEB3-SERVICE: ADDED CHAIN", _addedNetwork);
+      }).catch((_error:any) => {
+        console.log("WEB3-SERVICE: ERROR", _error);
+      })
     }
-    console.log("WEB3-CONTEXT", web3State);
-    
-  }, []);
-
-  const value = {
-    chainId: web3State.chainId,
-    publicAddress: web3State.publicAddress,
-    provider: web3State.provider,
-    setWeb3
-  }
-
-
-  return (
-    <Web3Context.Provider value={value}>
-     {props.children}
-    </Web3Context.Provider>
-  )
+  })
 }
-  
+//___________________________________________________________________________________________
+
+
+//____________________________SIGN-MESSAGE_____________________________________
+export const signMessage = async (nonce: string, publicAddress: string) => {
+  const metamaskProvider = await checkMetaMask()
+  const provider = new ethers.providers.Web3Provider(metamaskProvider)
+  const signer = provider.getSigner()
+  const signature = await signer.signMessage(`I am signing my one-time nonce: ${nonce}`)
+
+  return { 
+      publicAddress,
+      signature
+  }
+}
+//______________________________________________________________________________
+
+
 export const useWeb3 = () => {
   return useContext(Web3Context)
 }

@@ -6,7 +6,9 @@ import { Items, NftsContainer } from './Nfts.styled'
 import LoadingComponent from "../Loading/Loading.component"
 import ItemComponent from "./Item.component"
 //WEB3____________________________________________
-import { INFT } from '../../web3/web3Utils'
+import { INFT } from '../../interfaces/nft.interfaces'
+import { URIs } from '../../config'
+
 
 //NFTs-COMPONENT____________________________________________________________________________________________________________
 interface INftsComponent {
@@ -17,7 +19,7 @@ interface INftsComponent {
 const NftsComponent = (props: INftsComponent) => {
     //BODY__________________________________________________________________________________________________________________
     return (
-        <NftsContainer mb={20} mr={30} ml={30} pb={40} jc="start">
+        <NftsContainer mb={20} mr={30} ml={30} pb="40px" jc={props.loading ? "center" : "start"} al="center">
             {props.loading ? <LoadingComponent/> : 
             props.items ? 
             <Items cols={props.gridSize ? props.gridSize : "1fr 1fr 1fr 1fr 1fr 1fr"}>
@@ -29,7 +31,7 @@ const NftsComponent = (props: INftsComponent) => {
                         power={item?.power}
                         durability={item?.durability}
                         price={item?.price}
-                        image={item?.imageURI}
+                        image={URIs.ipfsGateway + item?.image}
                     />)
                 })}
             </Items>

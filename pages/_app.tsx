@@ -1,16 +1,19 @@
+declare let window: any
+
+//________________________GLOBAL-IMPORTS________________
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import HeaderComponent from '../components/Header/Header.component'
-import FooterComponent from '../components/Footer/Footer.component'
+
 
 import { useRouter } from 'next/router'
 import {ApolloProvider} from '@apollo/client'
 import { graphClient } from '../graphql'
-import { UserProvider } from '../services/user.service'
-import { useEffect } from 'react'
-import {Web3Provider} from '../services/web3.service'
+//PROVIDERS______________________________________________
+import { UserProvider } from '../context/user.context'
+import { Web3Provider } from '../context/web3.context'
+//COMPONENTS_____________________________________________
 import Layout from '../components/Layout/Layout.component'
-declare let window: any;
+
 
 function MyApp({ Component, pageProps }: AppProps) {
   const Router = useRouter()
@@ -19,9 +22,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Web3Provider>
       <UserProvider>
         <ApolloProvider client={graphClient}>
-          {/* {Router.pathname === "/registration" ? null : <HeaderComponent/>}
-            <Component {...pageProps} />
-          {Router.pathname === "/registration" ? null : <FooterComponent/>} */}
           <Layout>
             <Component {...pageProps} />
           </Layout>

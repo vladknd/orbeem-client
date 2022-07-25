@@ -7,6 +7,7 @@ const initState: IDotaState = {
     loading: false,
     match: null, 
     error: null,
+    open: false
 }
 
 const dotaSlice = createSlice({
@@ -21,6 +22,10 @@ const dotaSlice = createSlice({
         },
         DotaMatchFailure(state: IDotaState, action: PayloadAction<string>){
             state.error = action.payload
+        },
+
+        SetDota(state:IDotaState){
+            state.open = !state.open
         }
     }
 })

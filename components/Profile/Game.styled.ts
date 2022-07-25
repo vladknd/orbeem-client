@@ -6,14 +6,32 @@ import colors from '../../styles/colors'
 import { Box1, Box2, GlowText } from '../../styles/Components.styled';
 import devices from '../../styles/devices';
 
-export const GameBoxContainer = styled(Box2)`
-    margin: 0px 20px;
-    
-    /* justify-content: center; */
-    width: 70%;
-    /* height: 100%; */
 
-    
+interface IGameBoxContainer {
+    dev: boolean;
+    hidden: boolean;
+    clicky: boolean;
+}
+export const GameBoxContainer = styled(Box2)`
+    margin: 10px 20px;
+
+    color: white;
+    font-size: 25px;
+    font-family: Inter;
+    font-weight: 200;
+    letter-spacing: 5px;
+    width: 95%;
+    display: ${(props: IGameBoxContainer) => props.hidden ? "none" : "flex" }; 
+
+    opacity: ${(props: IGameBoxContainer) => props.dev ? 0.6 : 1 }; 
+    &:hover{
+        opacity: ${(props: IGameBoxContainer) => !props.clicky ? 1 : (props.dev  ? 0.6 : 0.8)}; 
+        cursor: ${(props: IGameBoxContainer) => !props.clicky ? "auto" : props.dev ? "auto" : "pointer"}; ;
+    }
+    &:hover:active{
+        opacity: ${(props: IGameBoxContainer) => !props.clicky ? 1 : (props.dev ? 0.6 : 0.6)}; 
+        cursor: ${(props: IGameBoxContainer) => !props.clicky ? "auto" : (props.dev ? "auto" : "pointer")}; ;
+    }
 `
 
 
@@ -27,8 +45,8 @@ export const NFTBoxContainer = styled.div`
     align-items: center;
 
     text-align: center;
-    padding: 40px 0px;
-    vertical-align: center;;
+    padding: 25px 0px 60px 0px;
+    vertical-align: center;
     /* width: 120px; */
     /* height: 120px; */
 
@@ -77,8 +95,11 @@ interface IGameLogo {
 export const GameLogo = styled.div`
    margin-left: ${(props: IGameLogo) => props.ml ? props.ml : "0px"};
    margin-top: ${(props: IGameLogo) => props.mt ? props.mt : "0px"};
+   display: flex;
+   align-items: center;
+   justify-content: center;
    transition: all 0.8s;
-   height: 100%;
+   height: 20%;
    width: 20%;
 `
 
@@ -94,6 +115,7 @@ export const ActionsContainer = styled.div`
     flex-direction: row;
 
     width: 90%;
+    height: 80%;
 `
 
 interface GameContainer {
@@ -168,6 +190,8 @@ export const BalanceContainer = styled.div`
 `
 
 export const HeaderContainer = styled.div` 
+    padding: 0px 20px;
+    
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -192,4 +216,16 @@ export const MatchHeader = styled(GlowText)`
     margin-top: 4%;
     margin-bottom: 4%;
     font-size: 25px;
+`
+
+export const Close = styled.div`
+    margin-bottom: 20px;
+    &:hover{
+        opacity: 0.8;
+        cursor: pointer;
+    }
+    &:hover:active{
+        opacity: 0.9;
+        cursor: pointer;
+    }
 `

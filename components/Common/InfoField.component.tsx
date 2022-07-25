@@ -28,7 +28,7 @@ const InfoFieldComponent = (props: IInfoField) => {
   return (
     <FieldContainer width="100%" height="30px" margin={props.margin}>
       <SideContainer>
-        <Image src={props.image} width={24} height={24}/>
+        <Image src={props.image} width={20} height={20}/>
         <AttributeText>{props.attribute}</AttributeText>
       </SideContainer>
 

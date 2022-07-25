@@ -7,6 +7,8 @@ import { NFTProvider } from '../../components/NFT/useNFT'
 import store from '../../redux/store'
 const Home: NextPage = () => {
   const router = useRouter()
+  console.log("ROUTERRR",router.query.id)
+  
   return (
     <Provider store = {store}>
     <NFTProvider>

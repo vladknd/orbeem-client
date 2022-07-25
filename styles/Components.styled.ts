@@ -19,10 +19,6 @@ export const Divider = styled.div`
 
 `
 
-// export const Button = styled.button`
-
-// `
-
 //------------------------------BUTTON------------------------------:
 interface IBaseButton {
     width?: number;
@@ -41,6 +37,9 @@ export const Button = styled.button`
     margin-bottom: ${(props: IBaseButton) => `${props.mb}px` || "0px"};
     margin-right: ${(props: IBaseButton) => `${props.mr}px` || "0px"};
     margin-left: ${(props: IBaseButton) => `${props.ml}px` || "0px"};
+
+    font-family: Inter;
+    font-weight: "300";
 `
 
 export const Button1 = styled(Button)`
@@ -52,8 +51,9 @@ export const Button1 = styled(Button)`
     border-color: #4F2EAE;
     //TO-DO: ADD GRADIENT BORDERS!
    
-    font-size: 20px;
-    font-weight: 10;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 300;
     letter-spacing: 4px;
 
     &&:hover {
@@ -69,14 +69,21 @@ export const Button2 = styled(Button)`
     background: transparent;
     color: white;
 
-    border: 1px solid white;
+    border: 0.2px solid white;
     padding: 10px 20px;
-    font-size: 20px;
-    font-weight: 10;
-    letter-spacing: 4px;
+
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 6px;
 
     &:hover {
         opacity: 0.5;
+        cursor: pointer;
+    }
+    &:hover:active {
+        opacity: 0.8;
+        cursor: pointer;
     }
 `
 
@@ -131,6 +138,7 @@ export const Box1 = styled(BaseDiv)`
     background: ${colors.box1_bg};
 
     color: white;
+    filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.6));
 `
 interface IBox2 {
     clicky?: boolean;
@@ -141,6 +149,7 @@ export const Box2 = styled(BaseDiv)`
 
     /* min-width: 1300px; */
     background: ${colors.box2_bg};
+    filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.65));
 
     transition: height 1s;
     /* transition: all 3s ease; */
@@ -167,10 +176,10 @@ interface TextProps {
 
 }
 export const GlowText = styled.p`
-    font-family: ${(props: TextProps) => props.font || "Arial"};
-    font-weight: ${(props: TextProps) => props.bold ? "bold" : "normal"};
+    font-family: ${(props: TextProps) => props.font || "Inter"};
+    font-weight: ${(props: TextProps) => props.bold ? "bold" : "300"};
     font-size: ${(props: TextProps) => props.size ? `${props.size}px` : "80px"};
-
+    letter-spacing: 6px;
     color: white;
     opacity: ${(props: TextProps) => props.opacity || 1};
      
@@ -185,10 +194,10 @@ export const GlowText = styled.p`
 `
 
 export const Text = styled.p`
-    font-family: ${(props: TextProps) => props.font || "Arial"};
-    font-weight: ${(props: TextProps) => props.bold ? "bold" : "normal"};
+    font-family: ${(props: TextProps) => props.font || "Inter"};
+    font-weight: ${(props: TextProps) => props.bold ? "bold" : "300"};
     font-size: ${(props: TextProps) => props.size ? `${props.size}px` : "80px"};
-
+    letter-spacing: 3px;    
     color: white;
     opacity: ${(props: TextProps) => props.opacity || 1};
      

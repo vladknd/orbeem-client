@@ -8,5 +8,5 @@ export const TitleContainer = styled.div`
     
     background-color: ${colors.container_bg};
     width: 100%;
-    height: 100px;
+    height: 10vh;
 `

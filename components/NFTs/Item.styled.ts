@@ -15,6 +15,7 @@ export const ItemContainer = styled.div`
     margin: 30px 40px;
     width: 180px;
     height: 180px;
+    border-radius: 4px;
     background-image: ${(props: IItemContainer) => `url("${props.image}")`};
     background-position: center;
     background-size: cover;
@@ -43,17 +44,20 @@ export const ItemContainer = styled.div`
     }
 
     @media ${devices.laptopXS} {
-        width: 120px;
-        height: 120px;
+        width: 140px;
+        height: 140px;
     }
     @media ${devices.laptopS} {
-        /* font-size: 15px; */
+        width: 140px;
+        height: 140px;
     }
     @media ${devices.laptopM} {
-        /* font-size: 10px; */
+        width: 190px;
+        height: 190px;
     }
     @media ${devices.laptopL} {
-        /* font-size: 10px; */
+        width: 250px;
+        height: 250px;
     }
 `
 
