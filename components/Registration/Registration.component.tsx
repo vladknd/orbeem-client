@@ -38,13 +38,11 @@ interface InputProps {
 }
 const InputField = ({label, name, setter}: InputProps) => {
     return (
-    //   <InputContainer>
         <Input type="text" id={name} placeholder={label}
           onChange={(e) => {
             setter((prevState: RegData | null) => { return {...prevState, [name]: e.target.value}})
           }}
         />
-    //   </InputContainer>
     )
 }
 

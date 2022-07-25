@@ -6,7 +6,7 @@ export interface IUser {
     publicAddress: string;
     steamId: string;
     balance?: number;
-    verified: boolean;
+    verified?: boolean;
 }
 
 export interface IUserContext  {

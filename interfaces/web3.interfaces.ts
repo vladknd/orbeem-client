@@ -7,5 +7,5 @@ export interface IWeb3State {
 }
 
 export interface IWeb3Context extends IWeb3State  {
-    connectWeb3(): void;
+    connectWeb3(): Promise<boolean>;
 }

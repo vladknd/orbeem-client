@@ -10,14 +10,14 @@ const Web3ContextDefault = {
   chainId: null,
   publicAddress: null,
   provider: null,
-  connectWeb3: () => {}
+  connectWeb3: async () => false
 }
 export const Web3Context = React.createContext<IWeb3Context>(Web3ContextDefault)
 
 export const Web3Provider = (props: any) => {
     const [web3State, setWeb3State] = React.useState<IWeb3State>(Web3ContextDefault)
 
-    async function connectWeb3() {
+    async function connectWeb3(): Promise<boolean> {
       const metamaskProvider = await checkMetaMask()
       await checkChainID()
   
