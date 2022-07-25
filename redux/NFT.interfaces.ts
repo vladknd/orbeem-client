@@ -1,4 +1,4 @@
-import { INFT } from '../web3/web3Utils'
+import { INFT } from '../interfaces/nft.interfaces'
 
 export interface INFTData {
     name: string;
