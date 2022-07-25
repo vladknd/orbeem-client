@@ -29,7 +29,7 @@ export const UpsideContainer = styled.div`
 `
 
 interface ILogoContainer {
-    auth: boolean | null;
+    auth: boolean | (() => Promise<void>)
 }
 export const LogoContainer = styled.div`
     filter: ${(props: ILogoContainer) => props.auth ? "drop-shadow(3px -3px 31px #8952FF)" : "none"};

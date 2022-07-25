@@ -74,7 +74,7 @@ const Panel = () => {
 //-----------------------------HOME-COMPONENT------------------------------:
 const HomeComponent = () => {
   const Router = useRouter()
-  const [connect, authorized, loading] = useAuthorize()  
+  const {connect, authorized, loading} = useAuthorize()  
   const { connectWeb3 } = useWeb3()
   
   return (

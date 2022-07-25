@@ -57,13 +57,15 @@ export const useAuthorize = () => {
           console.log("USER: LOGGED IN AGAIN", user);
           setLoggedIn(user)
           setAuthorized(true)
+          // return true
         }).catch(error => {
           console.log("ERROR:", error);
+          // return false
         })
       }
     }
 
-    return [connect, authorized, loading ] 
+    return {connect, authorized, loading } 
 }
 
 
