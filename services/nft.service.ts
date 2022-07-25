@@ -131,6 +131,7 @@ export const getNFTs = async (): Promise<Array<INFT>> => {
                         durability
                         intelligence
                         price
+                        image
                     }
                 }
             `
@@ -144,19 +145,19 @@ export const getNFTs = async (): Promise<Array<INFT>> => {
     const runes = getNFTsData.data.runes
     console.log("GET-NFTs-RUNES", runes);
 
-    for (let i = 0; i < runes.length; i++){
-        console.log("LOOP", runes[i].tokenURI);
+    // for (let i = 0; i < runes.length; i++){
+    //     console.log("LOOP", runes[i].tokenURI);
         
-        const res = await fetch(runes[i].tokenURI)
-        const metadata = await res.json()
-        console.log("METADATA", metadata)
+    //     const res = await fetch(runes[i].tokenURI)
+    //     const metadata = await res.json()
+    //     console.log("METADATA", metadata)
 
-        runes[i] = {...runes[i], 
-            name: metadata.name,
-            description: metadata.description,
-            imageURI: metadata.image
-        }
-    }
+    //     runes[i] = {...runes[i], 
+    //         name: metadata.name,
+    //         description: metadata.description,
+    //         imageURI: metadata.image
+    //     }
+    // }
 
     console.log("RUNES",runes)
     return runes
