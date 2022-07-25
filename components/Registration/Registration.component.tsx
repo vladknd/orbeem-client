@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/client';
+
 import { Formik, useField, useFormik, useFormikContext } from 'formik';
 import Image from 'next/image'
 import { useRouter } from 'next/router';
@@ -7,11 +7,11 @@ import React, {
     useEffect, 
     useState 
 } from 'react'
-import { REGISTER_USER } from '../../graphql/mutations/User.mutations'
+
 import { registerUser } from '../../services/user.service';
 import { useWeb3 } from '../../services/web3.service';
 import { Button1, GlowText } from '../../styles/Components.styled'
-// import { getAccount } from '../../web3/web3Utils';
+
 import { 
     Input, 
     InputContainer, 
