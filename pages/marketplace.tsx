@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import store from '../redux/store'
 
 const Home: NextPage = () => {
-  const [authorized, loading] = useAuthorize()  
+  const {authorized, loading} = useAuthorize()  
   return (
     <Provider store={store}>
       <MarketplaceComponent/>

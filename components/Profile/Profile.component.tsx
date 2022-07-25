@@ -31,7 +31,7 @@ const Match = () => {
       <InfoFieldComponent
         image="/crystal.svg" 
         attribute="KILLS" 
-        value={matchData?.kills.toString()}
+        value={matchData && matchData.kills ? matchData?.kills.toString() : ""}
         margin="0px 0px 10px 0px"
       />
        <InfoFieldComponent
@@ -43,7 +43,7 @@ const Match = () => {
        <InfoFieldComponent
         image="/crystal.svg" 
         attribute="ASSISTS" 
-        value={matchData?.assists.toString()}
+        value={matchData && matchData.assists ? matchData?.assists.toString(): ""}
         margin="0px 0px 10px 0px"
       />
     </MatchContainer>
