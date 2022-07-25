@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Button1 } from "../../styles/Components.styled"
 import {Row, OwnerContainer, AmountContainer, Input, ButtonContainer, ImageContainer, SellButton } from "./Owner.styled"
 import { levelUp, sellNFT, upgradeNFT } from "../../services/nft.service"
-import { useNFT } from "./useNFT"
+// import { useNFT } from "./useNFT"
 import { useAppDispatch, useAppSelector } from "../../redux/reduxHooks"
 import { nftActions } from "../../redux/NFT/NFT.slice"
 

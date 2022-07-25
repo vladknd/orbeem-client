@@ -8,7 +8,7 @@ import {
   SideContainer 
 } from './InfoField.styled'
 import Image from 'next/image'
-import { useNFT } from '../NFT/useNFT';
+// import { useNFT } from '../NFT/useNFT';
 import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks';
 import { AppDispatch } from '../../redux/store';
 import { nftActions } from '../../redux/NFT/NFT.slice';

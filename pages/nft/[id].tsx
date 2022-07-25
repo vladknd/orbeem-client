@@ -3,7 +3,7 @@ import {Provider} from 'react-redux'
 import { useRouter } from 'next/router'
 import LoadingpageComponent from '../../components/Loading/Loadingpage.component'
 import NFTComponent from '../../components/NFT/NFT.component'
-import { NFTProvider } from '../../components/NFT/useNFT'
+// import { NFTProvider } from '../../components/NFT/useNFT'
 import store from '../../redux/store'
 const Home: NextPage = () => {
   const router = useRouter()
@@ -11,9 +11,9 @@ const Home: NextPage = () => {
   
   return (
     <Provider store = {store}>
-    <NFTProvider>
+    {/* <NFTProvider> */}
       <NFTComponent id={Number(router.query.id)}/> 
-    </NFTProvider>
+    {/* </NFTProvider> */}
     </Provider>
   )
 }
