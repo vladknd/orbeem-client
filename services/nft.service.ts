@@ -115,7 +115,7 @@ export const getNFTs = async (): Promise<Array<INFT>> => {
     console.log("GET-NFTs PROCEDURE INITIATED..")
 
     console.log("GET-NFTs PROCEDURE: GET NFTs REQUEST")
-    const getNFTsRes = await fetch(URIs.subgraphURI, {
+    const getNFTsRes = await fetch(`${URIs.subgraphURI}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -166,7 +166,7 @@ export const getNFTData = async (id: number): Promise<INFTData> => {
     console.log("GET-NFT-DATA PROCEDURE INITIATED..")
 
     console.log("GET-NFT-DATA PROCEDURE: ")
-    const getNFTDataRes = await fetch(URIs.subgraphURI, {
+    const getNFTDataRes = await fetch(`${URIs.subgraphURI}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
