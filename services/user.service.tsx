@@ -16,7 +16,7 @@ export const registerUser = async (_user: IUser) => {
     },
     body: JSON.stringify({
         query: `
-          mutation Register($publicAddress: String!, $email: String!, $firstName: String!, $surname: String!, $steamId: Int!) {
+          mutation Register($publicAddress: String!, $email: String!, $firstName: String!, $surname: String!, $steamId: String!) {
             register(publicAddress: $publicAddress, email: $email, firstName: $firstName, surname: $surname, steamId: $steamId) {
               user {
                 email

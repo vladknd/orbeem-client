@@ -63,7 +63,7 @@ export const getMyNFTs = async (publicAddress: string): Promise<Array<INFT> | nu
     console.log("GET-MY-NFTs PROCEDURE: CURRENT ADDRESS", publicAddress);
 
     console.log("LOGIN PROCEDURE: CHECK USER REQUEST")
-    const getMyNFTsRes = await fetch(URIs.subgraphURI, {
+    const getMyNFTsRes = await fetch(`${URIs.subgraphURI}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

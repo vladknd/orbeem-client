@@ -1,12 +1,20 @@
+// require('dotenv').config()
+
 export const URIs = {
     //LOCAL:
     // apiURI: "http://localhost:4000",
 
     //HEROKU:
-    apiURI: "https://orbeem-api.herokuapp.com",
-    ipfsGateway: "https://gateway.pinata.cloud/ipfs/",
+    // apiURI: "https://orbeem-api.herokuapp.com",
+    // ipfsGateway: "https://gateway.pinata.cloud/ipfs/",
     
-    subgraphURI: "https://api.thegraph.com/subgraphs/name/vladknd/orbeem"
+    // subgraphURI: "https://api.thegraph.com/subgraphs/name/vladknd/orbeem"
+
+    //DOTENV:
+    apiURI: process.env.API,
+    ipfsGateway: process.env.IPFS,
+    
+    subgraphURI: process.env.SUBGRAPH
     
 }
 

@@ -95,22 +95,8 @@ const RegistrationComponent = () => {
                 REGISTRATION
             </GlowText>
 
-            
             <RegistrationForm 
-              // onSubmit={async (event) => {
-              // event.preventDefault()
-              // const newUser = await signUp({variables: {
-              //     publicAddress: regData?.publicAddress,
-              //     email: regData?.email,
-              //     firstName: regData?.firstName,
-              //     surname: regData?.surname,
-              //     username: regData?.username
-              // }})
-              // console.log("NEW USER", newUser);
-              // Router.push("/")
-              // }}
               onSubmit={formik.handleSubmit}
-              
             >
                 <Input id="firstName" placeholder='FIRST-NAME'  type="text" name="firstName" 
                   onChange={formik.handleChange}
@@ -124,14 +110,14 @@ const RegistrationComponent = () => {
                   onChange={formik.handleChange}
                   value={formik.values.email}
                 />
-                <Input id="steamId" placeholder='Steam ID'  type="number" name="steamId" 
+                <Input id="steamId" placeholder='Steam ID'  type="text" name="steamId" 
                   onChange={formik.handleChange}
                   value={formik.values.steamId}
                 />
                 {/* <InputField label='SURNAME' name="surname" setter={SetRegData}/>
                 <InputField label='EMAIL' name="email" setter={SetRegData}/>
                 <InputField label='STEAM USERNAME' name="username" setter={SetRegData}/> */}
-           
+            
                 <Button1 width={180} height={60} mt={100} type="submit">SIGN UP</Button1>
             </RegistrationForm>
             
