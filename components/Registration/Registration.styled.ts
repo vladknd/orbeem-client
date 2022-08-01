@@ -39,6 +39,7 @@ export const InputContainer = styled.div`
 
     width: 80%;
     height: 30px;
+    
 `
 
 export const Input = styled.input`
@@ -49,7 +50,10 @@ export const Input = styled.input`
     background: transparent;
 
     color: white;
-    font-size: 30px;
+    font-size: 25px;
+    font-family: Inter;
+    font-weight: 200;
+    letter-spacing: 3px;
 
     border: 0.1px solid white;
     outline: none;
@@ -57,6 +61,8 @@ export const Input = styled.input`
     &:focus {
         border: 0.1px solid #6d52d1;
     }
+
+   
 `
 
 export const RegistrationForm = styled.form`
@@ -66,4 +72,23 @@ export const RegistrationForm = styled.form`
     align-items: center;
     
     width: 100%;
+`
+
+export const ErrorContainer = styled.div`
+    margin-top: 5%;
+    border: 0.5px solid red;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 60%;
+    height: 60px;
+
+    color: white;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 200;
+    letter-spacing: 3px;
 `

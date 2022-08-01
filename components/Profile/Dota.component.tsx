@@ -46,7 +46,7 @@ interface INFTBox {
     return(
       <NFTBoxContainer 
         // key="index" 
-        image={URIs.ipfsGateway + props.nft.image}
+        image={"https://"+props.nft.image.slice(0,59)+URIs.ipfsGateway+props.nft.image.slice(59)}
         onClick={()=> {
           dispatch(profileActions.selectNFT(props.nft))
         }}
@@ -61,7 +61,7 @@ const DotaMechanics = () => {
     const {user} = useUser()
     return(
       <GameContainer>
-        <Box1 width="90%" height="100px" mb={20} dir="row" jc="start">
+        <Box1 pt="10px" pb="10px" width="90%" height="100px" mb={20} dir="row" jc="start">
         {items 
           ? items.slice(0,5).map((_item, index) => <NFTBox key={index} nft={_item}/>)
           : null

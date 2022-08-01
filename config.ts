@@ -19,8 +19,8 @@ export const URIs = {
 }
 
 export const contracts = {
-    nftContract: "0x4B6dF128f0210C3b44a73b66bB73dfEb279f22ea",
-    marketContract: "0xfc87961500918b66d14Eda80D07cC440a21f4599",
-    orbContract: "0xA67eADa7F4eA4a753Ab565Bdd2c5030D821be301",
-    mintGuardContract: "0xA6Fa133E84826595B106Fb0bf6bE1BeBF4d4449d"
+    nftContract: "0xE1d6bAEa16167d45518781d4f95121BAaEaFBF11",
+    marketContract: "0x9d1D92cE5805Ec15CD95eB0018BDc67633e17807",
+    orbContract: "0xA705c4274cd46b916211d75A3d6B456f1FB0CD5f",
+    mintGuardContract: "0x3ddb6A714B2D6F8990dbb1d51755889588d6ad01"
 }

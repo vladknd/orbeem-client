@@ -43,6 +43,7 @@ export interface IProfileState {
     loading: boolean;
     tab: PROFILE_TAB,
     items: Array<INFT> | null;
+    offset: number;
     error: string;
     selected: INFT | null;
 }

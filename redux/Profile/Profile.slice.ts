@@ -8,6 +8,7 @@ const initState: IProfileState = {
     loading: false,
     tab: PROFILE_TAB.MY_NFT,
     items: null,
+    offset: 0,
     error: "",
     selected: null
 }

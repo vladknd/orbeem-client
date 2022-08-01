@@ -203,7 +203,7 @@ export const Text = styled.p`
      
     margin: ${(props: TextProps) => props.m || 0};
     padding: ${(props: TextProps) => props.p || 0};
-    line-height: ${(props: TextProps) => props.lh || 1}; 
+    line-height: ${(props: TextProps) => props.lh || "35px"}; 
 `
 
 // export const Input = styled.input`

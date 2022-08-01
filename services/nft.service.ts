@@ -56,7 +56,7 @@ export const sellNFT = async (_tokenID: number, _price: number) => {
     }
 }
 
-export const getMyNFTs = async (publicAddress: string): Promise<Array<INFT> | null> => {
+export const getMyNFTs = async (publicAddress: string, _offset: number): Promise<Array<INFT> | null> => {
     console.log("GET-MY-NFTs PROCEDURE INITIATED..")
   
     const address = publicAddress.toString()
@@ -71,7 +71,7 @@ export const getMyNFTs = async (publicAddress: string): Promise<Array<INFT> | nu
         body: JSON.stringify({
             query:`
                 {
-                    runes(first: 8, where: {owner: "${address}"}) {
+                    runes(first: 5, skip: ${_offset}, where: {owner: "${address}"}) {
                         tokenId
                         tokenURI
                         level
@@ -91,23 +91,7 @@ export const getMyNFTs = async (publicAddress: string): Promise<Array<INFT> | nu
 
     const getMyNFTsData = await getMyNFTsRes.json()
     console.log(getMyNFTsData)
-    
-    // const runes = getMyNFTsData.data.runes
-
-    // for (let i = 0; i < runes.length; i++){
-    //     console.log("LOOP", runes[i].tokenURI);
-        
-    //     const res = await fetch(runes[i].tokenURI)
-    //     const metadata = await res.json()
-    //     console.log("METADATA", metadata)
-
-    //     runes[i] = {...runes[i], 
-    //         name: metadata.name,
-    //         description: metadata.description,
-    //         imageURI: metadata.image
-    //     }
-    // }
-    // console.log("RUNES",runes)
+ 
     return getMyNFTsData.data.runes
 }
 

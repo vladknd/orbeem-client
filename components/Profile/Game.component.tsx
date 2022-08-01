@@ -42,7 +42,7 @@ const Closed = () => {
     <NFTContainer>
     {
       items 
-        ? items.slice(0,5).map((_item, index) => <NFTBoxContainer key="index" image={URIs.ipfsGateway + _item.image}/>)
+        ? items.slice(0,5).map((_item, index) => <NFTBoxContainer key="index" image={"https://"+_item.image.slice(0,59)+URIs.ipfsGateway+_item.image.slice(59)}/>)
         : <Blank/>
     }
     </NFTContainer>

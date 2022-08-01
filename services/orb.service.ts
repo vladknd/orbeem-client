@@ -41,7 +41,7 @@ export const transferORB = async () => {
                 
     const guard = new ethers.Contract(contracts.mintGuardContract, MintGuard, signer)
     const options = {
-        gasLimit: 3000000
+        gasLimit: 300000
     }; 
 
     const tx = await guard.requestValue(options)

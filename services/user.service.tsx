@@ -16,19 +16,21 @@ export const registerUser = async (_user: IUser) => {
     },
     body: JSON.stringify({
         query: `
-          mutation Register($publicAddress: String!, $email: String!, $firstName: String!, $surname: String!, $steamId: String!) {
-            register(publicAddress: $publicAddress, email: $email, firstName: $firstName, surname: $surname, steamId: $steamId) {
+        mutation Mutation($publicAddress: String!, $email: String!, $firstName: String!, $surname: String!, $steamId: String!) {
+          register(publicAddress: $publicAddress, email: $email, firstName: $firstName, surname: $surname, steamId: $steamId) {
+            __typename
+            ... on AuthSuccess {
               user {
                 email
-                publicAddress
-                firstName
-                surname
-                steamId
-                
               }
               token
             }
+            ... on AuthError {
+              type
+              message
+            }
           }
+        }
         `,
         variables: {
           publicAddress: _user.publicAddress,
@@ -43,7 +45,8 @@ export const registerUser = async (_user: IUser) => {
 
   const registerUserData = await registerUserRes.json()
   console.log("REGISTER-USER-SERVICE: DATA", registerUserData);
-  const {user, token} = registerUserData.data.register
-  setCookies("jwt", token)
-  return user
+  return registerUserData.data.register
+  // const {user, token} = registerUserData.data.register
+  // setCookies("jwt", token)
+  // return user
 }

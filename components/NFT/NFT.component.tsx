@@ -58,7 +58,7 @@ const NFTComponent = (props: INFTComponent) => {
         <NFTBadge ml={30} mb={30} >
            <NFTId>{props.id}</NFTId>
 
-            <NFTImage image={URIs.ipfsGateway + nft?.image}/>
+            <NFTImage image={"https://"+nft.image.slice(0,59)+URIs.ipfsGateway+nft.image.slice(59)}/>
 
             <GlowText size={20} m="10px 0px 10px 0px">LEVEL: {nft.level}</GlowText>
 
@@ -98,7 +98,7 @@ const NFTComponent = (props: INFTComponent) => {
             } 
         </NFTBadge> 
 
-        <Box1 ml={30} mb={30} pt="10px" pl="10px" width="800px" height="200px" jc="start" al="start">
+        <Box1 ml={30} mb={30} pt="10px" pl="10px" width="800px" height="80%" jc="start" al="start">
           <GlowText m="0px 0px 30px 0px" als="center" size={35}>METADATA</GlowText>
           {nft && <Text size={20}>NAME: {nft.name}</Text>} 
           { <Text m="10px 0px 0px 0px" size={20}>DESCRIPTION: {nft.description}</Text> }

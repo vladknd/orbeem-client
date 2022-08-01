@@ -1,6 +1,6 @@
 //_______________GLOBAL-IMPORTS___________________
 import React, { useEffect, useState } from 'react'
-
+import Image from 'next/image'
 //_______________LOCAL-IMPORTS____________________
 //STYLED-COMPONENTS_______________________________
 import { ProfileContainer, ContentContainer, NFTFilters, GamesTab, GamesContainer } from './Profile.styled'
@@ -21,31 +21,45 @@ import { useWeb3 } from '../../services/web3.service'
 import { MatchContainer, MatchHeader } from './Game.styled'
 import InfoFieldComponent from '../Common/InfoField.component'
 import DotaMechanics from './Dota.component'
+import LoadingComponent from '../Loading/Loading.component'
 
 const Match = () => {
-  const matchData = useAppSelector(state => state.DOTA.match)
-
+  const dota = useAppSelector(state => state.DOTA)
+ 
   return (
     <MatchContainer>
-      <MatchHeader>LATEST MATCH</MatchHeader>
-      <InfoFieldComponent
-        image="/crystal.svg" 
-        attribute="KILLS" 
-        value={matchData && matchData.kills ? matchData?.kills.toString() : ""}
-        margin="0px 0px 10px 0px"
-      />
-       <InfoFieldComponent
-        image="/crystal.svg" 
-        attribute="DEATHS" 
-        value={matchData && matchData.deaths ? matchData.deaths.toString() : ""}
-        margin="0px 0px 10px 0px"
-      />
-       <InfoFieldComponent
-        image="/crystal.svg" 
-        attribute="ASSISTS" 
-        value={matchData && matchData.assists ? matchData?.assists.toString(): ""}
-        margin="0px 0px 10px 0px"
-      />
+      { dota.loading ? 
+        <LoadingComponent/> : 
+            
+        
+        dota.match ? 
+            <React.Fragment>
+            <MatchHeader>LATEST MATCH</MatchHeader>
+            <InfoFieldComponent
+              image="/crystal.svg" 
+              attribute="KILLS" 
+              value={dota.match && dota.match.kills ? dota.match?.kills.toString() : ""}
+              margin="0px 0px 10px 0px"
+            />
+            <InfoFieldComponent
+              image="/crystal.svg" 
+              attribute="DEATHS" 
+              value={dota.match && dota.match.deaths ? dota.match.deaths.toString() : ""}
+              margin="0px 0px 10px 0px"
+            />
+            <InfoFieldComponent
+              image="/crystal.svg" 
+              attribute="ASSISTS" 
+              value={dota.match && dota.match.assists ? dota.match?.assists.toString(): ""}
+              margin="0px 0px 10px 0px"
+            />
+            </React.Fragment> : <Image src="/empty.svg" width={200} height={200}/>
+            
+            
+          
+      }
+      
+        
     </MatchContainer>
   )
   
@@ -62,7 +76,7 @@ const ProfileComponent = () => {
   const {publicAddress} = useWeb3()
 
   useEffect(() => {
-      if(publicAddress) dispatch(fetchMyNFT(publicAddress))
+      if(publicAddress) dispatch(fetchMyNFT(publicAddress, 0))
   },[publicAddress])
 
   return (

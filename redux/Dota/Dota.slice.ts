@@ -19,6 +19,7 @@ const dotaSlice = createSlice({
         },
         DotaMatchSuccess(state: IDotaState, action: PayloadAction<IDotaMatch>){
             state.match = action.payload
+            state.loading = false
         },
         DotaMatchFailure(state: IDotaState, action: PayloadAction<string>){
             state.error = action.payload

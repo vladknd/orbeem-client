@@ -17,21 +17,3 @@ export function getMatchResults(_tokenID: number, _publicAddress: string) {
         }
     }
 }
-
-// async function fetchMatchData(steamID: string): Promise<IDotaMatch> {
-//     const res = await fetch(`https://api.opendota.com/api/players/${steamID}/recentMatches`, {
-//         method: "GET"
-//     })
-//     console.log("RES DOTA", res);
-    
-//     const matches = await res.json()
-//     console.log("MATCHES DOTA", matches);
-
-//     const {kills, deaths, assists} = matches[0]
-//     return {
-//         kills, 
-//         deaths, 
-//         assists
-//     }
-// }
-

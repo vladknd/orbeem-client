@@ -162,11 +162,19 @@ export const MinterContainer = styled.div`
 `
 
 export const Claim = styled.div`
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     padding: 9px;
 
     width: 120px;
     height: 100%;
+
+    font-size: 15px;
+    font-family: Inter;
+    font-weight: 200;
+    letter-spacing: 3px;
 
     background: linear-gradient(265.75deg, rgba(34, 71, 202, 0.37) 1.59%, rgba(129, 71, 204, 0.37) 97.34%);
     box-shadow: 0px 4px 38px 10px rgba(0, 0, 0, 0.25);

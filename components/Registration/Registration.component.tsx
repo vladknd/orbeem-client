@@ -1,4 +1,5 @@
 
+import { setCookies } from 'cookies-next';
 import { Formik, useField, useFormik, useFormikContext } from 'formik';
 import Image from 'next/image'
 import { useRouter } from 'next/router';
@@ -13,6 +14,7 @@ import { useWeb3 } from '../../services/web3.service';
 import { Button1, GlowText } from '../../styles/Components.styled'
 
 import { 
+  ErrorContainer,
     Input, 
     InputContainer, 
     Left, 
@@ -51,7 +53,7 @@ const InputField = ({label, name, setter}: InputProps) => {
 const RegistrationComponent = () => {
   const Router = useRouter()
   const {publicAddress, connectWeb3}= useWeb3()
-
+  const [error, setError] = useState<boolean>(false)
   useEffect(()=> {
       connectWeb3().then((_promise: any)=> {
         formik.setFieldValue("publicAddress", publicAddress)
@@ -69,15 +71,20 @@ const RegistrationComponent = () => {
     },
     onSubmit: async values => {
       console.log("VALUES", values);
-      const user = await registerUser({
+      const res = await registerUser({
         publicAddress: values.publicAddress,
         firstName: values.firstName,
         surname: values.surname,
         email: values.email,
         steamId: values.steamId
       })
-      console.log("REGISTERED USER", user);
-      if(user) Router.push("/")
+      if(res.__typename === "AuthError") {
+        setError(true)
+      } else if (res.__typename === "AuthSuccess") {
+        const { token } = res
+        setCookies("jwt", token)
+        Router.push("/")
+      }
     }
   })
 
@@ -115,7 +122,7 @@ const RegistrationComponent = () => {
                 {/* <InputField label='SURNAME' name="surname" setter={SetRegData}/>
                 <InputField label='EMAIL' name="email" setter={SetRegData}/>
                 <InputField label='STEAM USERNAME' name="username" setter={SetRegData}/> */}
-            
+                {error ? <ErrorContainer>User with these credentials already exists!</ErrorContainer> : null}
                 <Button1 width={180} height={60} mt={100} type="submit">SIGN UP</Button1>
             </RegistrationForm>
             

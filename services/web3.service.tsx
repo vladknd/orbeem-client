@@ -26,11 +26,14 @@ export async function checkChainID() {
 
 //____________________________________CHECK-METAMASK_____________________________
 export async function checkMetaMask() {
+  
   let provider 
   if(window.ethereum){
+      window.ethereum.request({ method: 'eth_requestAccounts' });
       provider =  await window.ethereum 
       console.log("CHECK METAMASK: PROVIDER AVAILABLE", provider)
   } else if(window.web3){
+      window.web3.request({ method: 'eth_requestAccounts' });
       provider = await window.web3.currentProvider
       console.log("WEB3", provider)
   } else{
