@@ -37,7 +37,7 @@ const ExternalWallet = () => {
         />
       </ExternalImage>
 
-      <GlowText m="10px 0px 20px 0px" size={25}>EXTERNAL</GlowText>
+      <GlowText>EXTERNAL</GlowText>
       <InfoFieldComponent
         width="90%"
         height="90%"
