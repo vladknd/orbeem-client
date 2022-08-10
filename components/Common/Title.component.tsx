@@ -12,7 +12,7 @@ const TitleComponent = (props: ITitle) => {
     <>
     <Divider mt={`${props.mt}px`}/>
         <TitleContainer>
-            <GlowText size={40}>{props.title}</GlowText>
+            <GlowText>{props.title}</GlowText>
         </TitleContainer>
     <Divider mb={`${props.mb}px`}/>
     </>
