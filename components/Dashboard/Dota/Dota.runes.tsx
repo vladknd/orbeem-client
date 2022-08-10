@@ -132,7 +132,7 @@ export const GameData = () => {
     return (
       <NFTErrorContainer>
       <ErrorImage>
-        <Image src="/Error.svg" width={250} height={250}/>
+        <Image src="/error.svg" width={250} height={250}/>
       </ErrorImage>
       <ErrorDischarged>
         {error === "ErrorDischarged" ? 
