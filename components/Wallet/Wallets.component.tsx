@@ -54,15 +54,6 @@ const ExternalWallet = () => {
         value={Math.round(Number(balanceMATIC)).toString()}
         margin="10px 0px 10px 0px"
       />
-      {/* <Button1 mt={30} width={180} height={50}>TRANSFER</Button1> */}
-      {/* <WalletButtons>
-        <ButtonContainer>
-          <Image src="/receive.svg" width={80} height={80}/>
-        </ButtonContainer>
-        <ButtonContainer>
-          <Image src="/send.svg" width={80} height={80}/>
-        </ButtonContainer>
-      </WalletButtons> */}
     </WalletContainer>
   )
 }
@@ -81,7 +72,7 @@ const InternalWallet = () => {
         />
       </InternalImage>
       
-      <WalletHeader m="20px 0px 0px 0px" size={25}>INTERNAL</WalletHeader>
+      <WalletHeader>INTERNAL</WalletHeader>
       <InfoFieldComponent
         width="90%"
         height="90%"
