@@ -106,8 +106,8 @@ const NFTComponent = (props: INFTComponent) => {
             } 
         </NFTBadge> 
 
-        <MetadataContainer ml={30} mb={30} pt="10px" pl="10px" width="800px" height="80%" jc="start" al="start">
-          <MetadataHeader m="0px 0px 30px 0px" als="center" size={35}>METADATA</MetadataHeader>
+        <MetadataContainer >
+          <MetadataHeader>METADATA</MetadataHeader>
           {nft && <Text size={20}>NAME: {nft.name}</Text>} 
           { <Text m="10px 0px 0px 0px" size={20}>DESCRIPTION: {nft.description}</Text> }
         </MetadataContainer>
