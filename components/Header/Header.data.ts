@@ -6,8 +6,8 @@ export const LinksData:Array<IHeaderLink> = [
         text: "MARKETPLACE"
     },
     {
-        href: "/profile",
-        text: "PROFILE"
+        href: "/dashboard",
+        text: "DASHBOARD"
     },
     {
         href: "/",

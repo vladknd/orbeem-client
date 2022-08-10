@@ -1,5 +1,6 @@
 import { Field, Form } from 'formik'
 import styled from 'styled-components'
+import { Button1, GlowText } from '../../styles/Components.styled'
 // import { MyField } from './Registration.component'
 export const RegistrationContainer = styled.div`
     display: flex;
@@ -9,7 +10,16 @@ export const RegistrationContainer = styled.div`
     height: 100vh;
 
 `
+export const RegistrationHeader = styled(GlowText)`
+    font-size: 40px;
+`
 
+export const SignupButton = styled(Button1)`
+    margin-top: 30px;
+    
+    width: 30%; 
+    height: 70px;
+`
 export const Left = styled.div`
     display: flex;
     justify-content: center;

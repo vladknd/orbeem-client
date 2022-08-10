@@ -2,7 +2,10 @@ import styled from 'styled-components'
 import devices from '../../styles/devices';
 import {Text} from '../../styles/Components.styled'
 export const ItemInfo = styled.div`
-    display
+    display: flex;
+    flex-direction: column;
+
+    flex-direction
     width: 100%;
     height: 100%; 
     display: none;
@@ -13,8 +16,8 @@ interface IItemContainer {
 }
 export const ItemContainer = styled.div`
     margin: 30px 40px;
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
     border-radius: 4px;
     background-image: ${(props: IItemContainer) => `url("${props.image}")`};
     background-position: center;
@@ -52,12 +55,12 @@ export const ItemContainer = styled.div`
         height: 140px;
     }
     @media ${devices.laptopM} {
-        width: 190px;
-        height: 190px;
+        width: 170px;
+        height: 170px;
     }
     @media ${devices.laptopL} {
-        width: 250px;
-        height: 250px;
+        width: 230px;
+        height: 230px;
     }
 `
 

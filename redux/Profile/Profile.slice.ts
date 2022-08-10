@@ -28,7 +28,7 @@ const profileSlice = createSlice({
             state.loading = false
             state.error = action.payload
         },
-        setTabMyNFT(state: IProfileState, action: PayloadAction<PROFILE_TAB>) {
+        setTab(state: IProfileState, action: PayloadAction<PROFILE_TAB>) {
             state.tab = action.payload
         },
         selectNFT(state: IProfileState, action: PayloadAction<INFT>){

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Box2 } from '../../styles/Components.styled'
+import { Box2, Button1, GlowText } from '../../styles/Components.styled'
 import devices from '../../styles/devices'
 
 export const WalletComponentContainer = styled.div`
@@ -16,6 +16,13 @@ export const WalletsContainer = styled.div`
     width: 100%;
     height: 60vh;
 
+`
+export const WalletHeader = styled(GlowText)`
+
+`
+export const TransferButton = styled(Button1)`
+    width: 40%;
+    height: 10%;
 `
 
 export const WalletContainer = styled(Box2)`

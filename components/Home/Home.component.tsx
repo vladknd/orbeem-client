@@ -1,7 +1,7 @@
 //#------------------GLOBAL-IMPORTS------------------#
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { useAuthorize } from '../../services/auth.service'
 
@@ -12,31 +12,20 @@ import {
     Button2, 
     Divider 
 } from '../../styles/Components.styled'
-import LoadingComponent from '../Loading/Loading.component'
 
 import { 
     HomeContainer, 
     LogoContainer, 
     PanelBoxContainer, 
     PanelContainer, 
+    SignButton, 
     Tape, 
     TapesContainer, 
     UpsideContainer, 
 } from './Home.styled'
-import { Waves } from '../../styles/Components.styled'
-import { connect } from 'http2';
-import { useWeb3 } from '../../services/web3.service'
 
-//-----------------------------------PANEL-CONNECT-COMPONENT:
-const PanelConnect = () => {
-    return (
-        <PanelContainer>
-            <Button1 width={200} height={50}>
-                CONNECT
-            </Button1>
-        </PanelContainer>
-    )
-}
+import { Waves } from '../../styles/Components.styled'
+import { useWeb3 } from '../../services/web3.service'
 
 //-----------------------------------------PANEL-COMPONENT:
 interface IPanelBox {
@@ -50,7 +39,6 @@ const PanelBox = (props: IPanelBox) => {
         <PanelBoxContainer mt={20} mb={20}>
             <Image src={props.image} width={230} height={220} layout="intrinsic"></Image>
             <Button2 
-                width={250}
                 onClick={(event)=> {
                     Router.push(props.link)
                 }}
@@ -66,7 +54,7 @@ const Panel = () => {
         <PanelContainer>
             <PanelBox image="/marketplace.svg" text="MARKETPLACE" link="/marketplace"/>
             <PanelBox image="/wallet.svg" text="WALLET" link="/wallet"/>
-            <PanelBox image="/profile.svg" text="PROFILE" link="/profile"/>
+            <PanelBox image="/dashboard.svg" text="DASHBOARD" link="/dashboard"/>
         </PanelContainer>
     )
 }
@@ -79,17 +67,19 @@ const HomeComponent = () => {
   
   return (
     <HomeContainer>
-        {/* <Waves mt={250}/> */}
+        <Waves/>
         <UpsideContainer>
             <LogoContainer auth={authorized}>
                 <Image src="/logo_vertical.svg" width={450} height={450}/>
-                {authorized ? null 
-                : <Button1 width={200} height={50} 
-                    onClick={async () => {
-                        await connectWeb3()
-                        await connect()
-                    }}
-                >SIGN IN</Button1>
+                {
+                    authorized     
+                        ? null 
+                        : <SignButton
+                            onClick={async () => {
+                                await connectWeb3()
+                                await connect()
+                            }}
+                        >SIGN IN</SignButton>
                 }
             </LogoContainer>
             

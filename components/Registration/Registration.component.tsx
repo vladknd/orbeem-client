@@ -20,7 +20,9 @@ import {
     Left, 
     RegistrationContainer, 
     RegistrationForm, 
-    Right 
+    RegistrationHeader, 
+    Right, 
+    SignupButton
 } from './Registration.styled'
 
 
@@ -96,9 +98,9 @@ const RegistrationComponent = () => {
         </Left>
 
         <Right>
-            <GlowText size={50} m="50px 0px">
+            <RegistrationHeader>
                 REGISTRATION
-            </GlowText>
+            </RegistrationHeader>
 
             <RegistrationForm 
               onSubmit={formik.handleSubmit}
@@ -123,12 +125,12 @@ const RegistrationComponent = () => {
                 <InputField label='EMAIL' name="email" setter={SetRegData}/>
                 <InputField label='STEAM USERNAME' name="username" setter={SetRegData}/> */}
                 {error ? <ErrorContainer>User with these credentials already exists!</ErrorContainer> : null}
-                <Button1 width={180} height={60} mt={100} type="submit">SIGN UP</Button1>
+                <SignupButton width={180} height={60} mt={100} type="submit">SIGN UP</SignupButton>
             </RegistrationForm>
             
         </Right>
     </RegistrationContainer>
-  )
+  ) 
 }
 
 export default RegistrationComponent

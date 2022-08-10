@@ -10,6 +10,8 @@ import {
   Text 
 } from '../../styles/Components.styled'
 import { 
+  MetadataContainer,
+  MetadataHeader,
   NFTBadge,
   NFTContainer, 
   NFTId, 
@@ -60,9 +62,11 @@ const NFTComponent = (props: INFTComponent) => {
 
             <NFTImage image={"https://"+nft.image.slice(0,59)+URIs.ipfsGateway+nft.image.slice(59)}/>
 
-            <GlowText size={20} m="10px 0px 10px 0px">LEVEL: {nft.level}</GlowText>
+            <GlowText>LEVEL: {nft.level}</GlowText>
 
             <InfoFieldComponent 
+              width="90%"
+              height="90%"
               margin="0px 0px 5px 0px"
               image="/crystal.svg" 
               attribute="POWER" 
@@ -70,6 +74,8 @@ const NFTComponent = (props: INFTComponent) => {
               incrementAction={nftActions.nftIncrPower}
             />
             <InfoFieldComponent 
+              width="90%"
+              height="90%"
               margin="0px 0px 5px 0px"
               image="/durability.svg" 
               attribute="DURABILITY" 
@@ -77,6 +83,8 @@ const NFTComponent = (props: INFTComponent) => {
               incrementAction={nftActions.nftIncrDurability}
             />
             <InfoFieldComponent 
+              width="90%"
+              height="90%"
               margin="0px 0px 1px 0px"
               image="/durability.svg" 
               attribute="INTELLIGENCE" 
@@ -98,11 +106,11 @@ const NFTComponent = (props: INFTComponent) => {
             } 
         </NFTBadge> 
 
-        <Box1 ml={30} mb={30} pt="10px" pl="10px" width="800px" height="80%" jc="start" al="start">
-          <GlowText m="0px 0px 30px 0px" als="center" size={35}>METADATA</GlowText>
+        <MetadataContainer ml={30} mb={30} pt="10px" pl="10px" width="800px" height="80%" jc="start" al="start">
+          <MetadataHeader m="0px 0px 30px 0px" als="center" size={35}>METADATA</MetadataHeader>
           {nft && <Text size={20}>NAME: {nft.name}</Text>} 
           { <Text m="10px 0px 0px 0px" size={20}>DESCRIPTION: {nft.description}</Text> }
-        </Box1>
+        </MetadataContainer>
         </>
        : <LoadingpageComponent/>} 
     </NFTContainer>

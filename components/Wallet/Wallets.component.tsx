@@ -6,7 +6,7 @@ import { Button1, GlowText } from '../../styles/Components.styled'
 import { getBalance, getORBBalance, transferORB } from '../../services/orb.service'
 import InfoFieldComponent from '../Common/InfoField.component'
 import TitleComponent from '../Common/Title.component'
-import { ButtonContainer, ExternalImage, InternalImage, WalletButtons, WalletComponentContainer, WalletContainer, WalletsContainer } from './Wallets.styled'
+import { ButtonContainer, ExternalImage, InternalImage, TransferButton, WalletButtons, WalletComponentContainer, WalletContainer, WalletHeader, WalletsContainer } from './Wallets.styled'
 
 const ExternalWallet = () => {
   const {provider, publicAddress} = useWeb3()
@@ -39,15 +39,19 @@ const ExternalWallet = () => {
 
       <GlowText m="10px 0px 20px 0px" size={25}>EXTERNAL</GlowText>
       <InfoFieldComponent
+        width="90%"
+        height="90%"
         image="/logo.svg" 
         attribute="ORB AVAILABLE" 
-        value={balanceORB}
+        value={Math.round(Number(balanceORB)).toString()}
         margin="10px 0px 10px 0px"
       />
       <InfoFieldComponent
+        width="90%"
+        height="90%"
         image="/Polygon.svg" 
         attribute="ORB AVAILABLE" 
-        value={balanceMATIC}
+        value={Math.round(Number(balanceMATIC)).toString()}
         margin="10px 0px 10px 0px"
       />
       {/* <Button1 mt={30} width={180} height={50}>TRANSFER</Button1> */}
@@ -77,18 +81,20 @@ const InternalWallet = () => {
         />
       </InternalImage>
       
-      <GlowText m="20px 0px 0px 0px" size={25}>INTERNAL</GlowText>
+      <WalletHeader m="20px 0px 0px 0px" size={25}>INTERNAL</WalletHeader>
       <InfoFieldComponent
+        width="90%"
+        height="90%"
         image="/logo.svg" 
         attribute="ORB AVAILABLE" 
         value={user ? `${user.balance}` : "0"} 
-        margin="30px 0px 10px 0px"
+        margin="30px 0px 30px 0px"
       />
-      <Button1 mt={30} mb={30} width={180} height={50}
+      <TransferButton mt={30} mb={30} width={180} height={50}
         onClick={async () => {
           await transferORB()
         }}
-      >TRANSFER</Button1>
+      >TRANSFER</TransferButton>
     </WalletContainer>
   )
 }

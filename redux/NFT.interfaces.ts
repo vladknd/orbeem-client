@@ -37,7 +37,10 @@ export interface INFTInitState {
 
 export enum PROFILE_TAB {
     MY_NFT,
-    MY_GAMES
+    MY_GAMES,
+    DOTA,
+    CS, 
+    PUBG
 }
 export interface IProfileState {
     loading: boolean;

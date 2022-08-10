@@ -7,7 +7,8 @@ const initState: IDotaState = {
     loading: false,
     match: null, 
     error: null,
-    open: false
+    open: false,
+    mintSuccess: false
 }
 
 const dotaSlice = createSlice({
@@ -17,11 +18,21 @@ const dotaSlice = createSlice({
         DotaMatchLoading(state: IDotaState){
             state.loading = true
         },
-        DotaMatchSuccess(state: IDotaState, action: PayloadAction<IDotaMatch>){
+        DotaMatchLoaded(state: IDotaState){
+            state.loading = false
+        },
+        DotaMatchSuccess(state: IDotaState, action: PayloadAction<IDotaMatch | null>){
             state.match = action.payload
             state.loading = false
         },
-        DotaMatchFailure(state: IDotaState, action: PayloadAction<string>){
+        DotaMintSuccess(state: IDotaState){
+            state.mintSuccess = true
+        },
+        DotaMintDone(state: IDotaState){
+            state.mintSuccess = false
+            state.match = null
+        },
+        DotaMatchFailure(state: IDotaState, action: PayloadAction<string | null>){
             state.error = action.payload
         },
 

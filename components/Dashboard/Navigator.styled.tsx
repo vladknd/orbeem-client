@@ -1,60 +1,26 @@
-import styled from 'styled-components'
-import colors from '../../styles/colors'
-import { Box1 } from '../../styles/Components.styled'
-import devices from '../../styles/devices'
+import styled from "styled-components";
+import colors from "../../styles/colors";
+import { GlowText } from "../../styles/Components.styled";
+import devices from "../../styles/devices";
 
-export const ProfileContainer = styled.div`
-    margin-top: 14vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    
-    width: 100%;
-
-    height: 90vh;
-    
+export const NavigatorHeader = styled(GlowText)`
+    font-size: 35px;
 `
-
-export const Navigator = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100px;
-    
-    transition: height 10s;
-    color: white;
-    font-size: 30px;
-
-    background-color: ${colors.container_bg};
-`
-
 export const NavigatorContainer = styled.div`
-    /* margin-top: 100px; */
     display: flex;
     justify-content: center;
     align-items: center;
+
     width: 100%;
-    height: 20%;
+    height: 100%;
 
     transition: 1s;
     background-color: ${colors.container_bg};
     filter: drop-shadow(10px 20px 30px rgba(0, 0, 0, 0.4));
 
-    @media ${devices.laptopXS} {
-        height: 10vh;
-    }
-    @media ${devices.laptopS} {
-        height: 10vh;
-    }
-    @media ${devices.laptopM} {
-        height: 10vh;
-    }
-    @media ${devices.laptopL} {
-        height: 10vh;
-    }
+    border-width: 1px 0px;
+    border-style: solid;
+    border-color: #FFBB00;
 `
 
 export const SignedContainer = styled.div`
@@ -63,7 +29,7 @@ export const SignedContainer = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    height: 100%;
+    height: 20%;
     width: 100%;
 `
 
@@ -124,6 +90,8 @@ export const UnsignedContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
+    height: 100%;
 
 `
 
@@ -161,41 +129,8 @@ export const LinkContainer = styled.div`
     }
     
 `
-
 export const GlowContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`
-
-export const ContentContainer = styled.div`
-    margin-top: 2%;
-    display: flex;
-    flex-direction: row;    
-    justify-content: space-around;
-    align-items: start;
-    
-    width: 100%;
-    height: 100%;
-`
-export const GamesTab = styled.div`
-    display: flex;
-    flex-direction: row;
-
-    width: 100%;
-    height: 100%;
-`
-
-export const GamesContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-
-    width: 70%;
-    height: 100%;
-`
-
-export const NFTFilters = styled(Box1)`
-    margin-right: 20px;
-    width: 30%;
-    height: 95%;
 `

@@ -20,6 +20,7 @@ import NftsComponent from '../NFTs/Nfts.component'
 import { fetchMarketNFT } from '../../redux/MarketNFT/MarketNFT.thunks'
 import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks'
 
+
 //MARKETPLACE-COMPONENT:______________________________________________________________________________________________
 const MarketplaceComponent = () => {
   //REDUX____________________________________________________
@@ -38,7 +39,7 @@ const MarketplaceComponent = () => {
             <Waves mt={150} height="600px"/>
             <Divider mt="20px"/>
                 <HeaderContainer>
-                <GlowText size={50}>RUNE COLLECTION</GlowText>
+                <GlowText>RUNE COLLECTION</GlowText>
                 </HeaderContainer>
             <Divider mb="20px"/>
             

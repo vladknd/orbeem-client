@@ -8,12 +8,20 @@ export const claimTokens = async (tokenID: number, publicAddress: string) => {
         },
         body: JSON.stringify({
             query:`
-                query Query($publicAddress: String!, $tokenId: Int!) {
-                    claimTokens(publicAddress: $publicAddress, tokenID: $tokenId){
-                        award 
-                        kills
-                        deaths
-                        assists
+                query ClaimTokens($publicAddress: String!, $tokenId: Int!) {
+                    claimTokens(publicAddress: $publicAddress, tokenID: $tokenId) {
+                        __typename
+                        ... on ClaimSuccess {
+                            success {
+                                award
+                                kills
+                                deaths
+                                assists
+                            }
+                        }
+                        ... on ClaimError {
+                            error
+                        }
                     }
                 }
             `,
@@ -39,8 +47,21 @@ export const mintTokens = async (tokenID: number, publicAddress: string) => {
         },
         body: JSON.stringify({
             query:`
-                mutation Mutation($publicAddress: String!, $tokenId: Int!) {
-                    mintTokens(publicAddress: $publicAddress, tokenID: $tokenId)
+                mutation MintTokens($publicAddress: String!, $tokenId: Int!) {
+                    mintTokens(publicAddress: $publicAddress, tokenID: $tokenId) {
+                    __typename
+                    ... on MintSuccess {
+                        success {
+                        award
+                        kills
+                        deaths
+                        assists
+                        }
+                    }
+                    ... on MintError {
+                        error
+                    }
+                    }
                 }
             `,
             variables: {

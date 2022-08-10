@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Box1 } from '../../styles/Components.styled';
+import { Box1, Button1 } from '../../styles/Components.styled';
 import devices from '../../styles/devices';
 
 export const HomeContainer = styled.div`
@@ -106,6 +106,7 @@ export const Tape = styled.div`
  `
 
 export const PanelContainer = styled.div`
+    margin: 20px 0px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -117,13 +118,22 @@ export const PanelContainer = styled.div`
 
 export const PanelBoxContainer = styled(Box1)`
     padding: 35px;
-
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
     width: 350px;
     height: 350px;
 
     filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.6));
 `
-
+export const SignButton = styled(Button1)`
+    margin-top: 10%;
+    width: 220px;
+    height: 60px;
+    
+`
 export const Waves = styled.div`
     margin-top: 900px;
     position: absolute;

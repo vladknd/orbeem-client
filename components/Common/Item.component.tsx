@@ -8,7 +8,6 @@ import {
   ItemInfo, 
   ItemText
 } from './Item.styled'
-import { Text } from '../../styles/Components.styled'
 
 //ITEM-COMPONENT:________________________________________________________________________________________________________
 interface INFTComponent {
@@ -24,10 +23,10 @@ const ItemComponent = (props: INFTComponent) => {
     <Link  href={`/nft/${props.id}`} passHref>
     <ItemContainer image={props.image} style={{cursor:"pointer"}}>
         <ItemInfo>
-            <ItemText  m="8px">LEVEL: {props.level}</ItemText>
-            <ItemText  m="8px">POWER: {props.power}</ItemText>
-            <ItemText  m="8px">DURABILITY: {props.durability}</ItemText>
-            <ItemText  m="8px">PRICE: {props.price}</ItemText>
+            <ItemText m="0px">LEVEL: {props.level}</ItemText>
+            <ItemText m="0px">POWER: {props.power}</ItemText>
+            <ItemText m="0px">DURABILITY: {props.durability}</ItemText>
+            <ItemText m="0px">PRICE: {props.price}</ItemText>
         </ItemInfo>
     </ItemContainer>
     </Link>

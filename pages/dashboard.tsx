@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 
-import ProfileComponent from '../components/Profile/Profile.component'
+import ProfileComponent from '../components/Dashboard/Dashboard.component'
 import { useAuthorize } from '../services/auth.service'
 import {Provider} from 'react-redux'
 import store from '../redux/store'

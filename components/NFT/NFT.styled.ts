@@ -1,20 +1,24 @@
 import styled from 'styled-components'
 import colors from '../../styles/colors'
-import { Box2 } from '../../styles/Components.styled'
+import { Box1, Box2, GlowText } from '../../styles/Components.styled'
 import devices from '../../styles/devices'
 
 export const NFTContainer = styled.div`
     margin-top: 6%;
+    padding: 1%;
     display: flex;
     flex-direction: row;
+    align-items: start;
 
     width: 100%;
     height: 100vh;
 `
 export const NFTBadge = styled(Box2)`
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
 
     width: 30%;
     height: 700px;
@@ -102,4 +106,22 @@ export const NFTImage = styled.div`
         height: 280px;
     }
 `
+export const MetadataHeader = styled(GlowText)`
+    margin: 5px 0px;
+    font-size: 40px;
+    align-self: center;
+`
+export const MetadataContainer = styled(Box1)`
+    margin: 0px 20px;
+    padding: 10px;
+    width: 800px;
+    height: 100%;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+
+
+
+`

@@ -10,9 +10,17 @@ export const Items = styled.div`
     margin-top: 10px;
 
     width: 100%;
+    height: 95%;
+    overflow: auto;
+
     display: grid;
     grid-template-columns: ${(props: IItems) => props.cols || "1fr 1fr 1fr 1fr" };
     grid-template-rows: 1fr;
+    /* overflow: auto; */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
     @media ${devices.laptopXS}{
         grid-template-columns: 1fr 1fr 1fr 1fr;     
     }
@@ -28,8 +36,8 @@ export const Items = styled.div`
 `
 
 export const NftsContainer = styled(Box2)`
-    height: 95%;
-    min-height: 95%; 
+    height: 100%;
+    min-height: 100%; 
     min-width: 70%;
     width: 100%;
     z-index:0;

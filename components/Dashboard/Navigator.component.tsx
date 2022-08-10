@@ -1,6 +1,5 @@
 //_______________GLOBAL-IMPORTS___________________
 import React from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 //_______________LOCAL-IMPORTS____________________
@@ -16,21 +15,26 @@ import {
     Links,
     UnsignedContainer,
     GlowContainer
-} from './Profile.styled'
+} from './Navigator.styled'
 import { 
     Button1, 
-    GlowText, 
     Text 
 } from '../../styles/Components.styled'
+import { NavigatorHeader } from './Navigator.styled'
+//COMPONENTS______________________________________
+import LoadingComponent from '../Loading/Loading.component'
 //SERVICES_______________________________________
 import { useUser } from '../../services/user.service'
-import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks'
+//REDUX___________________________________________
 import { profileActions } from '../../redux/Profile/Profile.slice'
+import { 
+    useAppDispatch, 
+} from '../../redux/reduxHooks'
+//INTERFACES______________________________________
 import { PROFILE_TAB } from '../../redux/NFT.interfaces'
-import LoadingComponent from '../Loading/Loading.component'
 
 
-//NAVIGATOR-LINK__________________________________________________________________________________________________________
+//NAVIGATOR-LINK___________________________________________________________________________________________________________
 export interface INavigatorTab {
     onClick(): void;
     text: string;
@@ -43,28 +47,26 @@ const NavigatorTab = (props: INavigatorTab) => {
 
 //SIGNED-COMPONENT________________________________________________________________________________________________________
 const SignedComponent = () => {
-    const {user}= useUser()
-
-    //REDUX:
+    //REDUX_______________________________________________________________________________________________________________
     const dispatch = useAppDispatch()
-    const { error, items, loading, tab } = useAppSelector(state => state.PROFILE)
+    //CONTEXT_____________________________________________________________________________________________________________
+    const {user}= useUser()
     return (
         <SignedContainer>
             <AccountContainer>
                 <AvatarContainer image="/avatar.jpg"></AvatarContainer>
                 <UsernameContainer>{user?.username}</UsernameContainer>
-                
             </AccountContainer>
             
             <GlowContainer>
-                <GlowText size={32}>DASHBOARD</GlowText>
+                <NavigatorHeader>DASHBOARD</NavigatorHeader>
             </GlowContainer>
             <Links>
                     <NavigatorTab text="MY NFTS" onClick={()=> {
-                        dispatch(profileActions.setTabMyNFT(PROFILE_TAB.MY_NFT))
+                        dispatch(profileActions.setTab(PROFILE_TAB.MY_NFT))
                     }}/>
                     <NavigatorTab text="MY ACCOUNTS" onClick={()=> {
-                        dispatch(profileActions.setTabMyNFT(PROFILE_TAB.MY_GAMES))
+                        dispatch(profileActions.setTab(PROFILE_TAB.MY_GAMES))
                     }}/>
                 </Links>
         </SignedContainer>
@@ -101,13 +103,7 @@ const NavigatorComponent = () => {
   if(!user) return <LoadingComponent/>
   return (
     <NavigatorContainer>
-
-        {
-            user.verified ? <SignedComponent/> : <UnsignedComponent/>
-            
-            // steamId ? <SignedComponent/> : <UnsignedComponent/>
-        }
-        {/* {JSON.stringify(user)} */}
+        { user.verified ? <SignedComponent/> : <UnsignedComponent/>}
     </NavigatorContainer>
   )
 }

@@ -3,6 +3,7 @@ export interface IDotaState {
     match: IDotaMatch | null;
     error: string | null;
     open: boolean;
+    mintSuccess: boolean;
 }
 
 export interface IDotaMatch {

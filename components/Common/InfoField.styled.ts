@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import {Text} from '../../styles/Components.styled'
 import devices from '../../styles/devices';
+
+
 interface IFieldContainer {
     margin?: string;
     width: string;
@@ -16,14 +18,14 @@ export const FieldContainer = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    width: ${(props: IFieldContainer) => props.width};
+    width: ${(props: IFieldContainer) => props.width || "90%"};
     /* width: 200px; */
-    width: 90%;
-    height: ${(props: IFieldContainer) => props.height};
+    /* width: 90%; */
+    height: ${(props: IFieldContainer) => props.height || "100%"};
 
     border: 0.5px solid white;
 
-    @media ${devices.laptopXS} {
+    /* @media ${devices.laptopXS} {
         height: 30px;
     }
     @media ${devices.laptopS} {
@@ -49,7 +51,7 @@ export const FieldContainer = styled.div`
     @media ${devices.laptopXXL} {
         /* width: 380px; */
         height: 40px;
-    }
+    } */
 `
 
 export const Incrementer = styled.button`
