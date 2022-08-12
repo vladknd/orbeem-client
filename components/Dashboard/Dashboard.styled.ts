@@ -26,6 +26,7 @@ export const ContentContainer = styled.div`
     align-items: start;
     
     width: 100%;
+    min-height: 85%;
     height: 85%;
 `
 export const GamesTab = styled.div`
