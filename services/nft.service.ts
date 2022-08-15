@@ -71,7 +71,7 @@ export const getMyNFTs = async (publicAddress: string, _offset: number): Promise
         body: JSON.stringify({
             query:`
                 {
-                    runes(first: 15, skip: ${_offset}, where: {owner: "${address}"}) {
+                    runes(first: 50, skip: ${_offset}, where: {owner: "${address}"}) {
                         tokenId
                         tokenURI
                         level
@@ -107,7 +107,7 @@ export const getNFTs = async (): Promise<Array<INFT>> => {
         body: JSON.stringify({
             query:`
                 {
-                    runes(first: 8, where: {owner: "0x0000000000000000000000000000000000000000"}) {
+                    runes(first: 50, where: {owner: "0x0000000000000000000000000000000000000000"}) {
                         tokenId
                         tokenURI
                         level

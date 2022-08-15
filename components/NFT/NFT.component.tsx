@@ -10,6 +10,7 @@ import {
   Text 
 } from '../../styles/Components.styled'
 import { 
+  BuyButton,
   MetadataContainer,
   MetadataHeader,
   NFTBadge,
@@ -96,12 +97,12 @@ const NFTComponent = (props: INFTComponent) => {
               nft.owner.toLowerCase() === publicAddress.toLowerCase() 
               ? <Owner/>
               : nft.owner === "0x0000000000000000000000000000000000000000" 
-                ? <Button1 width={200} height={50} mt={40} mb={20}
+                ? <BuyButton width={200} height={50} mt={40} mb={20}
                   onClick={async ()=> {
                     await buyNFT(nft.itemId, nft.price)
                   }}>
                     BUY
-                  </Button1> 
+                  </BuyButton> 
                 : null
             } 
         </NFTBadge> 

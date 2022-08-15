@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import devices from '../../styles/devices';
 import {Text} from '../../styles/Components.styled'
 export const ItemInfo = styled.div`
+    padding: 0px 10px;
     display: flex;
     flex-direction: column;
 
@@ -26,6 +27,7 @@ export const ItemContainer = styled.div`
     &:hover{
         margin: 30px 40px 30px 40px;
         box-shadow: 0 0px 20px #6626ad;
+        border: 0.5px solid #6d00e9d3;
         ${ItemInfo} {
             display: flex;
             flex-direction: column;

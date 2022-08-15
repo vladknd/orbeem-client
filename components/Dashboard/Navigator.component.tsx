@@ -14,7 +14,9 @@ import {
     LinkContainer,
     Links,
     UnsignedContainer,
-    GlowContainer
+    GlowContainer,
+    VerifyButton,
+    VerifyText
 } from './Navigator.styled'
 import { 
     Button1, 
@@ -81,15 +83,15 @@ const UnsignedComponent = () => {
 
     return (
         <UnsignedContainer>
-            <Image src="/steam.svg" width={450} height={450}/>
-            <Text size={20} opacity={0.5} m="0px 500px">
+            <Image src="/steam.svg" width={350} height={350}/>
+            <VerifyText >
                 TO Start earning rewards and buy Our nfts, the players have to link their steam account to orbeem ECosystem. This is done by minting a unique avatar nft. please enter the following data into the corresponding fields.
-            </Text>
-            <Button1 width={200} height={50} mt={30} mb={30}
+            </VerifyText>
+            <VerifyButton 
                 onClick={() => router.push(`${URIs.apiURI}/api/auth/steam`)}
             >
                 VERIFY
-            </Button1>
+            </VerifyButton>
         </UnsignedContainer>
     )
 }

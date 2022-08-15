@@ -59,7 +59,7 @@ const HeaderComponent = () => {
                 }}
             >
                 <MetamaskLogo>
-                    <Image src="/metamask.svg" width={25} height={25} layout="intrinsic" />
+                    <Image src="/metamask.svg" width={30} height={25} layout="intrinsic" />
                 </MetamaskLogo>
                 
                 {publicAddress ? publicAddress : "CONNECT METAMASK"}

@@ -16,7 +16,7 @@ import { Button1 } from '../../styles/Components.styled'
 interface INftsComponent {
     items: INFT[] | null;
     loading: boolean;
-    gridSize?: string;
+    gridSize: string;
 }
 const NftsComponent = (props: INftsComponent) => {
     useEffect(()=> {
@@ -28,7 +28,7 @@ const NftsComponent = (props: INftsComponent) => {
         <NftsContainer mb={20} mr={30} ml={30} pb="40px" jc={props.loading ? "center" : "start"} al="center">
             {props.loading ? <LoadingComponent/> : 
             props.items ? 
-            <Items cols={props.gridSize ? props.gridSize : "1fr 1fr 1fr 1fr 1fr 1fr"}>
+            <Items cols={props.gridSize}>
                 {props.items.map((item, index) => {
                     console.log("https://"+item?.image.slice(0,59)+URIs.ipfsGateway+item?.image.slice(59));
                     return (

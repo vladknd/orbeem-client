@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import colors from "../../styles/colors";
-import { GlowText } from "../../styles/Components.styled";
+import { Button1, GlowText, Text } from "../../styles/Components.styled";
 import devices from "../../styles/devices";
 
 export const NavigatorHeader = styled(GlowText)`
@@ -92,6 +92,7 @@ export const UnsignedContainer = styled.div`
     justify-content: center;
     
     height: 100%;
+    width: 100%;
 
 `
 
@@ -133,4 +134,31 @@ export const GlowContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+`
+
+export const VerifyButton = styled(Button1)`
+    margin: 50px 0px;
+    width: 10%;
+    height: 8%;
+`
+
+export const VerifyText = styled(Text)`
+    margin-top: 1%;
+    padding: 0% 20%;
+
+    font-family: Inter;
+    font-weight: 200;
+    opacity: 0.8;
+    @media ${devices.laptopXS} {
+        font-size: 13px;
+    }
+    @media ${devices.laptopS} {
+        font-size: 15px;
+    }
+    @media ${devices.laptopM} {
+        font-size: 16px;
+    }
+    @media ${devices.laptopL} {
+        font-size: 17px;
+    }
 `

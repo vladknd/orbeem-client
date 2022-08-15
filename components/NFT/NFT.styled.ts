@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import colors from '../../styles/colors'
-import { Box1, Box2, GlowText } from '../../styles/Components.styled'
+import { Box1, Box2, Button1, GlowText } from '../../styles/Components.styled'
 import devices from '../../styles/devices'
 
 export const NFTContainer = styled.div`
@@ -124,4 +124,10 @@ export const MetadataContainer = styled(Box1)`
 
 
 
+`
+
+export const BuyButton = styled(Button1)`
+    margin-bottom: 3%;
+    width: 40%;
+    height: 6%;
 `

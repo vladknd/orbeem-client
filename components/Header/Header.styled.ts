@@ -46,7 +46,7 @@ export const SideContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    width: 1100px;
+    width: 1150px;
     height: 10px;
 
     margin: 0px 20px;
@@ -85,7 +85,7 @@ export const AccountContainer = styled.div`
     justify-content: start;
     align-items: center;
     
-    width: 1500px;
+    width: 1700px;
     height: 40px;
     padding: 0px 15px;
     border-radius: 25px;

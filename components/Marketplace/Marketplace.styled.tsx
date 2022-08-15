@@ -45,11 +45,12 @@ export const HeaderContainer = styled.div`
 `
 
 export const CollectionContainer = styled.div`
+    margin: 10px 50px;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    height: 100%;
-    width: 100%;
+    height: 80vh;
+    width: 98%;
 
 `

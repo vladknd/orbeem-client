@@ -46,12 +46,7 @@ export const GamesContainer = styled.div`
     height: 100%;
 `
 
-export const NFTFilters = styled(Box1)`
-    margin-left: 20px;
-    
-    width: 30%;
-    height: 100%;
-`
+
 
 export const NFTTab = styled.div`
     display: flex;

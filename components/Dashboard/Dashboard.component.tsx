@@ -1,18 +1,14 @@
 //_______________GLOBAL-IMPORTS___________________
-import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
+import React, { useEffect } from 'react'
 //_______________LOCAL-IMPORTS____________________
 //STYLED-COMPONENTS_______________________________
-import { ProfileContainer, ContentContainer, NFTFilters, GamesTab, GamesContainer, NFTTab } from './Dashboard.styled'
-import { MatchContainer, MatchHeader } from './Dota/Dota.component.styled'
+import { ProfileContainer, ContentContainer, GamesTab, GamesContainer, NFTTab } from './Dashboard.styled'
 
 //COMPONENTS______________________________________
 import NftsComponent from '../NFTs/Nfts.component'
 import NavigatorComponent from './Navigator.component'
 import GameComponent from './Game.component'
-import LoadingComponent from '../Loading/Loading.component'
 import DotaComponent from './Dota/Dota.component'
-import InfoFieldComponent from '../Common/InfoField.component'
 import { DashboardLootboxComponent } from './Lootbox.component'
 //REDUX___________________________________________
 import { fetchMyNFT } from '../../redux/Profile/Profile.thunks'
@@ -21,6 +17,7 @@ import { PROFILE_TAB } from '../../redux/NFT.interfaces'
 //SERVICES________________________________________
 import { useUser } from '../../services/user.service'
 import { useWeb3 } from '../../services/web3.service'
+import FiltersComponent from './Dota/Filters.component'
 
 
 //PROFILE-COMPONENT___________________________________________________________________________________________________________
@@ -45,8 +42,8 @@ const ProfileComponent = () => {
           { 
             tab === PROFILE_TAB.MY_NFT ?
               <NFTTab>
-                <NftsComponent loading={loading} items={items}/> 
-                <NFTFilters></NFTFilters>
+                <NftsComponent loading={loading} items={items} gridSize="1fr 1fr 1fr 1fr"/> 
+                <FiltersComponent/>
               </NFTTab> 
             :
             tab === PROFILE_TAB.MY_GAMES ?
