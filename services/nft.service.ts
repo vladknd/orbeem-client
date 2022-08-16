@@ -36,7 +36,7 @@ export const buyNFT = async (_itemID: number, _price: string) => {
     }
 }
 
-export const sellNFT = async (_tokenID: number, _price: number) => {
+export const sellNFT = async (_tokenID: number, _price: string) => {
     if(typeof window.ethereum !== "undefined"){
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
@@ -48,7 +48,8 @@ export const sellNFT = async (_tokenID: number, _price: number) => {
             value: ethers.utils.parseUnits('50000000000000000', 'wei')
         };    
                 
-        const tx = await market.createMarketItem(contracts.nftContract, _tokenID, _price, options)
+        const weiPrice = ethers.utils.parseEther(_price)
+        const tx = await market.createMarketItem(contracts.nftContract, _tokenID, weiPrice, options)
         const txRes = await tx.wait()
         
         console.log("TX", tx)

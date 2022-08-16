@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/reduxHooks"
 import { nftActions } from "../../redux/NFT/NFT.slice"
 
 const Owner = () => {
-    const [price, setPrice] = useState<number>(0)
+    const [price, setPrice] = useState<string>("0")
     const NFT = useAppSelector(state => state.NFT)
     const Item = NFT.item
     const dispatch = useAppDispatch()
@@ -78,7 +78,7 @@ const Owner = () => {
               <AmountContainer>
                 <Input type="number" name="name" placeholder="0.0 MATIC" autoComplete="off"
                   onChange={event => {
-                    setPrice(Number(event.target.value))
+                    setPrice(event.target.value)
                   }}
                 />
                 <Image src="/Polygon.svg" width={20} height={20}/>

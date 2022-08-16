@@ -44,7 +44,7 @@ const MarketplaceComponent = () => {
             <Divider mb="20px"/>
             
             <CollectionContainer>
-              {items ? <NftsComponent loading={loading} items={items} gridSize=" 1fr 1fr 1fr 1fr 1fr"/> : null}
+              {items ? <NftsComponent mode="marketplace" loading={loading} items={items} gridSize=" 1fr 1fr 1fr 1fr 1fr"/> : null}
             </CollectionContainer>
         </Market>
         <Divider/>

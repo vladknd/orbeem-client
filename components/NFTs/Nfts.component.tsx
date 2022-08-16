@@ -10,6 +10,7 @@ import { INFT } from '../../interfaces/nft.interfaces'
 import { URIs } from '../../config'
 import { useEffect } from 'react'
 import { Button1 } from '../../styles/Components.styled'
+import { ethers } from 'ethers'
 
 
 //NFTs-COMPONENT____________________________________________________________________________________________________________
@@ -17,6 +18,7 @@ interface INftsComponent {
     items: INFT[] | null;
     loading: boolean;
     gridSize: string;
+    mode: string;
 }
 const NftsComponent = (props: INftsComponent) => {
     useEffect(()=> {
@@ -34,11 +36,13 @@ const NftsComponent = (props: INftsComponent) => {
                     return (
                         <ItemComponent
                             key={index}
+                            mode={props.mode}
                             id={item?.tokenId}
                             level={item?.level}
                             power={item?.power}
                             durability={item?.durability}
-                            price={item?.price}
+                            intelligence={item?.intelligence}
+                            price={item.price ? ethers.utils.formatEther(item.price) : "0"}
                             image={"https://"+item?.image.slice(0,59)+URIs.ipfsGateway+item?.image.slice(59)}
                         />
                     )

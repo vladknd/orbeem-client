@@ -211,34 +211,15 @@ export const Text = styled.p`
     line-height: ${(props: TextProps) => props.lh || "35px"}; 
 `
 
-// export const Input = styled.input`
-//     width: 100%;
-//     height: 100%;
-//     padding: 20px 10px;
-
-//     background: transparent;
-//     border-radius: 8px;  
-//     border: 1px solid gray;
-//     outline: none;
-
-//     color: white;
-//     font-size: 20px;
-
-//     &:focus {
-//         border: 1px solid #6d52d1;
-//     }
-
-// `
-
 
 export const Waves = styled(BaseDiv)`
     margin-top: 200px;
     position: absolute;
     width: 100%;
-    /* height: 750px; */
+
     z-index:0;
     background-image: url("/waves.svg");
-    /* background-position: 0% 1000%; */
+
     background-size: contain;
     opacity: 0.3;
 

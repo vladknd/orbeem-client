@@ -42,7 +42,7 @@ const ProfileComponent = () => {
           { 
             tab === PROFILE_TAB.MY_NFT ?
               <NFTTab>
-                <NftsComponent loading={loading} items={items} gridSize="1fr 1fr 1fr 1fr"/> 
+                <NftsComponent mode="dashboard" loading={loading} items={items} gridSize="1fr 1fr 1fr 1fr"/> 
                 <FiltersComponent/>
               </NFTTab> 
             :

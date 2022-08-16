@@ -33,7 +33,7 @@ export const useAuthorize = () => {
     const [authorized, setAuthorized] = useState<boolean>(false)
     
     useEffect(() => {
-      if(publicAddress && chainId == 80001 ) {
+      if(publicAddress && chainId == 137 ) {
         const jwt = getCookie("jwt")
         console.log("JWT-useAuthorize-cookies check", jwt)
         console.log("USE-AUTHORIZE: VERIFY JWT:", publicAddress, chainId)
@@ -52,7 +52,7 @@ export const useAuthorize = () => {
     },[publicAddress, chainId])
 
     async function connect() {
-      if(publicAddress && chainId == 80001 ) {
+      if(publicAddress && chainId == 137 ) {
         login(publicAddress).then(user => {
           console.log("USER: LOGGED IN AGAIN", user);
           setLoggedIn(user)

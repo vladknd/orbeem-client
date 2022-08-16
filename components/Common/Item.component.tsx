@@ -12,10 +12,12 @@ import {
 //ITEM-COMPONENT:________________________________________________________________________________________________________
 interface INFTComponent {
     id: number;
+    mode: string;
     level: number;
     power: number;
     durability: number;
-    price: string;
+    intelligence: number;
+    price?: string;
     image: string;
 }
 const ItemComponent = (props: INFTComponent) => {
@@ -26,7 +28,8 @@ const ItemComponent = (props: INFTComponent) => {
             <ItemText m="0px">LEVEL: {props.level}</ItemText>
             <ItemText m="0px">POWER: {props.power}</ItemText>
             <ItemText m="0px">DURABILITY: {props.durability}</ItemText>
-            <ItemText m="0px">PRICE: {props.price}</ItemText>
+            <ItemText>INTELLIGENCE: {props.intelligence}</ItemText>
+            {props.mode === "marketplace" ? <ItemText m="0px">PRICE: {props.price}</ItemText> : null}
         </ItemInfo>
     </ItemContainer>
     </Link>

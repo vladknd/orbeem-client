@@ -9,6 +9,7 @@ import { Web3Context } from '../context/web3.context'
 
 
 const MUMBAI = "0x13881"
+const MATIC = "0x89"
 
 
 //__________________________________CHECK-CHAIN-ID______________________________
@@ -16,7 +17,7 @@ export async function checkChainID() {
   const chainID = await window.ethereum.request({ method: 'eth_chainId' });
   console.log("WEB3 SERVICE: CHECK CHAIN_ID: ",chainID);
 
-  if(chainID !== MUMBAI) {
+  if(chainID !== MATIC) {
     console.log("WEB3-SERVICE: NOT MATCHED", chainID);
     switchChain()
   }
@@ -49,19 +50,19 @@ export async function checkMetaMask() {
 export async function switchChain() {
   window.ethereum.request({
     method: 'wallet_switchEthereumChain',
-    params: [{ chainId: MUMBAI}]
+    params: [{ chainId: MATIC}]
   }).then((_promise: any) => {
-    console.log("CHAIN HAS BEEN SWITCHED TO MUMBAI");
+    console.log("CHAIN HAS BEEN SWITCHED TO MATIC");
   }).catch((_error: any) => {
     if (_error.code === 4902) {
       window.ethereum.request({
         method: 'wallet_addEthereumChain',
         params: [
           {
-            chainName: 'Polygon MUMABI',
-            chainId: MUMBAI,
+            chainName: 'Polygon',
+            chainId: MATIC,
             nativeCurrency: { name: 'MATIC', decimals: 18, symbol: 'MATIC' },
-            rpcUrls: ['https://rpc-mumbai.maticvigil.com/']
+            rpcUrls: ['https://polygon-rpc.com//']
           }
         ]
       }).then((_addedNetwork: any) => {

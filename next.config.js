@@ -7,7 +7,7 @@ const nextConfig = {
     API: 'https://orbeem-api.herokuapp.com',
     // IPFS: 'https://gateway.pinata.cloud/ipfs',
     IPFS: '.ipfs.nftstorage.link',
-    SUBGRAPH: 'https://api.thegraph.com/subgraphs/name/vladknd/orbeem'
+    SUBGRAPH: 'https://api.thegraph.com/subgraphs/name/vladknd/orbeemmain'
   },
 }
 
