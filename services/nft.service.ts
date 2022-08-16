@@ -42,12 +42,13 @@ export const sellNFT = async (_tokenID: number, _price: string) => {
         const signer = provider.getSigner()
                 
         const market = new ethers.Contract(contracts.marketContract, NFTMarket, signer)
-
+        const rune = new ethers.Contract(contracts.nftContract, Rune, signer)
         const options = {
             gasLimit: 300000,
             value: ethers.utils.parseUnits('50000000000000000', 'wei')
         };    
                 
+        await rune.approve(contracts.marketContract, _tokenID)
         const weiPrice = ethers.utils.parseEther(_price)
         const tx = await market.createMarketItem(contracts.nftContract, _tokenID, weiPrice, options)
         const txRes = await tx.wait()
