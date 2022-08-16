@@ -210,7 +210,7 @@ export const levelUp = async (_tokenID: number) => {
         const options = {
             gasLimit: 3000000,
         };    
-        await orb.approve(rune.address, BigNumber.from("4000000000000000000"));
+        await orb.approve(rune.address, BigNumber.from("10000000000000000000"));
         const tx = await rune.levelUp(_tokenID, options)
         const txRes = await tx.wait()
         

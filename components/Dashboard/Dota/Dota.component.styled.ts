@@ -49,6 +49,7 @@ export const NFTBoxContainer = styled(Box1)`
     align-self: center;
     justify-self: center;
 
+    text-align: center;
     background-image: ${(props:INFTBoxContainer) => `url(${props.image})`};
     background-repeat: no-repeat;
     background-position: center;
