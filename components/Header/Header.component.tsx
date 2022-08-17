@@ -31,8 +31,8 @@ const HeaderLink = (props: IHeaderLink) => {
 
 //-----------------------------HEADER-COMPONENT------------------------------:
 const HeaderComponent = () => {
-    const {connectWeb3, publicAddress} = useWeb3()
-    console.log("Public ADDDDDR",publicAddress);
+    const {connectWeb3, publicAddress} = useWeb3()  
+    console.log("HEADER",publicAddress);
     const Router = useRouter()
   return (
     <HeaderContainer>

@@ -19,7 +19,7 @@ export async function checkChainID() {
 
   if(chainID !== MATIC) {
     console.log("WEB3-SERVICE: NOT MATCHED", chainID);
-    switchChain()
+    await switchChain()
   }
 }
 //______________________________________________________________________________

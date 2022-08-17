@@ -1,7 +1,7 @@
 //#------------------GLOBAL-IMPORTS------------------#
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { useAuthorize } from '../../services/auth.service'
 
@@ -63,7 +63,11 @@ const Panel = () => {
 const HomeComponent = () => {
   const Router = useRouter()
   const {connect, authorized, loading} = useAuthorize()  
-  const { connectWeb3 } = useWeb3()
+  const {chainId, publicAddress, connectWeb3 } = useWeb3()
+  useEffect(() => {
+    console.log("HOME-COMP REND:", chainId);
+
+  }, [chainId])
   
   return (
     <HomeContainer>
@@ -77,7 +81,10 @@ const HomeComponent = () => {
                         : <SignButton
                             onClick={async () => {
                                 await connectWeb3()
+                                
+                                console.log("AND NOW", chainId, publicAddress);
                                 await connect()
+                                
                             }}
                         >SIGN IN</SignButton>
                 }
@@ -101,9 +108,10 @@ const HomeComponent = () => {
             </TapesContainer>
         </UpsideContainer>
 
-        <Divider/>
+        
+        {authorized ? <Divider/> : null}
         {authorized ? <Panel/> : null}
-        <Divider/>
+        {authorized ? <Divider/> : null}
     </HomeContainer>
   )
 }

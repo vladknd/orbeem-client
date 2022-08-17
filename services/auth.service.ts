@@ -33,26 +33,34 @@ export const useAuthorize = () => {
     const [authorized, setAuthorized] = useState<boolean>(false)
     
     useEffect(() => {
-      if(publicAddress && chainId == 137 ) {
-        const jwt = getCookie("jwt")
+      console.log("USE AUTHORIZED HERE");
+      
+      const jwt = getCookie("jwt")
+      if(publicAddress && (chainId == 137 ) && jwt) {
+        
         console.log("JWT-useAuthorize-cookies check", jwt)
         console.log("USE-AUTHORIZE: VERIFY JWT:", publicAddress, chainId)
         
-        verifyJwt({variables: {token: jwt}}).then((result) => {
-          console.log("VERIFY JWT REQUEST:",result);
-          const user = result.data.verifyJwt
-          console.log("JWT: USER VERIFIED", user);
-          setLoggedIn(user)
-          setAuthorized(true)
-        }).catch((error) => {
-          setAuthorized(false)
-        })
-      } 
+          verifyJwt({variables: {token: jwt}}).then((result) => {
+            console.log("VERIFY JWT REQUEST:",result);
+            const user = result.data.verifyJwt
+            console.log("JWT: USER VERIFIED", user);
+            setLoggedIn(user)
+            setAuthorized(true)
+          }).catch((error) => {
+            setAuthorized(false)
+          })
+      } else {
+        connect()
+      }
       
-    },[publicAddress, chainId])
+    },[publicAddress])
 
     async function connect() {
-      if(publicAddress && chainId == 137 ) {
+      console.log("STARTED CONNECT", {publicAddress, chainId});
+      // const jwt = getCookie("jwt")
+      if(publicAddress && (chainId == 137) ) {
+        console.log("CONT CONNECT");
         login(publicAddress).then(user => {
           console.log("USER: LOGGED IN AGAIN", user);
           setLoggedIn(user)
