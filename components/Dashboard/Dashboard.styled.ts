@@ -4,7 +4,7 @@ import { Box1 } from '../../styles/Components.styled'
 import devices from '../../styles/devices'
 
 export const ProfileContainer = styled.div`
-    margin-top: 14vh;
+    margin-top: 13vh;
 
     display: flex;
     flex-direction: column;

@@ -16,7 +16,7 @@ export const RuneContainer = styled.div`
 export const Attributes = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 
     width: 100%;
@@ -26,8 +26,8 @@ interface IRuneImage {
   img: string;
 }
 export const RuneImage = styled.div`
-    /* width: 40%;
-    height: 40%; */
+    /* width: 400px;
+    height: 400px; */
     margin-bottom: 10px;
     
 
@@ -35,8 +35,8 @@ export const RuneImage = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
 
-    height: 50%;
-    width: 40%;
+    height: 40%;
+    width: 42%;
     border-radius: 10px;
     
 `

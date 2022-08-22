@@ -1,6 +1,6 @@
 import React from 'react'
 import { Divider, GlowText } from '../../styles/Components.styled'
-import { TitleContainer } from './Title.styled'
+import { TitleContainer, TitleText } from './Title.styled'
 
 interface ITitle {
     mt?: number;
@@ -12,7 +12,7 @@ const TitleComponent = (props: ITitle) => {
     <>
     <Divider mt={`${props.mt}px`}/>
         <TitleContainer>
-            <GlowText>{props.title}</GlowText>
+            <TitleText>{props.title}</TitleText>
         </TitleContainer>
     <Divider mb={`${props.mb}px`}/>
     </>

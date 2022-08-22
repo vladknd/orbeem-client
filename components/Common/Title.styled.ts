@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import colors from "../../styles/colors"
+import { GlowText, Text } from "../../styles/Components.styled"
 
 export const TitleContainer = styled.div`
     display: flex;
@@ -8,5 +9,9 @@ export const TitleContainer = styled.div`
     
     background-color: ${colors.container_bg};
     width: 100%;
-    height: 10vh;
+    height: 15%;
+`
+
+export const TitleText = styled(GlowText)`
+    font-size: 35px;
 `

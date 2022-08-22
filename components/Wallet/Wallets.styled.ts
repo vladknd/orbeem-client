@@ -3,7 +3,7 @@ import { Box2, Button1, GlowText } from '../../styles/Components.styled'
 import devices from '../../styles/devices'
 
 export const WalletComponentContainer = styled.div`
-    margin-top: 6%;
+    margin-top: 7%;
     margin-bottom: 30px;
 `
 export const WalletsContainer = styled.div`

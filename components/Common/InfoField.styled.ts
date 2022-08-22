@@ -24,7 +24,7 @@ export const FieldContainer = styled.div`
     height: ${(props: IFieldContainer) => props.height || "100%"};
 
     border: 0.5px solid white;
-
+    border-radius: 4px;
     /* @media ${devices.laptopXS} {
         height: 30px;
     }

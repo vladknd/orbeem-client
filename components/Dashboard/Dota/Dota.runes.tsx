@@ -64,7 +64,7 @@ export const RuneData = () => {
         </RuneImage>
         <Attributes>
           <InfoFieldComponent
-            margin="5px 0px 10px 0px"
+            // margin="20px 0px 1px 0px"
             width="90%"
             height="33%"
             image="/crystal.svg" 
@@ -72,7 +72,7 @@ export const RuneData = () => {
             value={selected.power.toString()} 
           />
           <InfoFieldComponent
-            margin="5px 0px 10px 0px"
+            // margin="1px 0px 1px 0px"
             width="90%"
             height="33%"
             image="/durability.svg" 
@@ -81,7 +81,7 @@ export const RuneData = () => {
             
           />
           <InfoFieldComponent
-            margin="5px 0px 10px 0px"
+            // margin="20px 0px 1px 0px"
             width="90%"
             height="33%"
             image="/durability.svg" 

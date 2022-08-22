@@ -8,11 +8,15 @@ export interface INFT {
     imageURI: string;
 
     level: number;
+   
+
+    price: string;
+}
+
+export interface IRune extends INFT {
     power: number;
     durability: number;
     intelligence: number;
-
-    price: string;
 }
 
 export interface INFTData {
