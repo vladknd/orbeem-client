@@ -33,12 +33,15 @@ const FiltersComponent = () => {
                         <FilterHeader>
                             COLLECTIONS
                         </FilterHeader>
-                        {collectionsOpen ? collections.map((collection) => 
-                            <FilterElement onClick={e=> {
-                                e.stopPropagation()
-                                dispatch(dashboardActions.setCollectionFilter(collection.name))
-                                dispatch(dashboardActions.filterNfts())
-                            }}>
+                        {collectionsOpen ? collections.map((collection, index) => 
+                            <FilterElement 
+                                key={index}
+                                onClick={e=> {
+                                    e.stopPropagation()
+                                    dispatch(dashboardActions.setCollectionFilter(collection.name))
+                                    dispatch(dashboardActions.filterNfts())
+                                }}
+                            >
                                 {collection.name}
                                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     {filterCollections.includes(collection.name) ? <path d="M5.5 12L10.5 17L20.5 7"  stroke-linecap="round" stroke-linejoin="round"

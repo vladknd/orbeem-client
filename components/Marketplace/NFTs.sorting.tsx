@@ -68,11 +68,11 @@ const NftsSorting = () => {
           {
             sort === NFT_SORT.PRICE_DOWN ? 
               <svg width="30" height="34" viewBox="0 0 30 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14.7655 26.1333L14.7948 6.89372M14.7655 26.1333L7.4005 17.8765M14.7655 26.1333L22.1556 17.899" stroke="#D6D6D6" stroke-opacity="0.75" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M14.7655 26.1333L14.7948 6.89372M14.7655 26.1333L7.4005 17.8765M14.7655 26.1333L22.1556 17.899" stroke="#D6D6D6" strokeOpacity="0.75" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg> :
             sort === NFT_SORT.PRICE_UP ?
               <svg width="30" height="34" viewBox="0 0 30 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14.7804 6.89355L14.7804 26.1331M14.7804 6.89355L22.158 15.1391M14.7804 6.89355L7.40283 15.1391" stroke="#D6D6D6" stroke-opacity="0.75" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M14.7804 6.89355L14.7804 26.1331M14.7804 6.89355L22.158 15.1391M14.7804 6.89355L7.40283 15.1391" stroke="#D6D6D6" strokeOpacity="0.75" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg> :
             null
           }
