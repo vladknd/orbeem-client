@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ICollection, ICreeper, IRune } from '../../interfaces/nft.interfaces'
+import { ICollection, IRune } from '../../interfaces/nft.interfaces'
 
 //IMPORT-INTERFACES:__________________________
 import { IMarketplaceState, TAB } from './Marketplace.interfaces'
