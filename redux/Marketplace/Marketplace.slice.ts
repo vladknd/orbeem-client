@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ICollection, IRune } from '../../interfaces/nft.interfaces'
+import { IAegis, ICollection, IRune } from '../../interfaces/nft.interfaces'
 
 //IMPORT-INTERFACES:__________________________
 import { IMarketplaceState, TAB } from './Marketplace.interfaces'
@@ -71,7 +71,7 @@ const marketplaceSlice = createSlice({
         CollectionLoaded(state:IMarketplaceState){
             state.loading = false
         },
-        CollectionSuccess(state: IMarketplaceState, action: PayloadAction<Array<IRune | ICreeper>>){
+        CollectionSuccess(state: IMarketplaceState, action: PayloadAction<Array<IAegis | IRune>>){
             state.nfts = action.payload
         },
         CollectionFailure(state: IMarketplaceState, action: PayloadAction<string>){
