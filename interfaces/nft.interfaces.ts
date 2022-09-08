@@ -1,6 +1,7 @@
 import { contracts } from "../config";
 
 export interface INFT {
+    __typename: string;
     name: string;
     description: string;
     image: string;

@@ -79,12 +79,11 @@ const DotaComponent = () => {
             NFT-DATA
           </Header>
           { selected ?
-            "power" in selected ? 
-              <RuneData/> : null
-          : <SelectItem>
-              <Image src="/selectItem.svg" width={400} height={400}/>
-            </SelectItem>
-        }
+                <RuneData/> 
+              : <SelectItem>
+                  <Image src="/selectItem.svg" width={400} height={400}/>
+                </SelectItem>
+          }
           
         </NFTInfo>
 

@@ -50,9 +50,10 @@ export const RuneData = () => {
 
   const { user } = useUser()
 
-  if(!user) return <LoadingComponent/>
-  if(selected && "power" in selected)return (
-    <AegisContainer>
+  if(!user || !selected) return <LoadingComponent/>
+  if("power" in selected){ 
+    return (
+      <AegisContainer>
         <AegisImage img={"https://"+selected.image.slice(0,59)+URIs.ipfsGateway+selected.image.slice(59)}>
         </AegisImage>
         <Attributes>
@@ -85,7 +86,11 @@ export const RuneData = () => {
           }}
         >CLAIM</Claim>
     </AegisContainer>
-  )
+  )} else {
+    return (
+      <div></div>
+    )
+  }
 }
 
 export const GameData = () => {
