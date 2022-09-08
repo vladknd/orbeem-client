@@ -44,10 +44,10 @@ const FiltersComponent = () => {
                             >
                                 {collection.name}
                                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    {filterCollections.includes(collection.name) ? <path d="M5.5 12L10.5 17L20.5 7"  stroke-linecap="round" stroke-linejoin="round"
+                                    {filterCollections.includes(collection.name) ? <path d="M5.5 12L10.5 17L20.5 7"  strokeLinecap="round" strokeLinejoin="round"
                                         stroke={"#ead2ff"}
                                     />: null}
-                                    <path d="M5 0.5H19C21.4853 0.5 23.5 2.51472 23.5 5V19C23.5 21.4853 21.4853 23.5 19 23.5H5C2.51472 23.5 0.5 21.4853 0.5 19V5C0.5 2.51472 2.51472 0.5 5 0.5Z" fill="#111111" fill-opacity="0.1" 
+                                    <path d="M5 0.5H19C21.4853 0.5 23.5 2.51472 23.5 5V19C23.5 21.4853 21.4853 23.5 19 23.5H5C2.51472 23.5 0.5 21.4853 0.5 19V5C0.5 2.51472 2.51472 0.5 5 0.5Z" fill="#111111" fillOpacity="0.1" 
                                         stroke={filterCollections.includes(collection.name) ? "#8d01ff" : "#8B8B8B"}
                                     />
                                 </svg>
