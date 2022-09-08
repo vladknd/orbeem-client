@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Button1, GlowText, Text } from "../../../styles/Components.styled";
 import devices from "../../../styles/devices";
 
-export const RuneContainer = styled.div`
+export const AegisContainer = styled.div`
     /* margin: 0px 40px; */
 
     display: flex;
@@ -22,22 +22,23 @@ export const Attributes = styled.div`
     width: 100%;
     height: 40%;
 `
-interface IRuneImage {
+interface IAegisImage {
   img: string;
 }
-export const RuneImage = styled.div`
+export const AegisImage = styled.div`
     /* width: 400px;
     height: 400px; */
     margin-bottom: 10px;
     
 
-    background-image: ${(props: IRuneImage) => `url(${props.img})`};
+    background-image: ${(props: IAegisImage) => `url(${props.img})`};
     background-repeat: no-repeat;
     background-size: cover;
 
     height: 40%;
-    width: 42%;
+    width: 48%;
     border-radius: 10px;
+    border: solid 1px white;
     
 `
 

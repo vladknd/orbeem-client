@@ -3,10 +3,12 @@ import { Box2, Button1, GlowText } from '../../styles/Components.styled'
 import devices from '../../styles/devices'
 
 export const WalletComponentContainer = styled.div`
-    margin-top: 7%;
-    margin-bottom: 30px;
+    margin-top: 12vh;
+    height: 100%;
+    /* margin-bottom: 30px; */
 `
 export const WalletsContainer = styled.div`
+    margin-top: 2%;
     padding: 0px 30px;
 
     display: flex;
@@ -14,7 +16,7 @@ export const WalletsContainer = styled.div`
     justify-content: space-around;
 
     width: 100%;
-    height: 60vh;
+    height: 80%;
 
 `
 export const WalletHeader = styled(GlowText)`

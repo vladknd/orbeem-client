@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Box1, GlowText } from "../../../styles/Components.styled";
+import { BaseDiv, Box1, GlowText } from "../../../styles/Components.styled";
 
-export const FiltersContainer = styled(Box1)`
+export const ComponentContainer = styled(Box1)`
     margin-left: 20px;
     
     display: flex;
@@ -12,32 +12,47 @@ export const FiltersContainer = styled(Box1)`
     width: 30%;
     height: 100%;
 `
+export const FiltersContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
+    width: 100%;
+`
 export const FiltersHeader = styled(GlowText)`
     font-size: 30px;
 
 `
 
-export const FiltersGame = styled.div`
-    margin: 10px 0px;
+export const FilterContainer = styled(BaseDiv)`
+    /* margin: 10px 0px; */
     padding: 0% 4%;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+
     width: 90%;
-    height: 10%;
+    /* height: 10%; */
 
-    font-family: Inter;
-    font-weight: 200;
-    font-size: 20px;
-    letter-spacing: 8px;
+    transition: all ease;
 
+    border: solid 0.5px white;
+    border-radius: 5px;
+
+
+`
+export const FilterHeader = styled.div`
+    margin: 5%;
     display: flex;
     flex-direction: row;
+    justify-content: start;
     align-items: center;
-    justify-content: space-between;
 
-    border: solid 1px white;
-
-
+    width: 100%;
+    /* height: 100%; */
 `
 
 export const FiltersArrow = styled.div`
@@ -69,4 +84,26 @@ export const FiltersArrow = styled.div`
         bottom: -13px
     } */
 
+`
+
+
+export const FilterElement = styled(BaseDiv)`
+    margin: 3% 0%;
+    padding: 0% 4%;
+    width: 90%;
+    height: 40px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #4C4C4C;
+
+    border-radius: 10px;
+    
+
+    &:hover {
+        opacity: 0.8;
+    }
 `

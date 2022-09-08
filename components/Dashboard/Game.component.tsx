@@ -14,14 +14,14 @@ import {
 import { Text } from '../../styles/Components.styled'
 //COMPONENTS______________________________________
 //REDUX___________________________________________
-import { profileActions } from '../../redux/Profile/Profile.slice'
+import { dashboardActions } from '../../redux/Dashboard/Dashboard.slice'
 import { 
   useAppDispatch, 
   useAppSelector 
 } from '../../redux/reduxHooks'
 //SERVICES________________________________________
 //INTERFACES______________________________________
-import { PROFILE_TAB } from '../../redux/NFT.interfaces'
+import { DASHBOARD_TAB } from '../../redux/Dashboard/Dashboard.interfaces'
 
 //________________________________________________________________________________________________________________
 const Blank = () => {
@@ -42,11 +42,10 @@ const Blank = () => {
 
 //________________________________________________________________________________________________________________
 const Closed = () => {
-  const { items } = useAppSelector(state => state.PROFILE)
-  useEffect(() => {
-    console.log("AVAILABLE ITEMS",items);
-    
-  }, [items])
+  const items = useAppSelector(state => state.DASHBOARD.items?.filter(nft => nft.game.name == "DOTA2"))
+  // useEffect(() => {
+  //   console.log("AVAILABLE ITEMS",items);
+  // }, [items])
   
   return (
     <NFTContainer>
@@ -65,7 +64,7 @@ const Closed = () => {
 
 //________________________________________________________________________________________________________________
 interface IGameComponent {
-  name: PROFILE_TAB;
+  name: DASHBOARD_TAB;
   gameIMG: string;
   imgWidth: number;
   imgHeight: number;
@@ -80,7 +79,7 @@ const GameComponent = (props: IGameComponent) => {
       clicky={true}
       dev={props.dev}
       onClick={()=>{
-        dispatch(profileActions.setTab(props.name))
+        dispatch(dashboardActions.setTab(props.name))
       }}
     >
       <HeaderContainer>

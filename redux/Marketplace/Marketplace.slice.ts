@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { ICollection, ICreeper, IRune } from '../../interfaces/nft.interfaces'
 
 //IMPORT-INTERFACES:__________________________
-import { ICollection, IMarketplaceState, ITAB, TAB } from './Marketplace.interfaces'
+import { IMarketplaceState, TAB } from './Marketplace.interfaces'
 
 
 
@@ -10,21 +11,46 @@ const initState: IMarketplaceState = {
     error: null,
     collections: [],
     nfts: [],
-    type: {
-        tab: TAB.GAMES,
-        game: null,
-        collection: null
-    }
+    
+    tab: TAB.GAMES,
+    game: null,
+    collection: null,
+
+    breadcrumbs: ["GAMES"]   
 }
 
 const marketplaceSlice = createSlice({
     name: "MARKETPLACE",
     initialState: initState,
     reducers: {
-        ChangedTab(state: IMarketplaceState, action: PayloadAction<ITAB>){
-            state.type = action.payload
-        },
+        // ChangedTab(state: IMarketplaceState, action: PayloadAction<>){
+        //     state.tab = action.payload
+        // },
 
+        setTabGames(state: IMarketplaceState){
+            state.collections = []
+            state.nfts = []
+            while(state.breadcrumbs.length !== 1){
+                state.breadcrumbs.pop()
+            }
+            state.tab = TAB.GAMES
+        },
+        setTabGame(state: IMarketplaceState, action: PayloadAction<string>){
+            state.nfts = []
+            state.tab = TAB.GAME
+            state.game = action.payload
+            if(state.breadcrumbs.length === 3){
+                state.breadcrumbs.pop()
+            } else if(state.breadcrumbs.length === 1){
+                state.breadcrumbs.push(action.payload)
+            }
+            
+        },
+        setTabCollection(state: IMarketplaceState, action: PayloadAction<string>){
+            state.tab = TAB.COLLECTION
+            state.collection = action.payload
+            state.breadcrumbs.push(action.payload)
+        },
 
         CollectionsLoading(state:IMarketplaceState){
             state.loading = true
@@ -37,6 +63,22 @@ const marketplaceSlice = createSlice({
         },
         CollectionsFailure(state: IMarketplaceState, action: PayloadAction<string>){
             state.error = action.payload
+        },
+
+        CollectionLoading(state:IMarketplaceState){
+            state.loading = true
+        },
+        CollectionLoaded(state:IMarketplaceState){
+            state.loading = false
+        },
+        CollectionSuccess(state: IMarketplaceState, action: PayloadAction<Array<IRune | ICreeper>>){
+            state.nfts = action.payload
+        },
+        CollectionFailure(state: IMarketplaceState, action: PayloadAction<string>){
+            state.error = action.payload
+        },
+        CollectionClear(state:IMarketplaceState){
+            state.nfts = []
         }
     }
 })

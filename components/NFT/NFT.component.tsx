@@ -24,7 +24,7 @@ import InfoFieldComponent from '../Common/InfoField.component'
 import LoadingpageComponent from '../Loading/Loadingpage.component'
 import Owner from './Owner.component';
 //REDUX___________________________________________
-import { fetchNFT } from '../../redux/NFT/NFT.actions';
+import { fetchNFT } from '../../redux/NFT/NFT.thunks';
 import { nftActions } from '../../redux/NFT/NFT.slice';
 import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks'
 
@@ -39,7 +39,7 @@ import { URIs } from '../../config'
 
 //NFT-COMPONENT:____________________________________________________________________________________________________________
 interface INFTComponent {
-    id: number;
+    uri: string;
 }
 const NFTComponent = (props: INFTComponent) => {
   const {publicAddress} = useWeb3()
@@ -48,10 +48,14 @@ const NFTComponent = (props: INFTComponent) => {
   const dispatch = useAppDispatch()
   const nft = useAppSelector(state => state.NFT.item)
   useEffect(() => {
-    console.log("ROUTERRR LALAL",props.id)
-    if(props.id) fetchNFT(dispatch, props.id)
+    console.log("ROUTERRR LALAL",props.uri)
     
-  }, [props.id])
+    if(props.uri){
+      const [tokenId, nftAddress] = props.uri.split("-")
+      fetchNFT(dispatch, tokenId, nftAddress)
+    } 
+    
+  }, [props.uri])
 
   return (
     <NFTContainer>
@@ -59,12 +63,13 @@ const NFTComponent = (props: INFTComponent) => {
         //ADD STYLED CONTAINER
         <>
         <NFTBadge ml={30} mb={30} >
-           <NFTId>{props.id}</NFTId>
+           <NFTId>{nft.tokenId}</NFTId>
 
             <NFTImage image={"https://"+nft.image.slice(0,59)+URIs.ipfsGateway+nft.image.slice(59)}/>
 
             <GlowText>LEVEL: {nft.level}</GlowText>
-
+            {"power" in nft ?
+            <>
             <InfoFieldComponent 
               width="90%"
               height="90%"
@@ -92,14 +97,15 @@ const NFTComponent = (props: INFTComponent) => {
               value={nft.intelligence.toString()}
               incrementAction={nftActions.nftIncrIntelligence}
             />
-
+            </>
+             : null }
             {
               nft.owner.toLowerCase() === publicAddress.toLowerCase() 
               ? <Owner/>
               : nft.owner === "0x0000000000000000000000000000000000000000" 
                 ? <BuyButton width={200} height={50} mt={40} mb={20}
                   onClick={async ()=> {
-                    await buyNFT(nft.itemId, nft.price)
+                    await buyNFT(nft.itemId, nft.nftAddress, nft.price)
                   }}>
                     BUY
                   </BuyButton> 

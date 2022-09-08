@@ -3,8 +3,7 @@ import { configureStore, ThunkAction, AnyAction } from '@reduxjs/toolkit'
 
 //REDUCERS:___________________________
 import fetchNFTReducer from './NFT/NFT.slice'
-import profileReducer from './Profile/Profile.slice'
-import fetchMarketNFTReducer from './MarketNFT/MarketNFT.slice'
+import profileReducer from './Dashboard/Dashboard.slice'
 import dotaReducer from './Dota/Dota.slice'
 import marketplaceReducer from './Marketplace/Marketplace.slice'
 
@@ -12,10 +11,9 @@ import marketplaceReducer from './Marketplace/Marketplace.slice'
 const store = configureStore({
     reducer: {
         NFT: fetchNFTReducer,
-        PROFILE: profileReducer,
+        DASHBOARD: profileReducer,
         DOTA: dotaReducer,
-        MARKETPLACE: marketplaceReducer,
-        MarketNFT: fetchMarketNFTReducer,
+        MARKETPLACE: marketplaceReducer
     }
 })
 

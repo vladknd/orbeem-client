@@ -1,30 +1,19 @@
-import { INFT } from "../../interfaces/nft.interfaces";
+import { ICollection, INFT, NFT } from "../../interfaces/nft.interfaces";
 
 export interface IMarketplaceState {
     loading: boolean;
     error: string | null;
     collections: Array<ICollection>;
-    nfts: Array<INFT>;
-    type: ITAB
-}
-
-
-export interface ICollection {
-    name: COLLECTION;
-    description: string;
-    game: GAME;
+    nfts: Array<NFT>;
     
-}
-export interface IGame {
-    name: GAME
-}
-
-
-export interface ITAB {
     tab: TAB,
-    game: GAME | null,
-    collection: COLLECTION | null,
+    game: string | null,
+    collection: string | null,
+
+    breadcrumbs: Array<string>
 }
+    
+
 // ENUMS:
 export enum TAB {
     GAMES,
@@ -32,12 +21,12 @@ export enum TAB {
     COLLECTION
 }
 
-export enum GAME {
-    DOTA2,
-    PUBG
-}
+// export enum GAME {
+//     DOTA2 = "DOTA2",
+//     PUBG = "PUBG"
+// }
 
 
-export enum COLLECTION {
-    RUNE
-}
+// export enum COLLECTION {
+//     RUNE
+// }

@@ -30,7 +30,9 @@ export const getORBBalance = async (_address: string) => {
 
     const orb = new ethers.Contract(contracts.orbContract, ORB, signer) 
     const balance = await orb.balanceOf(_address)
-
+    console.log('====================================');
+    console.log(ethers.utils.formatUnits(balance, 18));
+    console.log('====================================');
     return ethers.utils.formatUnits(balance, 18)
 }
 

@@ -12,10 +12,11 @@ export const NavigatorContainer = styled.div`
     align-items: center;
 
     width: 100%;
-    height: 100%;
+    height: 13vh;
+    /* max-height: ; */
 
     transition: 1s;
-    background-color: ${colors.container_bg};
+    background-color: ${colors.box1_bg};
     filter: drop-shadow(10px 20px 30px rgba(0, 0, 0, 0.4));
 
     border-width: 1px 0px;
@@ -29,7 +30,7 @@ export const SignedContainer = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    height: 20%;
+    height: 10%;
     width: 100%;
 `
 

@@ -12,7 +12,7 @@ const Home: NextPage = () => {
   return (
     <Provider store = {store}>
     {/* <NFTProvider> */}
-      <NFTComponent id={Number(router.query.id)}/> 
+      <NFTComponent uri={router.query.id ? router.query.id?.toString() : ""}/> 
     {/* </NFTProvider> */}
     </Provider>
   )

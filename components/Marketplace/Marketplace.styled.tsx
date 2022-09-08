@@ -3,7 +3,7 @@ import colors from '../../styles/colors'
 import { Box2 } from '../../styles/Components.styled'
 
 export const MarketplaceContainer = styled.div`
-    margin-top: 13vh;
+    margin-top: 12vh;
     /* padding: 0% 2%; */
     display: flex;
     flex-direction: column;

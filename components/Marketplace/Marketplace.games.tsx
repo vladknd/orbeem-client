@@ -1,5 +1,5 @@
 import React from 'react'
-import { GAME, TAB } from '../../redux/Marketplace/Marketplace.interfaces'
+import { TAB } from '../../redux/Marketplace/Marketplace.interfaces'
 import { marketplaceActions } from '../../redux/Marketplace/Marketplace.slice'
 import { useAppDispatch } from '../../redux/reduxHooks'
 import { 
@@ -14,7 +14,8 @@ const MarketplaceGames = () => {
     <GamesContainer>
         <GameContainer clicky={true} img="dotaMarket.png"
           onClick={()=> {
-            dispatch(marketplaceActions.ChangedTab({tab: TAB.GAME, game: GAME.DOTA2, collection: null}))
+            // dispatch(marketplaceActions.ChangedTab({tab: TAB.GAME, game: "DOTA2", collection: null}))
+            dispatch(marketplaceActions.setTabGame("DOTA2"))
           }}
         />
         <GameContainer img="pubgMarket.png"/>

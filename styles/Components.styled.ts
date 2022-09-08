@@ -224,7 +224,7 @@ export const Text = styled.p`
 `
 
 
-export const Waves = styled(BaseDiv)`
+export const Waves = styled.div`
     margin-top: 200px;
     position: absolute;
     width: 100%;

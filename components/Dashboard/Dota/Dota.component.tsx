@@ -16,7 +16,8 @@ import {
   DotaHeader,
   DotaLogo,
   NFTInfo,
-  GameInfo
+  GameInfo,
+  SelectItem
 } from "./Dota.component.styled"
 import { Header } from "./Dota.runes.styled"
 //COMPONENTS______________________________________
@@ -25,7 +26,7 @@ import {
   GameData 
 } from "./Dota.runes"
 //REDUX___________________________________________
-import { profileActions } from "../../../redux/Profile/Profile.slice"
+import { dashboardActions } from "../../../redux/Dashboard/Dashboard.slice"
 //INTERFACES______________________________________
 import { INFT } from "../../../interfaces/nft.interfaces"
 import { URIs } from "../../../config"
@@ -40,7 +41,7 @@ const NFTBox = (props: INFTBox) => {
     <NFTBoxContainer  
       image={"https://"+props.nft.image.slice(0,59)+URIs.ipfsGateway+props.nft.image.slice(59)}
       onClick={()=> {
-        dispatch(profileActions.selectNFT(props.nft))
+        dispatch(dashboardActions.selectNFT(props.nft))
       }}
     />
   )
@@ -50,8 +51,12 @@ const NFTBox = (props: INFTBox) => {
 
 //DOTA-COMPONENT__________________________________________________________________________________________________
 const DotaComponent = () => {
-    const { error, items, loading, tab, selected } = useAppSelector(state => state.PROFILE)
-    const {user} = useUser()
+    const { selected } = useAppSelector(state => state.DASHBOARD)
+    const items = useAppSelector(state => state.DASHBOARD.items?.filter(
+      nft => nft.game.name == "DOTA2"
+    ))
+
+    // const {user} = useUser()
     return(
       <DotaContainer>
         <FirstColumn>
@@ -73,7 +78,14 @@ const DotaComponent = () => {
           <Header>
             NFT-DATA
           </Header>
-          <RuneData/>
+          { selected ?
+            "power" in selected ? 
+              <RuneData/> : null
+          : <SelectItem>
+              <Image src="/selectItem.svg" width={400} height={400}/>
+            </SelectItem>
+        }
+          
         </NFTInfo>
 
         <GameInfo>
