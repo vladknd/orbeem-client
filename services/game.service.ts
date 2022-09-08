@@ -1,6 +1,8 @@
 import { URIs } from "../config";
 
-export const claimTokens = async (tokenID: number, publicAddress: string) => {
+export const claimTokens = async (publicAddress: string,nftID: string) => {
+    console.log("CLAIM-TOKENS SERVICE INITIATED:", publicAddress, nftID);
+    
     const res = await fetch(`${URIs.apiURI}/graphql`, {
         method: "POST",
         headers: {
@@ -8,8 +10,8 @@ export const claimTokens = async (tokenID: number, publicAddress: string) => {
         },
         body: JSON.stringify({
             query:`
-                query ClaimTokens($publicAddress: String!, $tokenId: Int!) {
-                    claimTokens(publicAddress: $publicAddress, tokenID: $tokenId) {
+                query ClaimTokens($publicAddress: String!, $nftID: String!) {
+                    claimTokens(publicAddress: $publicAddress, nftID: $nftID) {
                         __typename
                         ... on ClaimSuccess {
                             success {
@@ -27,19 +29,19 @@ export const claimTokens = async (tokenID: number, publicAddress: string) => {
             `,
             variables: {
                 publicAddress,
-                tokenId: Number(tokenID)
+                nftID
             }
         }),
         
     })
     const resData = await res.json()
-
-    return resData
     console.log("MATCH RESULTS", resData);
+    return resData
+    
     
 }
 
-export const mintTokens = async (tokenID: number, publicAddress: string) => {
+export const mintTokens = async (nftID: string, publicAddress: string) => {
     const res = await fetch(`${URIs.apiURI}/graphql`, {
         method: "POST",
         headers: {
@@ -47,8 +49,8 @@ export const mintTokens = async (tokenID: number, publicAddress: string) => {
         },
         body: JSON.stringify({
             query:`
-                mutation MintTokens($publicAddress: String!, $tokenId: Int!) {
-                    mintTokens(publicAddress: $publicAddress, tokenID: $tokenId) {
+                mutation MintTokens($publicAddress: String!, $nftID: String!) {
+                    mintTokens(publicAddress: $publicAddress, nftID: $nftID) {
                     __typename
                     ... on MintSuccess {
                         success {
@@ -66,7 +68,7 @@ export const mintTokens = async (tokenID: number, publicAddress: string) => {
             `,
             variables: {
                 publicAddress,
-                tokenId: Number(tokenID)
+                nftID
             }
         }),
         

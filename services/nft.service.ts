@@ -4,6 +4,7 @@ import { BigNumber, ethers } from 'ethers'
 //________________________LOCAL-IMPORTS___________________________
 //ABIs____________________________________________________________
 import NFTMarket from '../ABI/NFTMarket.json'
+import Aegis from '../ABI/Aegis.json'
 import Rune from '../ABI/Rune.json'
 import ORB from '../ABI/ORB.json'
 //CONFIGS_________________________________________________________
@@ -12,11 +13,11 @@ import {
     contracts 
 } from '../config'
 //INTERFACES______________________________________________________
-import { INFT, INFTData } from '../interfaces/nft.interfaces'
+import { INFT, NFT } from '../interfaces/nft.interfaces'
 //CONTRACTS_______________________________________________________
 
 
-export const buyNFT = async (_itemID: number, _price: string) => {
+export const buyNFT = async (_itemID: number, _nftContract: string, _price: string) => {
     if(typeof window.ethereum !== "undefined"){
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
@@ -27,8 +28,8 @@ export const buyNFT = async (_itemID: number, _price: string) => {
             gasLimit: 3000000,
             value: ethers.utils.parseUnits(_price, 'wei')
         };    
-                
-        const tx = await market.createMarketSale(contracts.nftContract, _itemID, options)
+        
+        const tx = await market.createMarketSale(_nftContract, _itemID, options)
         const txRes = await tx.wait()
         
         console.log("TX", tx)
@@ -36,21 +37,31 @@ export const buyNFT = async (_itemID: number, _price: string) => {
     }
 }
 
-export const sellNFT = async (_tokenID: number, _price: string) => {
+export const sellNFT = async (_tokenID: number, _nftContract: string, _price: string) => {
     if(typeof window.ethereum !== "undefined"){
+        console.log({_tokenID, _nftContract, _price});
+        
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
                 
         const market = new ethers.Contract(contracts.marketContract, NFTMarket, signer)
-        const rune = new ethers.Contract(contracts.nftContract, Rune, signer)
+        switch (_nftContract) {
+            case contracts.aegisContract:
+                const aegis = new ethers.Contract(_nftContract, Aegis, signer)
+                await aegis.approve(contracts.marketContract, _tokenID)
+            case contracts.runeContract:
+                const creeper = new ethers.Contract(_nftContract, Rune, signer)
+                await creeper.approve(contracts.marketContract, _tokenID)
+        }
+        
         const options = {
             gasLimit: 300000,
             value: ethers.utils.parseUnits('50000000000000000', 'wei')
         };    
                 
-        await rune.approve(contracts.marketContract, _tokenID)
+        
         const weiPrice = ethers.utils.parseEther(_price)
-        const tx = await market.createMarketItem(contracts.nftContract, _tokenID, weiPrice, options)
+        const tx = await market.createMarketItem(_nftContract, _tokenID, weiPrice, options)
         const txRes = await tx.wait()
         
         console.log("TX", tx)
@@ -58,43 +69,64 @@ export const sellNFT = async (_tokenID: number, _price: string) => {
     }
 }
 
-export const getMyNFTs = async (publicAddress: string, _offset: number): Promise<Array<INFT> | null> => {
+export const getMyNFTs = async (_publicAddress: string, _offset: number): Promise<Array<NFT> | null> => {
     console.log("GET-MY-NFTs PROCEDURE INITIATED..")
   
-    const address = publicAddress.toString()
-    console.log("GET-MY-NFTs PROCEDURE: CURRENT ADDRESS", publicAddress);
+    const address = _publicAddress.toString()
+    console.log("GET-MY-NFTs PROCEDURE: CURRENT ADDRESS", _publicAddress);
 
-    console.log("LOGIN PROCEDURE: CHECK USER REQUEST")
+    // console.log("LOGIN PROCEDURE: CHECK USER REQUEST")
     const getMyNFTsRes = await fetch(`${URIs.subgraphURI}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({
+        body: JSON.stringify({  
             query:`
-                {
-                    runes(first: 50, skip: ${_offset}, where: {owner: "${address}"}) {
-                        tokenId
-                        tokenURI
-                        level
-                        power
+                query Nfts($where: NFT_filter, $first: Int) {
+                    nfts(where: $where, first: $first) {
+                    id
+                    tokenId
+                    itemId
+                    level
+                    price
+                    owner
+                    nftAddress
+                    image
+                    __typename
+                    game {
+                        name
+                    }
+                    collection {
+                        name
+                    }
+                    owner
+                    ...on Aegis {
+                        power 
                         durability
                         intelligence
-                        price
-                        name 
-                        description
-                        image
-                        
+
+                        basePower
+                        baseDurability
+                        baseIntelligence
+                    }
                     }
                 }
-            `
+            `,
+            variables: {
+                "where": {
+                    "owner": _publicAddress
+                },
+                "first": 5
+            }
         })
     })
 
     const getMyNFTsData = await getMyNFTsRes.json()
+    console.log("GET-MY-NFTs PROCEDURE: DATA", getMyNFTsData);
     console.log(getMyNFTsData)
  
-    return getMyNFTsData.data.runes
+    return getMyNFTsData.data.nfts
 }
 
 export const getNFTs = async (): Promise<Array<INFT>> => {
@@ -131,27 +163,14 @@ export const getNFTs = async (): Promise<Array<INFT>> => {
     const runes = getNFTsData.data.runes
     console.log("GET-NFTs-RUNES", runes);
 
-    // for (let i = 0; i < runes.length; i++){
-    //     console.log("LOOP", runes[i].tokenURI);
-        
-    //     const res = await fetch(runes[i].tokenURI)
-    //     const metadata = await res.json()
-    //     console.log("METADATA", metadata)
-
-    //     runes[i] = {...runes[i], 
-    //         name: metadata.name,
-    //         description: metadata.description,
-    //         imageURI: metadata.image
-    //     }
-    // }
-
     console.log("RUNES",runes)
     return runes
 }
 
-export const getNFTData = async (id: number): Promise<INFTData> => {
+export const getNFTData = async (_tokenId: string, _nftAddress: string): Promise<NFT> => {
     console.log("GET-NFT-DATA PROCEDURE INITIATED..")
-
+    console.log({_tokenId, _nftAddress});
+    
     console.log("GET-NFT-DATA PROCEDURE: ")
     const getNFTDataRes = await fetch(`${URIs.subgraphURI}`, {
         method: "POST",
@@ -160,53 +179,51 @@ export const getNFTData = async (id: number): Promise<INFTData> => {
         },
         body: JSON.stringify({
             query:`
-                {
-                    runes(where: {tokenId: ${id}} ) {
-                        tokenId
-                        itemId
-                        tokenURI
-                        sold
-                        owner
-                        level
+            query Nfts($where: NFT_filter) {
+                nfts(where: $where) {
+                    __typename
+                    tokenId             
+                    nftAddress
+                    itemId
+                    sold
+                    owner
+                    level
+                    ...on Aegis {
                         basePower
                         baseDurability
                         baseIntelligence
                         power 
                         durability
                         intelligence
-                        price
-
-                        image 
-                        name 
-                        description
                     }
+                    price
+                    image 
+                    name 
+                    description
                 }
-            `
+            }
+            `,
+            variables: {
+                "where": {
+                    "nftAddress": _nftAddress,
+                    "tokenId": _tokenId,
+                }
+            }
         })
     })
 
     const getNFTData = await getNFTDataRes.json()
-
-    // let NFT = getNFTData.data?.runes[0]
-    // const res = await fetch(NFT?.tokenURI)
-    // const metadata = await res.json()
-
-    // NFT = {...NFT, 
-    //     name: metadata.name,
-    //     description: metadata.description,
-    //     image: metadata.image
-    // }
     console.log("NFTDATA", getNFTData)
 
-    return getNFTData.data.runes[0]
+    return getNFTData.data.nfts[0]
 }
 
-export const levelUp = async (_tokenID: number) => {
+export const levelAegis = async (_tokenID: number) => {
     if(typeof window.ethereum !== "undefined"){
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
                 
-        const rune = new ethers.Contract(contracts.nftContract, Rune, signer)
+        const rune = new ethers.Contract(contracts.aegisContract, Rune, signer)
         const orb = new ethers.Contract(contracts.orbContract, ORB, signer)
         const options = {
             gasLimit: 3000000,
@@ -220,7 +237,7 @@ export const levelUp = async (_tokenID: number) => {
     }
 }
 
-export const upgradeNFT = async (
+export const upgradeAegis = async (
     _tokenID: number, 
     _newPower: number,
     _newDurability: number,
@@ -230,13 +247,12 @@ export const upgradeNFT = async (
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner()
                 
-        const rune = new ethers.Contract(contracts.nftContract, Rune, signer)
-
+        const aegis = new ethers.Contract(contracts.aegisContract, Aegis, signer)
         const options = {
             gasLimit: 3000000,
         };    
                 
-        const tx = await rune.updateAttributes(
+        const tx = await aegis.updateAttributes(
             _tokenID, 
             _newPower,
             _newDurability,

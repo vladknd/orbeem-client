@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { NFT } from '../../interfaces/nft.interfaces'
+import { INFTInitState } from './NFT.interfaces'
 //IMPORT-INTERFACES:__________________________
-import { INFTData, INFTInitState, INFTState } from '../NFT.interfaces'
+
 
 
 const initState: INFTInitState = {
@@ -17,7 +19,7 @@ const nftSlice = createSlice({
         nftFetching(state: INFTInitState) {
             state.loading = true
         },
-        nftFetchingSuccess(state: INFTInitState, action: PayloadAction<INFTData>) {
+        nftFetchingSuccess(state: INFTInitState, action: PayloadAction<NFT>) {
             state.loading = false
             state.item = action.payload
         },
@@ -29,7 +31,7 @@ const nftSlice = createSlice({
             state.upgrading = !state.upgrading
         },
         nftIncrPower(state: INFTInitState) {
-            if(state.item){
+            if(state.item && "power" in state.item ){
                 const total = state.item.power + state.item.durability + state.item.intelligence
                 const baseTotal = state.item.basePower + state.item.baseDurability + state.item.baseIntelligence
                 const allowance = state.item.level*6 + baseTotal
@@ -38,7 +40,7 @@ const nftSlice = createSlice({
             } 
         },
         nftIncrDurability(state: INFTInitState) {
-            if(state.item){
+            if(state.item && "power" in state.item ){
                 const total = state.item.power + state.item.durability + state.item.intelligence
                 const baseTotal = state.item.basePower + state.item.baseDurability + state.item.baseIntelligence
                 const allowance = state.item.level*6 + baseTotal
@@ -49,7 +51,7 @@ const nftSlice = createSlice({
             } 
         },
         nftIncrIntelligence(state: INFTInitState) {
-            if(state.item){
+            if(state.item && "power" in state.item ){
                 const total = state.item.power + state.item.durability + state.item.intelligence
                 const baseTotal = state.item.basePower + state.item.baseDurability + state.item.baseIntelligence
                 const allowance = state.item.level*6 + baseTotal

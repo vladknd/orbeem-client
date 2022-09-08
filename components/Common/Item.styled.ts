@@ -67,8 +67,9 @@ export const ItemContainer = styled.div`
 `
 
 export const ItemText = styled(Text)`
+    line-height: 250%;
     @media ${devices.laptopXS} {
-        font-size: 12px;
+        font-size: 10px;
     }
     @media ${devices.laptopS} {
         /* font-size: 15px; */

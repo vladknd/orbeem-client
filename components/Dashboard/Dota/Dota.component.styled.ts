@@ -116,7 +116,7 @@ interface GameContainer {
     opacity?: number;
 }
 export const DotaContainer = styled(Box2)`
-    margin: 1%;
+    /* margin: 1%; */
     padding: 2% 2%;
 
     width: 100%;
@@ -240,8 +240,8 @@ export const SelectItem = styled.div`
     justify-content: center;
     align-items: center;
 
-    width: 100%;
-    height: 100%;
+    width: 500px;
+    height: 500px;
 `
 
 export const NoData = styled.div`

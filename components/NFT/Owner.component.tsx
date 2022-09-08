@@ -3,19 +3,21 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button1 } from "../../styles/Components.styled"
 import {Row, OwnerContainer, AmountContainer, Input, ButtonContainer, ImageContainer, SellButton } from "./Owner.styled"
-import { levelUp, sellNFT, upgradeNFT } from "../../services/nft.service"
+import { levelAegis, sellNFT, upgradeAegis } from "../../services/nft.service"
 // import { useNFT } from "./useNFT"
 import { useAppDispatch, useAppSelector } from "../../redux/reduxHooks"
 import { nftActions } from "../../redux/NFT/NFT.slice"
 
 const Owner = () => {
     const [price, setPrice] = useState<string>("0")
-    const NFT = useAppSelector(state => state.NFT)
-    const Item = NFT.item
+    const [loading, setLoading] = useState<boolean>(false)
+    const upgrading = useAppSelector(state => state.NFT.upgrading)
+    const Item = useAppSelector(state => state.NFT.item)
+    // const Item = NFT.item
     const dispatch = useAppDispatch()
     return (
       <OwnerContainer>
-        {NFT && Item ? 
+        { Item ? 
         <Row mt={10} mb={10}>
           <ButtonContainer style={{cursor:"pointer"}} mr={20}>
             <Link href="/">
@@ -25,7 +27,7 @@ const Owner = () => {
           
           <ButtonContainer style={{cursor:"pointer"}} 
             onClick={() => {
-              levelUp(Item.tokenId)
+              levelAegis(Item.tokenId)
             }}
           >
             <div>
@@ -39,7 +41,7 @@ const Owner = () => {
             }}
           >
             <Image 
-              src={NFT.upgrading ? "/upgradeTrue.svg" : "/upgrade.svg"} 
+              src={upgrading ? "/upgradeTrue.svg" : "/upgrade.svg"} 
               width={85} 
               height={85}
             />
@@ -47,8 +49,8 @@ const Owner = () => {
         </Row> 
         : null}
         
-        {NFT && Item ? 
-          NFT.upgrading ?
+        {Item && "power" in Item ? 
+          upgrading ?
             <Button1 
               mb={10}
               width={150} 
@@ -59,7 +61,7 @@ const Owner = () => {
                   Item.durability,
                   Item.intelligence);
                 
-                upgradeNFT(
+                upgradeAegis(
                   Item.tokenId,
                   Item.power,
                   Item.durability,
@@ -85,7 +87,7 @@ const Owner = () => {
               </AmountContainer>
 
               <SellButton width={130} height={30}
-                onClick={() => sellNFT(Item.tokenId, price)}
+                onClick={() => sellNFT(Item.tokenId, Item.nftAddress, price)}
               >
                 SELL
               </SellButton>

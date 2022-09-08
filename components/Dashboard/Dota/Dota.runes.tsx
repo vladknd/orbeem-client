@@ -14,8 +14,8 @@ import {
   Mint, 
   Minter, 
   NFTErrorContainer, 
-  RuneContainer, 
-  RuneImage, 
+  AegisContainer, 
+  AegisImage, 
   Success, 
   SuccessContainer, 
   SuccessDone, 
@@ -46,33 +46,25 @@ import { useUser } from '../../../services/user.service'
 
 export const RuneData = () => {
   const dispatch = useAppDispatch()
-  const { selected } = useAppSelector(state => state.PROFILE)
+  const { selected } = useAppSelector(state => state.DASHBOARD)
 
   const { user } = useUser()
 
-  if(!user) return <LoadingComponent/>
-  if(!selected)  {
+  if(!user || !selected) return <LoadingComponent/>
+  if("power" in selected){ 
     return (
-      <SelectItem>
-        <Image src="/selectItem.svg" width={400} height={400}/>
-      </SelectItem>
-    )
-  } 
-  return (
-    <RuneContainer>
-        <RuneImage img={"https://"+selected.image.slice(0,59)+URIs.ipfsGateway+selected.image.slice(59)}>
-        </RuneImage>
+      <AegisContainer>
+        <AegisImage img={"https://"+selected.image.slice(0,59)+URIs.ipfsGateway+selected.image.slice(59)}>
+        </AegisImage>
         <Attributes>
           <InfoFieldComponent
-            margin="5px 0px 10px 0px"
             width="90%"
             height="33%"
             image="/crystal.svg" 
             attribute="POWER" 
-            value={selected.power.toString()} 
+            value={selected.power.toString()}  
           />
           <InfoFieldComponent
-            margin="5px 0px 10px 0px"
             width="90%"
             height="33%"
             image="/durability.svg" 
@@ -81,7 +73,6 @@ export const RuneData = () => {
             
           />
           <InfoFieldComponent
-            margin="5px 0px 10px 0px"
             width="90%"
             height="33%"
             image="/durability.svg" 
@@ -91,15 +82,19 @@ export const RuneData = () => {
         </Attributes>
         <Claim
           onClick={()=> {
-            dispatch(getMatchResults(selected.tokenId, user.publicAddress))
+            dispatch(getMatchResults(selected.id, user.publicAddress))
           }}
         >CLAIM</Claim>
-    </RuneContainer>
-  )
+    </AegisContainer>
+  )} else {
+    return (
+      <div></div>
+    )
+  }
 }
 
 export const GameData = () => {
-  const { selected } = useAppSelector(state => state.PROFILE)
+  const { selected } = useAppSelector(state => state.DASHBOARD)
   const { 
     match, 
     loading, 
@@ -184,7 +179,7 @@ export const GameData = () => {
         <Calculator/>
         <Mint
           onClick={async ()=> {
-            await dispatch(mintTokensThunk(selected.tokenId, user.publicAddress))
+            await dispatch(mintTokensThunk(selected.id, user.publicAddress))
           }}
         >MINT</Mint>
       </Minter>

@@ -29,7 +29,7 @@ const LootboxContainer = styled(Box1)`
 `
 
 const ImageContainer = styled.div`
-    margin-top: 10%;
+    margin-top: 15%;
     
     display: flex;
     justify-content: center;

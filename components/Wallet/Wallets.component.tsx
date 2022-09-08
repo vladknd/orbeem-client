@@ -95,7 +95,7 @@ const InternalWallet = () => {
 const WalletComponent = () => {
   return (
     <WalletComponentContainer>
-      <TitleComponent title="WALLET" mb={20}/>
+      <TitleComponent title="WALLET"/>
       <WalletsContainer>
         <InternalWallet/>
         <ExternalWallet/>

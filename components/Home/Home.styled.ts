@@ -3,6 +3,7 @@ import { Box1, Button1 } from '../../styles/Components.styled';
 import devices from '../../styles/devices';
 
 export const HomeContainer = styled.div`
+    
     width: 100%;
     height: 100%;
 
@@ -12,11 +13,12 @@ export const HomeContainer = styled.div`
 `
 
 export const UpsideContainer = styled.div`
-    padding-top: 80px; //PADDING FROM HEADER!
-
+    /* padding-top: 80px; //PADDING FROM HEADER! */
+    padding-top: 15vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: start;
 
     background-image: 
         linear-gradient(to right top, #3a1953, #33174e, #2c164a, #251445, #1f1240, #1e1543, #1c1746, #1a1a49, #1d2255, #1e2b61, #1f346d, #1e3d7a);
@@ -65,7 +67,7 @@ export const TapesContainer = styled.div`
 
     height: 600px;
 
-
+    filter: drop-shadow(0px 40px 40px rgba(0, 0, 0, 0.4));
     @media ${devices.laptopXS} {
         margin-top: 0%:
     }

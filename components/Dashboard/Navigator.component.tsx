@@ -28,12 +28,12 @@ import LoadingComponent from '../Loading/Loading.component'
 //SERVICES_______________________________________
 import { useUser } from '../../services/user.service'
 //REDUX___________________________________________
-import { profileActions } from '../../redux/Profile/Profile.slice'
+import { dashboardActions } from '../../redux/Dashboard/Dashboard.slice'
 import { 
     useAppDispatch, 
 } from '../../redux/reduxHooks'
 //INTERFACES______________________________________
-import { PROFILE_TAB } from '../../redux/NFT.interfaces'
+import { DASHBOARD_TAB } from '../../redux/Dashboard/Dashboard.interfaces'
 
 
 //NAVIGATOR-LINK___________________________________________________________________________________________________________
@@ -65,10 +65,10 @@ const SignedComponent = () => {
             </GlowContainer>
             <Links>
                     <NavigatorTab text="MY NFTS" onClick={()=> {
-                        dispatch(profileActions.setTab(PROFILE_TAB.MY_NFT))
+                        dispatch(dashboardActions.setTab(DASHBOARD_TAB.MY_NFT))
                     }}/>
                     <NavigatorTab text="MY ACCOUNTS" onClick={()=> {
-                        dispatch(profileActions.setTab(PROFILE_TAB.MY_GAMES))
+                        dispatch(dashboardActions.setTab(DASHBOARD_TAB.MY_GAMES))
                     }}/>
                 </Links>
         </SignedContainer>

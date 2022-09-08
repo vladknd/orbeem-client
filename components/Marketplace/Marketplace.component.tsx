@@ -7,7 +7,8 @@ import {
     MarketplaceContainer, 
     Market,  
     HeaderContainer,
-    CollectionContainer
+    CollectionContainer,
+    ContentContainer
 } from './Marketplace.styled'
 import { 
     Divider, 
@@ -17,38 +18,38 @@ import {
 //COMPONENTS______________________________________
 import NftsComponent from '../NFTs/Nfts.component'
 //REDUX___________________________________________
-import { fetchMarketNFT } from '../../redux/MarketNFT/MarketNFT.thunks'
+
 import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks'
+import TitleComponent from '../Common/Title.component'
+import MarketplaceGames from './Marketplace.games'
+import MarketplaceCollections from './Marketplace.collections'
+import { TAB } from '../../redux/Marketplace/Marketplace.interfaces'
+import MarketplaceNfts from './Marketplace.nfts'
+import LoadingComponent from '../Loading/Loading.component'
+import MarketplaceBreadcrumbs from './MarketplaceBreadcrumbs'
+import NftsSorting from './NFTs.sorting'
 
 
 //MARKETPLACE-COMPONENT:______________________________________________________________________________________________
 const MarketplaceComponent = () => {
   //REDUX____________________________________________________
-  const dispatch = useAppDispatch()
-  const { error, items, loading } = useAppSelector(state => state.MarketNFT)
-  useEffect(() => {
-    dispatch(fetchMarketNFT())
-  },[])
+  const { error, tab, loading, breadcrumbs} = useAppSelector(state => state.MARKETPLACE)
 
   return (
     <MarketplaceContainer>
-        <Illustration/>
-        <Divider/>
-        
-        <Market>
-            <Waves mt={150} height="600px"/>
-            <Divider mt="20px"/>
-                <HeaderContainer>
-                <GlowText>RUNE COLLECTION</GlowText>
-                </HeaderContainer>
-            <Divider mb="20px"/>
-            
-            <CollectionContainer>
-              {items ? <NftsComponent mode="marketplace" loading={loading} items={items} gridSize=" 1fr 1fr 1fr 1fr 1fr"/> : null}
-            </CollectionContainer>
-        </Market>
-        <Divider/>
-
+        <TitleComponent title={'MARKETPLACE'} 
+          leftComponent={MarketplaceBreadcrumbs}
+          rightComponent={tab === TAB.COLLECTION ? NftsSorting : undefined}
+        />
+        <ContentContainer>
+          {loading ? <LoadingComponent/> :null}
+          {
+            tab == TAB.GAMES ? <MarketplaceGames/> : 
+            tab == TAB.GAME ? <MarketplaceCollections/> : 
+            tab == TAB.COLLECTION ? <MarketplaceNfts/> : null
+          }
+          
+        </ContentContainer>
     </MarketplaceContainer>
   )
 }

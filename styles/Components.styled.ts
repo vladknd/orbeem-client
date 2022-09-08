@@ -115,6 +115,10 @@ interface IBaseDiv {
     pr?: string;
     pl?: string;
 
+   
+    clicky?: boolean;
+
+
 }
 export const BaseDiv = styled.div`
     /* display: flex; */
@@ -137,6 +141,14 @@ export const BaseDiv = styled.div`
     padding-left: ${(props: IBaseDiv) => props.pl || "0px"};   */
     
     padding: 5px;
+
+    cursor: ${(props: IBox2) => props.clicky ? "pointer" : null};
+    &:hover {
+        opacity: ${(props: IBox2) => props.clicky ? 0.8 : 1};
+    }
+    &:hover:active {
+        opacity: ${(props: IBox2) => props.clicky ? 0.9 : 1};
+    }
     
     
 `
@@ -212,7 +224,7 @@ export const Text = styled.p`
 `
 
 
-export const Waves = styled(BaseDiv)`
+export const Waves = styled.div`
     margin-top: 200px;
     position: absolute;
     width: 100%;

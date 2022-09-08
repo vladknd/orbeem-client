@@ -85,7 +85,7 @@ export const AccountContainer = styled.div`
     justify-content: start;
     align-items: center;
     
-    width: 1700px;
+    /* width: 1700px; */
     height: 40px;
     padding: 0px 15px;
     border-radius: 25px;
@@ -111,6 +111,7 @@ export const AccountContainer = styled.div`
 
     @media ${devices.laptopXS} {
         font-size: 13px;
+        
     }
     @media ${devices.laptopS} {
         font-size: 13px;
@@ -118,7 +119,7 @@ export const AccountContainer = styled.div`
     @media ${devices.laptopM} {
     }
     @media ${devices.laptopL} {
-
+        
     }
 `
 
