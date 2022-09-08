@@ -181,6 +181,7 @@ export const getNFTData = async (_tokenId: string, _nftAddress: string): Promise
             query:`
             query Nfts($where: NFT_filter) {
                 nfts(where: $where) {
+                    __typename
                     tokenId             
                     nftAddress
                     itemId

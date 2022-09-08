@@ -49,7 +49,7 @@ const Owner = () => {
         </Row> 
         : null}
         
-        {Item ? 
+        {Item && "power" in Item ? 
           upgrading ?
             <Button1 
               mb={10}
