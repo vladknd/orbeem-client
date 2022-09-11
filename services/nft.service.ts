@@ -117,7 +117,7 @@ export const getMyNFTs = async (_publicAddress: string, _offset: number): Promis
                 "where": {
                     "owner": _publicAddress
                 },
-                "first": 5
+                "first": 20
             }
         })
     })
