@@ -12,7 +12,7 @@ export const NavigatorContainer = styled.div`
     align-items: center;
 
     width: 100%;
-    height: 13vh;
+    height: 85%;
     /* max-height: ; */
 
     transition: 1s;
@@ -30,7 +30,7 @@ export const SignedContainer = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    height: 10%;
+    /* height: 5%; */
     width: 100%;
 `
 
