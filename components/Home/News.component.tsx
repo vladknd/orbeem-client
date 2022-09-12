@@ -1,6 +1,16 @@
 import Image from 'next/image'
 import React from 'react'
-import { NewsContainer, NewsDateText, NewsHeader, NewsItemButton, NewsItemContainer, NewsItemDate, NewsItemHeader, NewsItemImage, NewsItemText } from './News.styled'
+import { 
+    NewsContainer, 
+    NewsDateText, 
+    NewsHeader, 
+    NewsItemButton, 
+    NewsItemContainer, 
+    NewsItemDate, 
+    NewsItemHeader, 
+    NewsItemImage, 
+    NewsItemText 
+} from './News.styled'
 
 
 const NewsItem = () => {
@@ -12,11 +22,12 @@ const NewsItem = () => {
             </NewsItemHeader>
 
             <NewsItemText>
-                To Start earning rewards and buy Our nfts, <br/>
-                the players have to link their steam account <br/>
-                to orbeem ECosystem. This is done by minting <br/>
-                a unique avatar nft. please enter the following <br/>
-                data into the corresponding fields.
+                AEGIS - is the first ORBEEM NFT collection. It is inspired by Dota 2,<br/>
+                and shows the ultimate symbol of victory in the game - Aegis. <br/>
+                Each NFT in the collection has attributes which affect <br/>
+                the final reward you can get. Depending on the number<br/>
+                of kills, deaths, assists and your NFT attributes, <br/>
+                you will be able to get ORB tokens once every 24 hours. <br/>
             </NewsItemText>
             <NewsItemButton>
                 EXPLORE NOW

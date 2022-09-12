@@ -47,7 +47,7 @@ export const NewsItemHeader = styled(Text)`
 export const NewsItemText = styled(Text)`
     padding-top: 1%;
     padding-left: 10px;
-    font-size: 1.2em;
+    font-size: 1em;
     opacity: 0.6;
     
 `
