@@ -74,10 +74,9 @@ export const Button1 = styled(Button)`
 
 `
 export const Button2 = styled(Button)`
-    background: transparent;
-    color: white;
+    
 
-    border: 0.2px solid white;
+    
     padding: 10px 20px;
 
     font-family: Inter;
@@ -85,6 +84,12 @@ export const Button2 = styled(Button)`
     font-weight: 300;
     letter-spacing: 6px;
 
+    background: transparent;
+    color: white;
+
+    border: 0.1px solid white;
+    border-radius: 4px;
+    
     &:hover {
         opacity: 0.5;
         cursor: pointer;

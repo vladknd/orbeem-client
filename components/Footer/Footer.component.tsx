@@ -1,7 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { FooterContainer, IconContainer, LogoContainer, Rights, SocialMedias } from './Footer.styled'
+import { 
+    FooterContainer, 
+    FooterContent, 
+    FooterCopyrights, 
+    FooterLine,  
+    IconContainer, 
+    SocialMedias 
+} from './Footer.styled'
 import data from './Footer.data'
 
 interface IIcon {
@@ -21,20 +28,21 @@ const Icon = (props: IIcon) => {
 const FooterComponent = () => {
   return (
     <FooterContainer>
-        <LogoContainer>
-            <Image src="/logo_horizontal.svg" width={100} height={70}/>
-        </LogoContainer>
-
+        <FooterContent>
+            <Image src="/logo_vertical.svg"
+                width={100}
+                height={90}
+            />
+        </FooterContent>
+        <FooterLine/>
         <SocialMedias>
             {data.map((item,index) => {
                 return <Icon to={item.to} image={item.image} key={index}/>
             })}
         </SocialMedias>
-
-        <Rights>
-        <Image src="/rights.svg" width={220} height={50}/>
-        </Rights>
-        
+        <FooterCopyrights>
+            @Copyright. All Rights reserved
+        </FooterCopyrights>
     </FooterContainer>
   )
 }

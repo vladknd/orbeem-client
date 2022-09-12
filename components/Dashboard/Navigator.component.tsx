@@ -104,7 +104,11 @@ const NavigatorComponent = () => {
     
   if(!user) return <LoadingComponent/>
   return (
-    <NavigatorContainer>
+    <NavigatorContainer
+        style={{
+            height: user.verified ? "15%" : "85%"
+        }}
+    >
         { user.verified ? <SignedComponent/> : <UnsignedComponent/>}
     </NavigatorContainer>
   )

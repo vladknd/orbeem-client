@@ -26,6 +26,8 @@ import {
 
 import { Waves } from '../../styles/Components.styled'
 import { useWeb3 } from '../../services/web3.service'
+import NewsComponent from './News.component'
+import FooterComponent from '../Footer/Footer.component'
 
 //-----------------------------------------PANEL-COMPONENT:
 interface IPanelBox {
@@ -96,7 +98,11 @@ const HomeComponent = () => {
                         onClick={() => {
                             Router.push("marketplace")
                         }}
-                    src={authorized ? "/tapeDota.png" : "/tapeDotaMono.png"} width={850} height={170}/>
+                    src={ 
+                        authorized ? 
+                            "/tapeDota.png" : 
+                        "/tapeDotaMono.png"
+                        } width={850} height={170}/>
                 </Tape>
 
                 <Tape>
@@ -107,11 +113,13 @@ const HomeComponent = () => {
                 </Tape>
             </TapesContainer>
         </UpsideContainer>
+        <Divider mb="4%"/>
 
-        
-        {authorized ? <Divider/> : null}
+        <NewsComponent/>
+        {/* {authorized ? <Divider/> : null} */}
         {authorized ? <Panel/> : null}
-        {authorized ? <Divider/> : null}
+        <Divider mt="4%"/>
+        <FooterComponent/>
     </HomeContainer>
   )
 }

@@ -14,11 +14,12 @@ export const HomeContainer = styled.div`
 
 export const UpsideContainer = styled.div`
     /* padding-top: 80px; //PADDING FROM HEADER! */
-    padding-top: 15vh;
+    padding-top: 0vh;
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: start;
+    align-items: center;
 
     background-image: 
         linear-gradient(to right top, #3a1953, #33174e, #2c164a, #251445, #1f1240, #1e1543, #1c1746, #1a1a49, #1d2255, #1e2b61, #1f346d, #1e3d7a);
