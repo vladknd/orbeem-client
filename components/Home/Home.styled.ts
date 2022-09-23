@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Box1, Button1 } from '../../styles/Components.styled';
+import { BaseDiv, Box1, Button1, Text } from '../../styles/Components.styled';
 import devices from '../../styles/devices';
 
 export const HomeContainer = styled.div`
@@ -131,12 +131,22 @@ export const PanelBoxContainer = styled(Box1)`
 
     filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.6));
 `
+
 export const SignButton = styled(Button1)`
     margin-top: 10%;
     width: 220px;
     height: 60px;
     
 `
+
+export const PlayButton = styled(BaseDiv)`
+    margin-top: 10%;
+
+`
+export const PlayText = styled(Text)`
+    font-size: 15px;
+`
+
 export const Waves = styled.div`
     margin-top: 900px;
     position: absolute;

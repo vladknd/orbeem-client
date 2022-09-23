@@ -18,6 +18,8 @@ import {
     LogoContainer, 
     PanelBoxContainer, 
     PanelContainer, 
+    PlayButton, 
+    PlayText, 
     SignButton, 
     Tape, 
     TapesContainer, 
@@ -79,17 +81,24 @@ const HomeComponent = () => {
                 <Image src="/logo_vertical.svg" width={450} height={450}/>
                 {
                     authorized     
-                        ? null 
-                        : <SignButton
-                            onClick={async () => {
-                                await connectWeb3()
-                                
-                                console.log("AND NOW", chainId, publicAddress);
-                                await connect()
-                                
-                            }}
-                        >SIGN IN</SignButton>
+                    ? null 
+                    : <SignButton
+                        onClick={async () => {
+                            await connectWeb3()
+                            console.log("AND NOW", chainId, publicAddress);
+                            await connect()
+                        }}
+                    >SIGN IN</SignButton>
                 }
+                
+                <PlayButton clicky={true}
+                    onClick={()=> {
+                        Router.push("https://www.youtube.com/watch?v=gbp9AgEQ9vs")
+                    }}
+                >
+                    <Image src="/play.svg" width={100} height={100}/>
+                </PlayButton>
+                <PlayText>CLICK HERE</PlayText>
             </LogoContainer>
             
             <TapesContainer>
