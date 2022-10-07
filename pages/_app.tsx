@@ -13,6 +13,7 @@ import { UserProvider } from '../context/user.context'
 import { Web3Provider } from '../context/web3.context'
 //COMPONENTS_____________________________________________
 import Layout from '../components/Layout/Layout.component'
+import Head from 'next/head'
 
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -20,6 +21,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Web3Provider>
+      <Head>
+          <title>THE TITLE</title>
+          {/* <meta name="description" content="HI" /> */}
+          <meta name="description" content="P2E Platform." />
+      </Head>
       <UserProvider>
         <ApolloProvider client={graphClient}>
           <Layout>
