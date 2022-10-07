@@ -7,7 +7,6 @@ export const HomeContainer = styled.div`
     width: 100%;
     height: 100%;
 
-    /* background-image: url("/waves.svg"); */
     background-size: 900px 700px;
     /* opacity: 0.3; */
 `

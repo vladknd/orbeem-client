@@ -16,15 +16,6 @@ export const URIs = {
 //     mintGuardContract: "0x00f22E3763Ea38591CDFb5293c7eBd245549B750"
 // }
 
-//MAINNET
-// export const contracts = {
-//     nftContract: "0xca8FEA3c0336f6498cF3789194817F4042b9d742",
-//     marketContract: "0x807F71A876AE2656d0b0F464584F6F46829bBb7a",
-//     orbContract: "0x7cBF2774872DB1948341532Be903f507EE0BF3f9",
-//     mintGuardContract: "0xFa7Ef209cDd561043C84C021dDa8434514E6Fdf9"
-// }
-
-
 export const contracts = {
     aegisContract: "0x8338193E8d2481A7EdE6DAfb4d51E62b03Edd7F3",
     runeContract: "0xbcfA117dA5Fa8Dc2Fb13E7d94D1474229505aB4c",
