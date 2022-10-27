@@ -18,40 +18,29 @@ export const FieldContainer = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    width: ${(props: IFieldContainer) => props.width || "90%"};
-    /* width: 200px; */
-    /* width: 90%; */
-    height: ${(props: IFieldContainer) => props.height || "100%"};
+    width: ${(props: IFieldContainer) => props.width || "10vw"};
+    height: ${(props: IFieldContainer) => props.height || "1vh"};
 
-    border: 0.5px solid white;
-    border-radius: 4px;
-    /* @media ${devices.laptopXS} {
-        height: 30px;
-    }
-    @media ${devices.laptopS} {
-        /* width: 170px; */
-        height: 25px;
+    border: 0.5px solid #494949;
+    border-radius: 0.5vw;
+    
+    /* @media ${devices.laptopS} {
+        width: 80%;
+        height: 25%;
     }
     @media ${devices.laptopM} {
-        
-        height: 30px;
-    }
-    @media ${devices.laptopL} {
-        /* width: 300px; */
-        height: 34px;
-    }
-    @media ${devices.laptopXL} {
-        /* width: 260px; */
-        height: 30px;
-    }
-    @media ${devices.laptopXL} {
-        /* width: 330px; */
+        width: 80%;
         height: 35px;
     }
-    @media ${devices.laptopXXL} {
-        /* width: 380px; */
-        height: 40px;
+    @media ${devices.laptopL} {
+        width: 80%;
+        height: 45px;
+    }
+    @media ${devices.laptopXL} {
+        width: 80%;
+        height: 50px;
     } */
+   
 `
 
 export const Incrementer = styled.button`
@@ -84,45 +73,11 @@ export const SideContainer = styled.div`
 `
 
 export const AttributeText = styled(Text)`
-    @media ${devices.laptopXS} {
-        font-size: 10px;
-    }
-    @media ${devices.laptopS} {
-        font-size: 11px;
-    }
-    @media ${devices.laptopM} {
-        font-size: 10px;
-    }
-    @media ${devices.laptopL} {
-        font-size: 12px;
-    }
-    @media ${devices.laptopXL} {
-        font-size: 14px;
-    }
-    @media ${devices.laptopXXL} {
-        font-size: 15px;
-    }
+    font-size: 0.8vw;
+
 `
 
 export const AttributeValue = styled(Text)`
-    padding-right: 2%;
+    font-size: 0.8vw;
 
-    @media ${devices.laptopXS} {
-        font-size: 10px;
-    }
-    @media ${devices.laptopS} {
-        font-size: 11px;
-    }
-    @media ${devices.laptopM} {
-        font-size: 10px;
-    }
-    @media ${devices.laptopL} {
-        font-size: 12px;
-    }
-    @media ${devices.laptopXL} {
-        font-size: 14px;
-    }
-    @media ${devices.laptopXXL} {
-        font-size: 15px;
-    }
 `

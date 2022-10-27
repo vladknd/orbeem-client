@@ -10,7 +10,10 @@ import {
   Text 
 } from '../../styles/Components.styled'
 import { 
+  AegisCollectionImage,
+  AttributesContainer,
   BuyButton,
+  LevelHeader,
   MetadataContainer,
   MetadataHeader,
   NFTBadge,
@@ -34,6 +37,8 @@ import {
 } from '../../services/nft.service'
 import { useWeb3 } from '../../services/web3.service'
 import { URIs } from '../../config'
+import { AegisImage } from '../Home/News.styled'
+import Image from 'next/image'
 
 
 
@@ -65,42 +70,48 @@ const NFTComponent = (props: INFTComponent) => {
         <NFTBadge ml={30} mb={30} >
            <NFTId>{nft.tokenId}</NFTId>
 
-            <NFTImage image={"https://"+nft.image.slice(0,59)+URIs.ipfsGateway+nft.image.slice(59)}/>
+            <NFTImage>
+                <Image src={"https://"+nft.image.slice(0,59)+URIs.ipfsGateway+nft.image.slice(59)}
+                  layout="fill"
+                />
+            </NFTImage>
 
-            <GlowText>LEVEL: {nft.level}</GlowText>
+            <LevelHeader>
+              LEVEL {nft.level}
+            </LevelHeader>
             {"power" in nft ?
-            <>
-            <InfoFieldComponent 
-              width="90%"
-              height="90%"
-              margin="0px 0px 5px 0px"
-              image="/crystal.svg" 
-              attribute="POWER" 
-              value={nft.power.toString()} 
-              incrementAction={nftActions.nftIncrPower}
-            />
-            <InfoFieldComponent 
-              width="90%"
-              height="90%"
-              margin="0px 0px 5px 0px"
-              image="/durability.svg" 
-              attribute="DURABILITY" 
-              value={nft.durability.toString()}
-              incrementAction={nftActions.nftIncrDurability}
-            />
-            <InfoFieldComponent 
-              width="90%"
-              height="90%"
-              margin="0px 0px 1px 0px"
-              image="/durability.svg" 
-              attribute="INTELLIGENCE" 
-              value={nft.intelligence.toString()}
-              incrementAction={nftActions.nftIncrIntelligence}
-            />
-            </>
-             : null }
-            {
-              nft.owner.toLowerCase() === publicAddress.toLowerCase() 
+              <AttributesContainer>
+                <InfoFieldComponent 
+                  width="16vw"
+                  height="5vh"
+                  margin="0px 0px 10px 0px"
+                  image="/crystal.svg" 
+                  attribute="POWER" 
+                  value={nft.power.toString()} 
+                  incrementAction={nftActions.nftIncrPower}
+                />
+                <InfoFieldComponent 
+                  width="16vw"
+                  height="5vh"
+                  margin="0px 0px 10px 0px"
+                  image="/durability.svg" 
+                  attribute="DURABILITY" 
+                  value={nft.durability.toString()}
+                  incrementAction={nftActions.nftIncrDurability}
+                />
+                <InfoFieldComponent 
+                  width="16vw"
+                  height="5vh"
+                  margin="0px 0px 10px 0px"
+                  image="/durability.svg" 
+                  attribute="INTELLIGENCE" 
+                  value={nft.intelligence.toString()}
+                  incrementAction={nftActions.nftIncrIntelligence}
+                />
+              </AttributesContainer>
+            : null }
+
+            {nft.owner.toLowerCase() === publicAddress.toLowerCase() 
               ? <Owner/>
               : nft.owner === "0x0000000000000000000000000000000000000000" 
                 ? <BuyButton width={200} height={50} mt={40} mb={20}
@@ -111,12 +122,13 @@ const NFTComponent = (props: INFTComponent) => {
                   </BuyButton> 
                 : null
             } 
-        </NFTBadge> 
+      </NFTBadge> 
 
-        <MetadataContainer >
-          <MetadataHeader>METADATA</MetadataHeader>
-          {nft && <Text size={20}>NAME: {nft.name}</Text>} 
-          { <Text m="10px 0px 0px 0px" size={20}>DESCRIPTION: {nft.description}</Text> }
+        <MetadataContainer>
+          <MetadataHeader>AEGIS COLLECTION</MetadataHeader>
+          { <Text m="10px 0px 0px 0px" >DESCRIPTION: {nft.description}</Text> }
+          <Text m="10px 0px 0px 0px">FUNCTIONALITY: {nft.description}</Text>
+          <AegisCollectionImage/>
         </MetadataContainer>
         </>
        : <LoadingpageComponent/>} 

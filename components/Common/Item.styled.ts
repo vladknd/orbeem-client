@@ -48,10 +48,6 @@ export const ItemContainer = styled.div`
         }
     }
 
-    @media ${devices.laptopXS} {
-        width: 140px;
-        height: 140px;
-    }
     @media ${devices.laptopS} {
         width: 140px;
         height: 140px;
@@ -68,16 +64,14 @@ export const ItemContainer = styled.div`
 
 export const ItemText = styled(Text)`
     line-height: 250%;
-    @media ${devices.laptopXS} {
-        font-size: 10px;
-    }
-    @media ${devices.laptopS} {
-        /* font-size: 15px; */
+    font-size: 0.6vw;
+    /* @media ${devices.laptopS} {
+        font-size: 15px;
     }
     @media ${devices.laptopM} {
-        /* font-size: 10px; */
+        font-size: 10px;
     }
     @media ${devices.laptopL} {
-        /* font-size: 10px; */
-    }
+        font-size: 10px;
+    } */
 `

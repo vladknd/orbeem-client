@@ -10,7 +10,7 @@ interface DividerProps {
 }
 export const Divider = styled.div`
     width: 100%;
-    height: 2px;
+    height: 1px;
     background: 
         linear-gradient(90deg, rgba(255, 187, 0, 0) 0%, #FFBB00 50.02%, rgba(255, 187, 0, 0) 100%);
 
@@ -54,7 +54,7 @@ export const Button1 = styled(Button)`
     color: white;
     background: rgba(0,0,0,0.1);
     z-index: 1;
-    border-radius: 15px;
+    border-radius: 1vw;
     border: 0.5px solid;
     border-color: #4F2EAE;
     //TO-DO: ADD GRADIENT BORDERS!
@@ -218,14 +218,14 @@ export const GlowText = styled.p`
 export const Text = styled.p`
     font-family: ${(props: TextProps) => props.font || "Inter"};
     font-weight: ${(props: TextProps) => props.bold ? "bold" : "300"};
-    font-size: ${(props: TextProps) => props.size ? `${props.size}px` : "80px"};
+    font-size: ${(props: TextProps) => props.size ? `${props.size}px` : "1.1vw"};
     letter-spacing: 3px;    
     color: white;
     opacity: ${(props: TextProps) => props.opacity || 1};
      
     margin: ${(props: TextProps) => props.m || 0};
     padding: ${(props: TextProps) => props.p || 0};
-    line-height: ${(props: TextProps) => props.lh || "35px"}; 
+    line-height: ${(props: TextProps) => props.lh || "2vw"}; 
 `
 
 
@@ -240,9 +240,6 @@ export const Waves = styled.div`
     background-size: contain;
     opacity: 0.3;
 
-    @media ${devices.laptopXS} {
-        height: 330px;
-    }
     @media ${devices.laptopS} {
         height: 300px;
     }

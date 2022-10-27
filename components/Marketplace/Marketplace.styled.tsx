@@ -4,14 +4,14 @@ import { Box2 } from '../../styles/Components.styled'
 
 export const MarketplaceContainer = styled.div`
     margin-top: 12vh;
-    /* padding: 0% 2%; */
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: start;
 
     width: 100%;
-    height: 100%;
+    height: 87vh;
 `
 
 export const ContentContainer = styled(Box2)`
@@ -19,7 +19,7 @@ export const ContentContainer = styled(Box2)`
     margin-left: 2%;
     margin-right: 2%;
     width: 98%;
-    height: 80%;
+    height: 70vh;
 `
 
 export const Illustration = styled.div`

@@ -4,9 +4,10 @@ import { Button1, GlowText, Text } from "../../styles/Components.styled";
 import devices from "../../styles/devices";
 
 export const NavigatorHeader = styled(GlowText)`
-    font-size: 35px;
+    font-size: 2vw;
 `
 export const NavigatorContainer = styled.div`
+    margin-top: 1vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,9 +74,6 @@ export const UsernameContainer = styled.div`
 
     border-radius: 20px;
 
-    @media ${devices.laptopXS} {
-        font-size: 13px;
-    }
     @media ${devices.laptopS} {
         font-size: 13px;
     }
@@ -92,7 +90,7 @@ export const UnsignedContainer = styled.div`
     align-items: center;
     justify-content: center;
     
-    height: 100%;
+    height: 10vh;
     width: 100%;
 
 `
@@ -117,9 +115,6 @@ export const LinkContainer = styled.div`
         -webkit-text-fill-color: transparent;
     }
 
-    @media ${devices.laptopXS} {
-        font-size: 13px;
-    }
     @media ${devices.laptopS} {
         font-size: 15px;
     }
@@ -150,9 +145,7 @@ export const VerifyText = styled(Text)`
     font-family: Inter;
     font-weight: 200;
     opacity: 0.8;
-    @media ${devices.laptopXS} {
-        font-size: 13px;
-    }
+
     @media ${devices.laptopS} {
         font-size: 15px;
     }

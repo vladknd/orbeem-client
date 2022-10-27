@@ -19,7 +19,7 @@ export const SortingText = styled(Text)`
     width: 100%;
     height: 100%;
 
-    font-size: 18px;
+    font-size: 1vw;
     font-weight: 400;
 `
 
@@ -36,7 +36,7 @@ export const SortingItem = styled(Text)`
     width: 100%;
     height: 100%;
 
-    font-size: 18px;
+    font-size: 1vw;
     font-weight: 400;
 
     background: ${(props: ISortingItem) => props.active ? 

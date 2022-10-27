@@ -17,7 +17,7 @@ interface IIcon {
 }
 const Icon = (props: IIcon) => {
     return (
-        <IconContainer>
+        <IconContainer clicky={true}>
             <Link href={props.to}>
                 <Image src={props.image} width={30} height={30}/>
             </Link>

@@ -4,7 +4,7 @@ import devices from '../../styles/devices'
 
 export const WalletComponentContainer = styled.div`
     margin-top: 12vh;
-    height: 100%;
+    height: 80vh;
     /* margin-bottom: 30px; */
 `
 export const WalletsContainer = styled.div`
@@ -15,16 +15,17 @@ export const WalletsContainer = styled.div`
     flex-direction: row;
     justify-content: space-around;
 
-    width: 100%;
-    height: 80%;
+    /* width: 100vw; */
+    /* height: 100%; */
 
 `
 export const WalletHeader = styled(GlowText)`
-
+    font-size: 1.5vw;
 `
 export const TransferButton = styled(Button1)`
-    width: 40%;
-    height: 10%;
+    font-size: 1vw;
+    width: 10vw;
+    height: 6vh;
 `
 
 export const WalletContainer = styled(Box2)`
@@ -33,8 +34,8 @@ export const WalletContainer = styled(Box2)`
     align-items: center;
     justify-content: start;
 
-    width: 30%;
-    height: 65vh;
+    width: 30vw;
+    height: 70vh;
 `
 
 export const WalletButtons = styled.div`
@@ -54,29 +55,22 @@ export const ButtonContainer = styled.div`
     }
 `
 
-export const InternalImage = styled.div`    
+export const InternalImage = styled.div`   
+    position: relative;
     margin-top: 5%;
-    height: 48%;
+
+
+    height: 30vh;
+    width: 20vw;
 `
 
 export const ExternalImage = styled.div`
+    position: relative;
     margin-top: 4%;
-    height: 58%;
 
-    @media ${devices.laptopXS}{
-        /* width:  */
-        height: 58%;
-    }
-    @media ${devices.laptopS}{
-        /* width:  */
-        height: 58%;
-    }
-    @media ${devices.laptopM}{
-        /* width:  */
-        height: 50%;
-    }
-    @media ${devices.laptopL}{
-        /* width:  */
-        height: 47%;
-    }
+    width: 20vw;
+    height: 30vh;
+
 `
+
+// export const 

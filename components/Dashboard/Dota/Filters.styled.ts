@@ -9,7 +9,7 @@ export const ComponentContainer = styled(Box1)`
     justify-content: start;
     align-items: center;
 
-    width: 30%;
+    width: 25vw;
     height: 100%;
 `
 export const FiltersContainer = styled.div`

@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { Text } from "../../styles/Components.styled"
+import devices from "../../styles/devices";
 
 export const BreadcrumbsContainer = styled.div`
     display: flex;
@@ -7,11 +8,7 @@ export const BreadcrumbsContainer = styled.div`
     justify-content: start;
     align-items: center;
 
-    /* width: 100%; */
     height: 100%;
-
-    
-
 `
 
 interface IBreadcrumbsText{
@@ -26,7 +23,7 @@ export const BreadcrumbsText = styled(Text)`
     width: 100%;
     height: 100%;
 
-    font-size: 18px;
+    font-size: 1vw;
     font-weight: 400;
     
     &:last-child {
@@ -53,14 +50,27 @@ export const BreadcrumbsText = styled(Text)`
 
     &::before {
         content: ${(props: IBreadcrumbsText) => props.arrow ? "url(forward.svg)" : null};
-        /* padding-top: 10px; */
         padding: 10px 10px 0px 10px;
         opacity: 0.5;
-        /* position: relative; */
-        /* display: inline-block; */
-        /* top: 50%; */
-        /* bottom: 5%; */
-        /* left: 40px; */
-        
     }
+
+    @media ${devices.laptopS} {
+        height: 25px;
+    }
+    @media ${devices.laptopM} {
+        
+        height: 30px;
+    }
+    @media ${devices.laptopL} {
+        height: 34px;
+    }
+    @media ${devices.laptopXL} {
+        /* width: 260px; */
+        height: 30px;
+    }
+    @media ${devices.laptopXL} {
+        /* width: 330px; */
+        height: 35px;
+    }
+
 `

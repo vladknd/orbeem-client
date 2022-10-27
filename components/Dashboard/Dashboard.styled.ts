@@ -4,16 +4,16 @@ import { Box1, Box2 } from '../../styles/Components.styled'
 import devices from '../../styles/devices'
 
 export const ProfileContainer = styled.div`
-    margin-top: 12vh;
+    margin-top: 10vh;
     
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: start;
     
-    width: 100%;
+    /* width: 100%; */
 
-    height: 100%;
+    height: 90vh;
     
 `
 
@@ -25,7 +25,7 @@ export const ContentContainer = styled.div`
     justify-content: space-around;
     align-items: start;
     
-    width: 100%;
+    width: 100vw;
     min-height: 70vh;
     max-heigth: 100%;
     height: 75vh;
@@ -39,8 +39,6 @@ export const GamesTab = styled.div`
 
     width: 100%;
     height: 100%;
-    /* max-height: 100%; */
-    /* overflow: hidden; */
 `
 
 export const GamesContainer = styled.div`
@@ -64,7 +62,7 @@ export const NFTTab = styled.div`
 `
 
 export const MyNFTContainer = styled(Box2)`
-width: 100%;
+width: 75vw;
 height: 100%;
 
 `

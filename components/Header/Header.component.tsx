@@ -38,9 +38,10 @@ const HeaderComponent = () => {
     <HeaderContainer>
         <LogoContainer>
             <Link href="/" >
-                <Image width={160} height={80} src="/logo_horizontal.svg" style={{cursor:"pointer"}} />
+                <Image src="/logo_horizontal.svg" layout="fill" 
+                    style={{cursor:"pointer"}} 
+                />
             </Link>
-            
         </LogoContainer>
         
         <SideContainer>
@@ -59,7 +60,7 @@ const HeaderComponent = () => {
                 }}
             >
                 <MetamaskLogo>
-                    <Image src="/metamask.svg" width={30} height={25} layout="intrinsic" />
+                    <Image src="/metamask.svg" layout="fill" />
                 </MetamaskLogo>
                 
                 {publicAddress ? publicAddress : "CONNECT METAMASK"}

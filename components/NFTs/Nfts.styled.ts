@@ -22,9 +22,7 @@ export const Items = styled.div`
         display: none;
     }
 
-    /* @media ${devices.laptopXS}{
-        grid-template-columns: 1fr 1fr 1fr 1fr;     
-    } */
+
     /* @media ${devices.laptopS}{
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }

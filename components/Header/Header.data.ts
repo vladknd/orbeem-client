@@ -10,12 +10,8 @@ export const LinksData:Array<IHeaderLink> = [
         text: "DASHBOARD"
     },
     {
-        href: "/",
+        href: "https://www.orbeem.space/",
         text: "SPACE"
-    },
-    {
-        href: "/",
-        text: "NEWS"
     },
     {
         href: "/",

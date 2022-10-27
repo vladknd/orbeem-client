@@ -22,9 +22,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Web3Provider>
       <Head>
-          <title>THE TITLE</title>
-          {/* <meta name="description" content="HI" /> */}
-          <meta name="description" content="P2E Platform." />
+        <title>THE TITLE</title>
+        {/* <meta name="description" content="HI" /> */}
+        <meta name="description" content="P2E Platform." />
       </Head>
       <UserProvider>
         <ApolloProvider client={graphClient}>

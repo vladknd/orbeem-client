@@ -58,23 +58,23 @@ export const RuneData = () => {
         </AegisImage>
         <Attributes>
           <InfoFieldComponent
-            width="90%"
-            height="33%"
+            width="18vw"
+            height="5vh"
             image="/crystal.svg" 
             attribute="POWER" 
             value={selected.power.toString()}  
           />
           <InfoFieldComponent
-            width="90%"
-            height="33%"
+            width="18vw"
+            height="5vh"
             image="/durability.svg" 
             attribute="DURABILITY" 
             value={selected.durability.toString()} 
             
           />
           <InfoFieldComponent
-            width="90%"
-            height="33%"
+            width="18vw"
+            height="5vh"
             image="/durability.svg" 
             attribute="INTELLIGENCE" 
             value={selected.intelligence.toString()} 

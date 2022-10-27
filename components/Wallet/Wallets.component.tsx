@@ -32,23 +32,22 @@ const ExternalWallet = () => {
     <WalletContainer>
       <ExternalImage>
         <Image src="/externalWallet.svg"
-          width={240}
-          height={240}
+          layout="fill"
         />
       </ExternalImage>
 
-      <GlowText>EXTERNAL</GlowText>
+      <WalletHeader>EXTERNAL</WalletHeader>
       <InfoFieldComponent
-        width="90%"
-        height="90%"
+        width="22vw"
+        height="5vh"
         image="/logo.svg" 
         attribute="ORB AVAILABLE" 
         value={Math.round(Number(balanceORB)).toString()}
         margin="10px 0px 10px 0px"
       />
       <InfoFieldComponent
-        width="90%"
-        height="90%"
+        width="22vw"
+        height="5vh"
         image="/Polygon.svg" 
         attribute="ORB AVAILABLE" 
         value={Math.round(Number(balanceMATIC)).toString()}
@@ -67,15 +66,14 @@ const InternalWallet = () => {
     <WalletContainer>
       <InternalImage>
         <Image src="/internalWallet.svg"
-          width={240}
-          height={240}
+          layout="fill"
         />
       </InternalImage>
       
       <WalletHeader>INTERNAL</WalletHeader>
       <InfoFieldComponent
-        width="90%"
-        height="90%"
+        width="22vw"
+        height="5vh"
         image="/logo.svg" 
         attribute="ORB AVAILABLE" 
         value={user ? `${user.balance}` : "0"} 
@@ -99,6 +97,12 @@ const WalletComponent = () => {
       <WalletsContainer>
         <InternalWallet/>
         <ExternalWallet/>
+        <WalletContainer>
+          <WalletHeader>
+            FIAT PAYMENTS <br/>
+            COMING SOON!
+          </WalletHeader>
+        </WalletContainer>
       </WalletsContainer>
     </WalletComponentContainer>
   )

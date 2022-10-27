@@ -4,14 +4,14 @@ import { Box1, Box2, Button1, GlowText } from '../../styles/Components.styled'
 import devices from '../../styles/devices'
 
 export const NFTContainer = styled.div`
-    margin-top: 6%;
+    margin-top: 5%;
     padding: 1%;
     display: flex;
     flex-direction: row;
     align-items: start;
 
     width: 100%;
-    height: 100vh;
+    height: 95%;
 `
 export const NFTBadge = styled(Box2)`
 
@@ -20,13 +20,10 @@ export const NFTBadge = styled(Box2)`
     justify-content: space-between;
     align-items: center;
 
-    width: 30%;
-    height: 700px;
+    width: 25%;
+    height: 85vh;
 
-    @media ${devices.laptopXS} {
-        width: 22%;
-        height: 85vh;
-    }
+
     @media ${devices.laptopS} {
         
         /* height: 1000px; */
@@ -40,7 +37,29 @@ export const NFTBadge = styled(Box2)`
         /* height: 1000px; */
     }
 `
+export const LevelHeader = styled(GlowText)`
+    /* font-size: 30px; */
+    margin-top: 4%;
+    font-size: 1.5vw;
+    letter-spacing: 15px;
+    text-align: center;
+    height: 5%;
+    width: 100%;
 
+    /* @media ${devices.laptopS} {
+        font-size: 15px;
+    }
+    @media ${devices.laptopM} {
+        font-size: 25px;
+    }
+    @media ${devices.laptopL} {
+        font-size: 25px;
+    }
+    @media ${devices.laptopXL} {
+        font-size: 25px;
+    } */
+
+`
 export const NFT = styled.div`
     display: flex;
     flex-direction: column;
@@ -51,14 +70,34 @@ export const NFT = styled.div`
 
 `
 
+export const AegisCollectionImage = styled.div`
+    position: absolute;
+    z-index: -1;
+    right: 1px;
+    bottom: 0px;
+
+    width: 80%;
+    height: 45%;
+
+    background: radial-gradient(
+        42.56% 46.88% at 57.44% 50.08%, 
+        #0A090D 0%, 
+        rgba(13, 13, 14, 0.32) 21.7%, 
+        rgba(13, 13, 14, 0.35) 74.26%, 
+        #0A090D 100%),url("/aegis.jpeg");
+    background-size: cover;
+
+`
+
 export const NFTId = styled.div`
-    margin: 10px 0px;
+    margin: 2% 0%;
+
     display: flex;
     justify-content: center;
     align-items: center;
 
     width: 50%;
-    height: 22px;
+    height: 3%;
     background-color: rgba(240, 240, 240, 0.1);
 
     border-radius: 69px;
@@ -68,54 +107,44 @@ export const NFTId = styled.div`
 `
 
 
-interface INFTImage {
-    image: string;
-}
+// interface INFTImage {
+//     image: string;
+// }
 export const NFTImage = styled.div`
-    /* width: 400px;
-    height: 500px; */
-    
-    border: 1px solid white;
+    position: relative;
+    margin: 2%;
+    border: 1px solid #494949;
+    border-radius: 10px;
 
-    background-image: ${(props: INFTImage) => `url("${props.image}")`};
-    background-position: center;
-    background-size: cover;
     
-    @media ${devices.laptopXS} {
-        width: 150px;
-        height: 150px;
-    }
-    @media ${devices.laptopS} {
-        width: 170px;
-        height: 180px;
-    }
-    @media ${devices.laptopM} {
-        width: 200px;
-        height: 200px;
-    }
-    @media ${devices.laptopL} {
-        width: 240px;
-        height: 240px;
-    }
-    @media ${devices.laptopXL} {
-        width: 260px;
-        height: 260px;
-    }
-    @media ${devices.laptopXXL} {
-        width: 280px;
-        height: 280px;
-    }
+    width: 16vw;
+    height: 35vh;
+    
+`
+
+export const AttributesContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 80%;
+    height: 20%;
 `
 export const MetadataHeader = styled(GlowText)`
-    margin: 5px 0px;
-    font-size: 40px;
+    margin: 20px 0px;
+
+    font-size: 3vw;
+    letter-spacing: 10px;
     align-self: center;
+
 `
-export const MetadataContainer = styled(Box1)`
+export const MetadataContainer = styled(Box2)`
+    position: relative;
     margin: 0px 20px;
-    padding: 10px;
-    width: 800px;
-    height: 100%;
+    padding: 10px 40px;
+    width: 50vw;
+    height: 85vh;
 
     display: flex;
     flex-direction: column;

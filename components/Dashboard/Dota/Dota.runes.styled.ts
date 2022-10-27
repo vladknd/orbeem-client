@@ -35,10 +35,10 @@ export const AegisImage = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
 
-    height: 40%;
+    height: 48%;
     width: 48%;
     border-radius: 10px;
-    border: solid 1px white;
+    border: solid 1px #494949;
     
 `
 
@@ -46,16 +46,15 @@ export const Claim = styled(Button1)`
     margin: 10px 0px;
     width: 30%;
     height: 10%;
+
+    font-size: 1vw;
 `
 
 export const Header = styled(GlowText)`
     margin: 10px 0px;
     text-shadow: 0px 0px 6px rgba(29, 172, 255, 0.615), 0px 0px 33px #B04BFF;
-
-    @media ${devices.laptopXS} {
-        font-size: 18px;
-    }
-    @media ${devices.laptopS} {
+    font-size: 1.5vw;
+    /* @media ${devices.laptopS} {
         font-size: 18px;
     }
     @media ${devices.laptopM} {
@@ -66,18 +65,12 @@ export const Header = styled(GlowText)`
     }
     @media ${devices.laptopXL} {
         font-size: 25px;
-    }
-    @media ${devices.laptopXXL} {
-        font-size: 35px;
-    }
+    } */
 `
 
 export const ChargeText = styled(GlowText)`
     text-shadow: 0px 0px 6px rgb(0, 255, 123), 0px 0px 33px #37be0e;
     
-    @media ${devices.laptopXS} {
-        font-size: 15px;
-    }
     @media ${devices.laptopS} {
         font-size: 15px;
     }
@@ -88,9 +81,6 @@ export const ChargeText = styled(GlowText)`
         font-size: 15px;
     }
     @media ${devices.laptopXL} {
-        font-size: 22px;
-    }
-    @media ${devices.laptopXXL} {
         font-size: 22px;
     }
 `

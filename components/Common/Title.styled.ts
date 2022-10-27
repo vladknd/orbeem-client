@@ -22,12 +22,13 @@ export const TitleSide = styled.div`
 
     width: 30%;
     height: 100%;
-
+    
+    /* font-size: 3vw; */
     
 `
 export const TitleText = styled(GlowText)`
     margin: 0% 10%;
-    font-size: 35px;
+    font-size: 2vw;
     text-align: center;
     width: 20%;
 `

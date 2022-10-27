@@ -39,11 +39,8 @@ export const SocialMedias = styled.div`
     
 `
 
-export const IconContainer = styled.div`
+export const IconContainer = styled(BaseDiv)`
     margin: 0px 10px;
-    &:hover {
-        opacity: 0.5;
-    }
 `
 
 export const FooterLine = styled.div`

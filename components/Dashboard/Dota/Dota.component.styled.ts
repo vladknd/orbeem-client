@@ -58,7 +58,7 @@ export const NFTBoxContainer = styled(Box1)`
     color: white;
     font-size: 30px;
 
-    border: 0.1px solid white;
+    border: 0.1px solid #1E1E1E;
 
     cursor: pointer;
     &:hover {
@@ -68,10 +68,6 @@ export const NFTBoxContainer = styled(Box1)`
         opacity: 0.9;           
     }
      
-    @media ${devices.laptopXS} {
-        width: 80px;
-        height: 80px;
-    }
     @media ${devices.laptopS} {
         width: 80px;
         height: 80px;

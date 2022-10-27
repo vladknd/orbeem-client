@@ -2,9 +2,17 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button1 } from "../../styles/Components.styled"
-import {Row, OwnerContainer, AmountContainer, Input, ButtonContainer, ImageContainer, SellButton } from "./Owner.styled"
+import {
+  OwnerContainer, 
+  AmountContainer, 
+  PriceInput, 
+  ButtonContainer,
+  SellButton, 
+  ActionsContainer,
+  SellingContainer,
+  PolygonImage
+} from "./Owner.styled"
 import { levelAegis, sellNFT, upgradeAegis } from "../../services/nft.service"
-// import { useNFT } from "./useNFT"
 import { useAppDispatch, useAppSelector } from "../../redux/reduxHooks"
 import { nftActions } from "../../redux/NFT/NFT.slice"
 
@@ -13,40 +21,39 @@ const Owner = () => {
     const [loading, setLoading] = useState<boolean>(false)
     const upgrading = useAppSelector(state => state.NFT.upgrading)
     const Item = useAppSelector(state => state.NFT.item)
-    // const Item = NFT.item
     const dispatch = useAppDispatch()
+    
     return (
       <OwnerContainer>
-        { Item ? 
-        <Row mt={10} mb={10}>
-          <ButtonContainer style={{cursor:"pointer"}} mr={20}>
-            <Link href="/">
-              <Image src="/transfer.svg" width={80} height={80}/>
-            </Link>
-          </ButtonContainer>
-          
-          <ButtonContainer style={{cursor:"pointer"}} 
-            onClick={() => {
-              levelAegis(Item.tokenId)
-            }}
-          >
-            <div>
-              <Image src="/levelup.svg" width={80} height={80}/>
-            </div>
-          </ButtonContainer>
+        {Item ? 
+          <ActionsContainer>
+            <ButtonContainer style={{cursor:"pointer"}} mr={20}>
+              <Link href="/">
+                <Image src="/transfer.svg" layout="fill"/>
+              </Link>
+            </ButtonContainer>
+            
+            <ButtonContainer style={{cursor:"pointer"}} 
+              onClick={() => {
+                levelAegis(Item.tokenId)
+              }}
+            >
+              <div>
+                <Image src="/levelup.svg" layout="fill"/>
+              </div>
+            </ButtonContainer>
 
-          <ButtonContainer style={{cursor:"pointer"}} ml={20}
-            onClick={() => {
-              dispatch(nftActions.nftSetUpgrading())
-            }}
-          >
-            <Image 
-              src={upgrading ? "/upgradeTrue.svg" : "/upgrade.svg"} 
-              width={85} 
-              height={85}
-            />
-          </ButtonContainer>
-        </Row> 
+            <ButtonContainer style={{cursor:"pointer"}} ml={20}
+              onClick={() => {
+                dispatch(nftActions.nftSetUpgrading())
+              }}
+            >
+              <Image 
+                src={upgrading ? "/upgradeTrue.svg" : "/upgrade.svg"} 
+                layout="fill"
+              />
+            </ButtonContainer>
+          </ActionsContainer> 
         : null}
         
         {Item && "power" in Item ? 
@@ -76,14 +83,16 @@ const Owner = () => {
               SUBMIT
             </Button1> 
 
-          : <Row mb={20}>
+          : <SellingContainer>
               <AmountContainer>
-                <Input type="number" name="name" placeholder="0.0 MATIC" autoComplete="off"
+                <PriceInput type="number" name="name" placeholder="0.0 MATIC" autoComplete="off"
                   onChange={event => {
                     setPrice(event.target.value)
                   }}
                 />
-                <Image src="/Polygon.svg" width={20} height={20}/>
+                <PolygonImage>
+                  <Image src="/Polygon.svg" layout="fill"/>
+                </PolygonImage>
               </AmountContainer>
 
               <SellButton width={130} height={30}
@@ -91,9 +100,8 @@ const Owner = () => {
               >
                 SELL
               </SellButton>
-            </Row> 
+            </SellingContainer> 
         : null}
-
       </OwnerContainer>
     )
 }

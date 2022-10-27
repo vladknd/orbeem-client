@@ -29,32 +29,33 @@ const LootboxContainer = styled(Box1)`
 `
 
 const ImageContainer = styled.div`
+    position: relative;
     margin-top: 15%;
     
     display: flex;
     justify-content: center;
     align-items: center;
 
-    width: 60%;
-    height: 30%;
+    width: 15vw;
+    height: 25vh;
 
 `
 
 const Header = styled(GlowText)`
-    font-size: 35px;
+    font-size: 2vw;
 `
 export const DashboardLootboxComponent = () => {
   const {user} = useUser()
   return (
     <LootboxContainer>
         <ImageContainer>
-            <Image src="/internalWallet.svg" width={300} height={400}/>
+            <Image src="/internalWallet.svg" layout="fill"/>
         </ImageContainer>
         <Header>LOOT BOX</Header>
         <InfoFieldComponent
             margin="30px 0px 10px 0px"
             width="90%"
-            height="90%"
+            height="6vh"
             image="/logo.svg" 
             attribute="ORB AVAILABLE" 
             value={user ? `${user.balance}` : "0"} 

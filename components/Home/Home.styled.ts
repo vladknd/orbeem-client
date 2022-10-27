@@ -3,18 +3,15 @@ import { BaseDiv, Box1, Button1, Text } from '../../styles/Components.styled';
 import devices from '../../styles/devices';
 
 export const HomeContainer = styled.div`
-    
-    width: 100%;
-    height: 100%;
+    /* display: flex;
+    flex-direction: column; */
+    /* width: 100vw; */
+    /* height: 100vh; */
 
-    background-size: 900px 700px;
-    /* opacity: 0.3; */
+    /* background-size: 900px 700px; */
 `
 
 export const UpsideContainer = styled.div`
-    /* padding-top: 80px; //PADDING FROM HEADER! */
-    padding-top: 0vh;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -26,7 +23,7 @@ export const UpsideContainer = styled.div`
     background-repeat: repeat;
     background-size: fill;
 
-    /* background-image: url("/waves.svg"); */
+
     height: 100vh;
 `
 
@@ -34,57 +31,66 @@ interface ILogoContainer {
     auth: boolean | (() => Promise<void>)
 }
 export const LogoContainer = styled.div`
-    filter: ${(props: ILogoContainer) => props.auth ? "drop-shadow(3px -3px 31px #8952FF)" : "none"};
-    margin-left: 100px;
     transition: filter 4s;
 
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 
+    width: 40%;
+    height: 100%;
 
-    @media ${devices.laptopXS} {
-        margin-top: 2%:
-        width: 2%:
-    }
-    @media ${devices.laptopS} {
-        margin-top: 3%;
-        width: 27%;
-    }
-    @media ${devices.laptopM} {
-        margin-top: 3%;
-    }
-    @media ${devices.laptopL} {
+    filter: ${(props: ILogoContainer) => props.auth ? "drop-shadow(3px -3px 31px #8952FF)" : "none"};
+`
 
-    }
+export const LogoImage = styled.div`
+    position: relative;
+    width: 100%;
+    height: 45%;
+`
+
+export const SignButton = styled(Button1)`
+    margin-top: 5%;
+
+    font-size: 1vw;
+    letter-spacing: 5px;
+    width: 25%;
+    height: 8%;
+    
+`
+
+export const PlayButton = styled(BaseDiv)`
+    position: relative;
+    margin-top: 5%;
+
+    width: 100%;
+    height: 10%;
+
+`
+export const PlayText = styled(Text)`
+    font-size: 15px;
 `
 
 export const TapesContainer = styled.div`
     
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: end;
 
-    height: 600px;
+    width: 60%;
+    height: 100%;
 
     filter: drop-shadow(0px 40px 40px rgba(0, 0, 0, 0.4));
-    @media ${devices.laptopXS} {
-        margin-top: 0%:
-    }
-    @media ${devices.laptopS} {
-        margin-top: 0%;
-    }
-    @media ${devices.laptopM} {
-        margin-top: 0%;
-    }
-    @media ${devices.laptopL} {
-        margin-top: 0%;
-    }
 `
 
 export const Tape = styled.div`
-    margin: 30px 0px 3px 0px;
+    position: relative;
+    margin: 2% 0%;
     
+    width: 50vw;
+    height: 20vh;
     &:hover {
         opacity: 0.8;
         cursor: pointer;
@@ -93,28 +99,16 @@ export const Tape = styled.div`
         opacity: 0.9;
     }
 
-    @media ${devices.laptopXS} {
-        width: 80%;
-    }
-    @media ${devices.laptopS} {
-        width: 70%;
-    }
-    @media ${devices.laptopM} {
-        width: 80%;
-    }
-    @media ${devices.laptopL} {
-        width: 100%;
-    }
  `
 
+
+//PANEL____________________________________
 export const PanelContainer = styled.div`
     margin: 20px 0px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-
-    /* height: 100%; */
 
 `
 
@@ -131,26 +125,11 @@ export const PanelBoxContainer = styled(Box1)`
     filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.6));
 `
 
-export const SignButton = styled(Button1)`
-    margin-top: 10%;
-    width: 220px;
-    height: 60px;
-    
-`
-
-export const PlayButton = styled(BaseDiv)`
-    margin-top: 10%;
-
-`
-export const PlayText = styled(Text)`
-    font-size: 15px;
-`
-
 export const Waves = styled.div`
-    margin-top: 900px;
+    /* margin-top: 900px; */
     position: absolute;
-    width: 100%;
-    height: 750px;
+    width: 100vw;
+    height: 100vh;
     z-index:0;
     background-image: url("/waves.svg");
     background-position: 0% 1000%;

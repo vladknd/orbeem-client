@@ -67,7 +67,7 @@ const SignedComponent = () => {
                     <NavigatorTab text="MY NFTS" onClick={()=> {
                         dispatch(dashboardActions.setTab(DASHBOARD_TAB.MY_NFT))
                     }}/>
-                    <NavigatorTab text="MY ACCOUNTS" onClick={()=> {
+                    <NavigatorTab text="MY GAMES" onClick={()=> {
                         dispatch(dashboardActions.setTab(DASHBOARD_TAB.MY_GAMES))
                     }}/>
                 </Links>

@@ -16,6 +16,7 @@ import {
 import { 
     HomeContainer, 
     LogoContainer, 
+    LogoImage, 
     PanelBoxContainer, 
     PanelContainer, 
     PlayButton, 
@@ -78,7 +79,9 @@ const HomeComponent = () => {
         <Waves/>
         <UpsideContainer>
             <LogoContainer auth={authorized}>
-                <Image src="/logo_vertical.svg" width={450} height={450}/>
+                <LogoImage>
+                    <Image src="/logo_vertical.svg" layout="fill"/>
+                </LogoImage>
                 {
                     authorized     
                     ? null 
@@ -96,37 +99,43 @@ const HomeComponent = () => {
                         Router.push("https://www.youtube.com/watch?v=gbp9AgEQ9vs")
                     }}
                 >
-                    <Image src="/play.svg" width={100} height={100}/>
+                    <Image src="/play.svg" layout="fill"/>
                 </PlayButton>
-                <PlayText>CLICK HERE</PlayText>
+
             </LogoContainer>
             
             <TapesContainer>
                 <Tape>
-                    <Image 
+                    <Image src={authorized ? "/tapeDota.png" : "/tapeDotaMono.png"} 
                         onClick={() => {
                             Router.push("marketplace")
                         }}
-                    src={ 
-                        authorized ? 
-                            "/tapeDota.png" : 
-                        "/tapeDotaMono.png"
-                        } width={850} height={170}/>
+                    
+                        layout="fill"
+                        />
                 </Tape>
 
                 <Tape>
-                    <Image src={authorized ? "/tapePubg.png" : "/tapePubgMono.png"} width={850} height={170}/>
+                    <Image src={authorized ? "/tapePubg.png" : "/tapePubgMono.png"} 
+                    layout="fill"
+                        // width={980} 
+                        // height={200}
+                    />
                 </Tape>
                 <Tape>
-                    <Image src={authorized ? "/tapeCS.png" : "/tapeCSMono.png"} width={850} height={170}/>
+                    <Image src={authorized ? "/tapeCS.png" : "/tapeCSMono.png"} 
+                    layout="fill"
+                        // width={980} 
+                        // height={200}
+                    />
                 </Tape>
             </TapesContainer>
         </UpsideContainer>
-        <Divider mb="4%"/>
+        <Divider/>
 
         <NewsComponent/>
         {/* {authorized ? <Divider/> : null} */}
-        {authorized ? <Panel/> : null}
+        {/* {authorized ? <Panel/> : null} */}
         <Divider mt="4%"/>
         <FooterComponent/>
     </HomeContainer>

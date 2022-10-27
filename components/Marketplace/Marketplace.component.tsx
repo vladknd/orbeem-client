@@ -1,20 +1,12 @@
 //_______________GLOBAL-IMPORTS___________________
-import React, { useEffect} from 'react'
+import React from 'react'
 //_______________LOCAL-IMPORTS____________________
 //STYLED-COMPONENTS_______________________________
 import { 
-    Illustration, 
     MarketplaceContainer, 
-    Market,  
-    HeaderContainer,
-    CollectionContainer,
     ContentContainer
 } from './Marketplace.styled'
-import { 
-    Divider, 
-    GlowText, 
-    Waves 
-} from '../../styles/Components.styled'
+
 //COMPONENTS______________________________________
 import NftsComponent from '../NFTs/Nfts.component'
 //REDUX___________________________________________
