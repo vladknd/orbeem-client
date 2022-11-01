@@ -74,7 +74,7 @@ const NewsComponent = () => {
                 compete for a chance to win a brand new gaming-laptop!
 
             "
-            medium=''
+            medium='https://medium.com/@orbeem.info/special-promotion-orbs-for-registration-and-gaming-laptop-5760b1164bea'
             img="/promotion.webp"
             date='15 OCTOBER, 2022'
         />
