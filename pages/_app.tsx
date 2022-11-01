@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Web3Provider>
       <Head>
-        <title>THE TITLE</title>
+        <title>ORBEEM - GameFi Metaverse run dev </title>
         {/* <meta name="description" content="HI" /> */}
         <meta name="description" content="P2E Platform." />
       </Head>

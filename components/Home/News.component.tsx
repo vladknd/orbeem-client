@@ -76,7 +76,7 @@ const NewsComponent = () => {
             "
             medium=''
             img="/promotion.webp"
-            date='10 SEPTEMBER, 2022'
+            date='15 OCTOBER, 2022'
         />
         <NewsItem
             header="FIRST ORBEEM NFT COLLECTION HAS BEEN RELEASED!"
@@ -89,8 +89,8 @@ const NewsComponent = () => {
                 you will be able to get ORB tokens once every 24 hours. 
             "
             medium="https://medium.com/@orbeem.info/orbeem-nfts-aegis-collection-9a3013fc478e"
-            img="/aegis.jpeg"
-            date='10 SEPTEMBER, 2022'
+            img="/1.png"
+            date='20 SEPTEMBER, 2022'
         />
 
        
