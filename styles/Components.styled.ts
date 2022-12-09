@@ -51,18 +51,23 @@ export const Button = styled.button`
 `
 
 export const Button1 = styled(Button)`
+    z-index: 1;
+    
     color: white;
     background: rgba(0,0,0,0.1);
-    z-index: 1;
+    
+
     border-radius: 1vw;
     border: 0.5px solid;
     border-color: #4F2EAE;
     //TO-DO: ADD GRADIENT BORDERS!
-   
+
     font-family: Inter;
-    font-size: 18px;
+    font-size: 1vw;;
     font-weight: 300;
-    letter-spacing: 4px;
+    letter-spacing: 0.5vw;
+    text-align: center;
+    vertical-align: middle;
 
     &&:hover {
         background: rgba(0,0,0,0.2);
@@ -74,21 +79,20 @@ export const Button1 = styled(Button)`
 
 `
 export const Button2 = styled(Button)`
-    
-
-    
-    padding: 10px 20px;
+    padding: 0% 2%;
 
     font-family: Inter;
-    font-size: 18px;
+    font-size: 1vw;
     font-weight: 300;
-    letter-spacing: 6px;
+    letter-spacing: 0.5vw;
+    text-align: center;
+    vertical-align: middle;
 
     background: transparent;
     color: white;
 
     border: 0.1px solid white;
-    border-radius: 4px;
+    border-radius: 0.5vw;
     
     &:hover {
         opacity: 0.5;
