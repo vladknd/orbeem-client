@@ -29,13 +29,13 @@ export const TournamentContent = styled(Box2)`
 
 export const TournamentImage = styled.div`
   position: relative;
-  width: 40%;
+  width: 20%;
   height: 40%;
 `;
 
 export const TournamentHeader = styled(GlowText)`
   margin: 1%;
-  font-size: 2.5vw;
+  font-size: 2.2vw;
 `;
 
 export const TournamentText = styled(Text)`
