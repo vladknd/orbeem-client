@@ -12,6 +12,7 @@ const nextConfig = {
   images: {
     domains: [
       "bafybeicwjamha3frl7stc4f4pt3jiocogwn5w3bwr7u4eaknrgytebsik4.ipfs.nftstorage.link",
+      "bafybeiaavg3h5bby6tcknbofbrbbxd6qmyqbed6sgkdio33h4o2dxbgjyu.ipfs.nftstorage.link",
     ],
   },
 };
